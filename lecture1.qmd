@@ -1,0 +1,581 @@
+---
+title: ""
+format: 
+  revealjs:
+    theme: serif
+    embed-resources: true
+fontsize: 180%
+---
+
+# Welcome to R Math Camp
+
+Bradley Katcher
+
+<br><br>
+
+Note: I am grateful to Rony Rodriguez-Ramirez and previous Math Camp and API-209 TFs for their materials, of which these are heavily based.
+
+Slides available on
+
+------------------------------------------------------------------------
+
+## About me:
+
+Bradley Katcher ![](IMG_4201.png){.absolute top="-25" left="800" width="350" height="300"}
+
+-   3rd year PhD student at HKS (Econ track)
+
+    -   From Cleveland, Ohio
+    -   Worked at the Federal Reserve in Washington, DC
+    -   Did my MPP and MS Data Science at University of Virginia
+
+-   Big sports fan, enjoy cooking, running, hiking, travel, home brewing, and economics!
+
+-   Will be the Teaching Fellow (TF) for API-209 this semester
+
+## My Research Assistant:
+
+::: columns
+::: {.column width="50%"}
+Meet Bee!
+
+If we are on a Zoom call, you may hear her in the background. She's very chatty!
+:::
+
+::: {.column width="50%"}
+![Bee](/images/bee.png)
+:::
+:::
+
+## Introduce Course Assistants:
+
+CAs, please give:
+
+1.  Your name
+2.  Favorite tip for learning R
+3.  Recommendation of at least one non-academic thing to do this semester in Boston/Cambridge.
+
+## Goals for the course:
+
+-   Ensure that you know enough R to tackle assignments this semester.
+
+    -   Will not teach you everything about coding: this is a public policy program, not a CS course.
+
+    -   Goal is to bring everyone to a similar playing field!
+
+        -   May be a little slow for experienced R users
+        -   May be fast for those of you who have never programmed.
+        -   Feedback is encouraged!
+
+-   Know how to craft questions and where to look for answers.
+
+## Why R?
+
+-   Allows you to connect theory to empirics (data!)
+
+-   Open source, large community, and used by lots of organizations
+
+    -   More reproducible and systematic than using Excel
+
+        -   I used it when working for the Fed
+
+-   Produces very nice data visualizations
+
+## I don't want to waste your time:
+
+-   Many of you have substantial R experience
+
+-   This course might be too fast/slow for some of you
+
+-   Can't force you to be here!
+
+-   Reasons why you might still want to be, even if you are an experienced user:
+
+    -   Good refresher
+
+    -   Build out your GitHub Repo
+
+        -   Can offer a session on this if interested
+
+    -   Will be using exercises that are based on problem sets/exams from API-209
+
+## Where to turn for help:
+
+-   [R for Data Science](https://r4ds.had.co.nz/index.html)
+-   [Posit Recipes](https://posit.cloud/learn/recipes)
+-   Google
+-   ChatGPT/AI
+-   Course Assistants
+-   Me!
+
+## Layout of course:
+
+What are we doing to do during Math Camp (R portion)?
+
+8 sessions over the next two weeks:
+
+1\. **4 Lessons (2 hours):**
+
+-   I will discuss coding strategies and implementations. Mostly walk-through of examples.
+
+2\. **Labs (1.5 hours):**
+
+-   A hands-on session where I provide you with a challenge and we solve them together.
+
+-   A chance to practice the skills we learn in lessons.
+
+3\. **Office hours** (optional!)
+
+## Classroom Norms:
+
+-   Everyone deserves the chance to contribute
+
+-   Start with curiosity, not judgement
+
+-   Acknowledge varying levels of experience
+
+-   Practice collaborative problem solving
+
+-   Ask questions, often! No such thing as a "dumb question"
+
+-   Attempt first, then seek input
+
+-   Keep feedback constructive and kind
+
+-   Stay present and engaged
+
+-   Use tools and online resources appropriately
+
+-   Respect everyone's time and energy
+
+## AI for Troubleshooting:
+
+To use AI effectively, consider the following:
+
+1.  Share a *clear question* with your *code + error message*
+2.  Ask for help identifying the error
+3.  Review the AI's suggestion **critically and make sure you understand the fix**
+4.  Always **test solutions** in your own R environment
+
+Cite when you use AI for troubleshooting, and any code written by AI should include a comment by you describing which AI you used and what the code does in your own words.
+
+## Don't let AI do the thinking for you:
+
+AI gives answers, but you need a deeper understanding.
+
+-   You can't debug or adapt code you don't understand.
+
+    -   Knowing *how* matters more than getting a quick fix.
+
+AI isn't always correct:
+
+-   Makes up functions
+
+-   Suggests outdated/inefficient code
+
+-   Doesn't know dataset or context
+
+## Outline:
+
+-   Lesson 1: Welcome, overview, dplyr
+
+    -   Lab 1: Working with a dataset on how to compute summary stats, basic data analysis
+
+. . .
+
+-   Lesson 2: Installing R, Tidyerse, ggplot, working with other packages
+
+    -   Lab 2: Tidy Data and Visualization in R using packages
+
+. . .
+
+-   Lesson 3: Writing your own functions, Quarto
+
+    -   Lab 3: Writing functions to calculate some statistics
+
+. . .
+
+-   Lesson 4: Data wrangling with multiple datasets, merging and integrating multiple data sources
+
+    -   Lab 4: Exercise based on first half of problem set 1
+
+## Goals for today:
+
+. . .
+
+1.  Learn how to import data and do basic data manipulation and cleaning.
+
+. . .
+
+2.  Work with a real dataset, understanding code book and documentation
+
+. . .
+
+3.  Learn key components of the tidyverse.
+
+. . .
+
+4.  Understanding data cleaning and data wrangling.
+
+![](https://pbs.twimg.com/media/Eb63HKNXYAAS-ik.jpg){width="325"}
+
+# Getting Started
+
+## Steps to working with data in R:
+
+1\. Import (`read.csv()` is your friend)
+
+. . .
+
+2\. Tidy (`dplyr` and `stringr` are your friends)
+
+. . .
+
+3\. Transform the data (`tidyverse` is your friend)
+
+. . .
+
+4\. Visualize the data (`ggplot` is your friend)
+
+. . .
+
+5\. Communicate the data (`quarto` is your friend)
+
+## Structure of an R file:
+
+We begin by writing a preamble and loading in packages:
+
+```{r, echo = T}
+# filename.do
+# Author: Bradley Katcher
+# Date: 
+# Purpose: 
+# Description:
+
+
+# packages:
+# to install packages, we use the following function:
+#install.packages('dplyr') # you only need to do this once
+library(dplyr) # this calls the package, you need to do this every time
+
+# storing key variables:
+
+
+
+# begin analysis
+
+```
+
+## Reading in data:
+
+Ideally most data that you get will be in csv (delimited) format.
+
+-   You had experience reading in csv files in the summer work using the `read_csv()` command.
+
+For today's exercise, we are going to work with a dataset on the global diffusion of latent nuclear capabilities, produced by Matthew Fuhrmann:
+
+Check out his website [here](http://www.matthewfuhrmann.com/datasets.html) with [codebook](http://www.matthewfuhrmann.com/uploads/2/5/8/2/25820564/nl_dataset_-_codebook_2015-1215.pdf).
+
+## Reading in data:
+
+It looks like this dataset is in xlsx format. To read that in, we will 1. Install the `openxlsx` package 2. Call the `openxlsx` package 3. Read in the dataset
+
+-   There are multiple ways to do this. For example, you could download the file and use the `readxl` package.
+-   You can load multiple datasets into R.
+
+```{r, echo = T}
+#install.packages('openxlsx')
+library(openxlsx)
+
+full_nuclear_data <- read.xlsx('http://www.matthewfuhrmann.com/uploads/2/5/8/2/25820564/nl_dataset_v.1.2.xlsx')
+
+nuclear_country_year <- read.xlsx('http://www.matthewfuhrmann.com/uploads/2/5/8/2/25820564/country-year_dataset.xlsx')
+```
+
+## Preview the data
+
+```{r, echo = T}
+library(dplyr)
+
+# Look at the full data:
+head(full_nuclear_data)
+```
+
+## Preview the data:
+
+```{r, echo = T}
+glimpse(full_nuclear_data)
+# can also use: full_nuclear_data |> glimpse() 
+```
+
+## Preview the data:
+
+```{r, echo = T}
+# Look at the limited data:
+head(nuclear_country_year)
+glimpse(nuclear_country_year)
+
+```
+
+## Data Manipulation and Wrangling:
+
+::: columns
+::: {.column width="50%"}
+Data manipulation:
+
+-   Focus is changing data structure
+
+-   Uses specific methods/functions
+
+-   Works with structured data
+
+-   Ex: sorting, filtering, aggregating
+
+-   Part of data wrangling
+:::
+
+::: {.column width="50%"}
+Data wrangling:
+
+-   Broader process with cleaning and transformations
+
+-   Structured and unstructured data
+
+-   Missing values, multiple datasets, format conversion
+
+-   More time intensive
+:::
+:::
+
+## More advanced data wrangling:
+
+-   **Advanced filtering and selection:** Conditional filtering and dynamic column selection
+
+-   **Complex mutate operations:** Creating conditional columns using lags and leads
+
+-   **Data reshaping:** pivoting data, advanced grouping
+
+-   **Efficient data handling:** joining datasets, parallel processing
+
+## Key Packages:
+
+These are tidyverse R packages that are used for data science, which share a common design philosophy, grammar, and data structures:
+
+-   `ggplot2`: data visualization
+
+-   `dplyr`: data manipulation
+
+-   `tidyr`: data tidying
+
+-   `readr`: data import
+
+-   `purrr`: functional programming
+
+-   `tibble`: modern data frames
+
+-   `stringr`: string manipulation
+
+-   `forcats`: categorical data
+
+## Most commonly used `dplyr` functions:
+
+-   `filter()`: subset rows based on conditions
+
+. . .
+
+-   `select()`: choose columns by name
+
+. . .
+
+-   `mutate()`: create new columns or modify existing ones
+    -   commonly used with `if_else()` or `case_when()`
+
+. . .
+
+-   `arrange()`: reorder rows
+
+. . .
+
+-   `group_by()`: group data for summary operations
+
+. . .
+
+-   `summarize()`: aggregate data
+
+## Return to the data:
+
+Cleaning the data. If names were not clean, then we would clean the names, which you could do using the following:
+
+```{r, echo = T}
+library(janitor)
+head(nuclear_country_year)
+
+head(clean_names(nuclear_country_year))
+
+```
+
+## Cleaning a few things:
+
+The codebook tells us that for many of the variables, there are values that are put in to signify missing values or non-operational facilities.
+
+-   It is very important to read through the codebook and look at summary stats of the data:
+
+```{r, echo = T}
+summary(full_nuclear_data)
+```
+
+## Just looking at specific variables:
+
+```{r, echo = T}
+# just look at one variable:
+summary(full_nuclear_data$military)
+
+# look at multiple variables:
+summary(full_nuclear_data |> select(military, size))
+```
+
+## Tabulating and Cross-Tabbing the data:
+
+```{r, echo = T}
+# tabulate technology employed at nuclear plant:
+table(full_nuclear_data$enr_type)
+
+# cross-table of technology employed based on civilian/military status:
+table(full_nuclear_data$enr_type, full_nuclear_data$military)
+
+```
+
+# Exercise:
+
+## Question 1: What share of nuclear and plants in Europe are military as opposed to civilian? What share broken out by technology type?
+
+What do we need to do?
+
+. . .
+
+1.  Filter to the countries of interest
+2.  Select the variables that are important to us
+3.  Handle missing/make sure the data is clean
+4.  Group by technology type/military status
+5.  Summarize
+
+## Look at the countries:
+
+```{r, echo = T}
+table(full_nuclear_data$country_name)
+```
+
+```{r, echo = T}
+# select just European countries:
+europe_nuclear_data <- full_nuclear_data |> 
+  filter(country_name %in% 
+           c("Belgium", "Czech Republic", "France", "Germany",
+             "Italy", "Netherlands", "Norway", "Romania",
+             "Spain", "Sweden", "United Kingdom", "Yugoslavia"))
+```
+
+## Limit to the variables we need:
+
+```{r, echo = T}
+# subset to the variables that we need:
+europe_nuclear_data <- europe_nuclear_data |> 
+  select(country_name, enr_type, military)
+
+# get summary stats of the dataframe:
+summary(europe_nuclear_data)
+```
+
+## Look at military:
+
+We see that the share of military is negative if we look at summary stats. If we wanted to figure out the share that are military, right now, it wouldn't make any sense.
+
+```{r, echo = T}
+# recode the missing observaitons:
+military_summary_data <- europe_nuclear_data |> 
+  # recode the missing military to be NA
+  mutate(military = if_else(military == -99, NA, military))
+
+# look at the result:
+mean(military_summary_data$military)
+```
+
+Why didn't this work? We need to remove NAs:
+
+```{r, echo = T}
+mean(military_summary_data$military, na.rm = T)
+```
+
+## Putting it all together
+
+How many military and civilian nuclear plants are there by power type?
+
+```{r, echo = T}
+# compute the number and share of military plants by power type
+europe_power_type <- europe_nuclear_data |>
+  # recode the missing to be NA:
+  mutate(military = if_else(military == -99, NA, military)) |>
+  # remove the missings:
+  filter(!is.na(military)) %>%
+  #group by power type:
+  group_by(enr_type) %>%
+  # summarise the share of military
+  summarise(military = mean(military), # the share of plants that are military
+            n_plants = n()) # the total number of plants by type
+
+# look at the data:
+europe_power_type
+```
+
+## Make it look a little cleaner:
+
+```{r, echo = T}
+# add strings to teh pwoer type
+europe_power_type  <- europe_power_type |>
+  # create a variable with the name as a string instead of a number
+  mutate(power_type = case_when(
+         enr_type == 1 ~ "Reprocessing",
+         enr_type == 2 ~ "Gaseous diffusion",
+         enr_type == 3 ~ "Centrifuge",
+         enr_type == 4 ~ "EMIS",
+         enr_type == 5 ~ "Chemical & ion exchange",
+         enr_type == 6 ~ "Aerodynamic isotope separation",
+         enr_type == 7 ~ "Laser",
+         enr_type == 8 ~ "Thermal diffusion")) |>
+  # remove the number
+  select(-enr_type) |>
+  # sort by the number of plants (descending)
+  arrange(-n_plants) |>
+  # make sure that power_type is the first variable:
+  select(power_type, everything())
+
+# look at the results:
+europe_power_type
+
+```
+
+## Recap:
+
+What have we done today?
+
+1.  Started to get familiar with R
+2.  Learned about good coding practices
+3.  Previewed the tidyverse
+4.  Work through a practice exercise
+
+Comment early and often!
+
+## Install R on Your Machine
+
+*Please attempt this prior to the start of next lecture. If you successfully install R and RStudio without any issues, feel free to arrive at 9:15am on Thursday to allow us time to help other students*
+
+To install R, you should install both R and RStudio. To download and install R, you should click the following:
+
+[**Download and Install R**](https://posit.co/download/rstudio-desktop/)
+
+-   Once you get to this website, click the **"Download R for macOS" or "Download R for Windows**" depending on your machine.
+
+-   To get the R Studio interface, you can click on the same link as above and then click "**Download RStudio Desktop**."
+
+If you would like step by step *instructions*, you can do so [here](https://moderndive.com/1-getting-started.html).
+
+Please tell the teaching team if you need assistance!

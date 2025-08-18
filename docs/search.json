@@ -1,0 +1,254 @@
+[
+  {
+    "objectID": "lecture1.html#about-me",
+    "href": "lecture1.html#about-me",
+    "title": "R Math Camp",
+    "section": "About me:",
+    "text": "About me:\nBradley Katcher \n\n3rd year PhD student at HKS (Econ track)\n\nFrom Cleveland, Ohio\nWorked at the Federal Reserve in Washington, DC\nDid my MPP and MS Data Science at University of Virginia\n\nBig sports fan, enjoy cooking, running, hiking, travel, home brewing, and economics!\nWill be the Teaching Fellow (TF) for API-209 this semester"
+  },
+  {
+    "objectID": "lecture1.html#my-research-assistant",
+    "href": "lecture1.html#my-research-assistant",
+    "title": "R Math Camp",
+    "section": "My Research Assistant:",
+    "text": "My Research Assistant:\n\n\nMeet Bee!\nIf we are on a Zoom call, you may hear her in the background. She’s very chatty!\n\n\n\n\nBee"
+  },
+  {
+    "objectID": "lecture1.html#introduce-course-assistants",
+    "href": "lecture1.html#introduce-course-assistants",
+    "title": "R Math Camp",
+    "section": "Introduce Course Assistants:",
+    "text": "Introduce Course Assistants:\nCAs, please give:\n\nYour name\nFavorite tip for learning R\nRecommendation of at least one non-academic thing to do this semester in Boston/Cambridge."
+  },
+  {
+    "objectID": "lecture1.html#goals-for-the-course",
+    "href": "lecture1.html#goals-for-the-course",
+    "title": "R Math Camp",
+    "section": "Goals for the course:",
+    "text": "Goals for the course:\n\nEnsure that you know enough R to tackle assignments this semester.\n\nWill not teach you everything about coding: this is a public policy program, not a CS course.\nGoal is to bring everyone to a similar playing field!\n\nMay be a little slow for experienced R users\nMay be fast for those of you who have never programmed.\nFeedback is encouraged!\n\n\nKnow how to craft questions and where to look for answers."
+  },
+  {
+    "objectID": "lecture1.html#why-r",
+    "href": "lecture1.html#why-r",
+    "title": "R Math Camp",
+    "section": "Why R?",
+    "text": "Why R?\n\nAllows you to connect theory to empirics (data!)\nOpen source, large community, and used by lots of organizations\n\nMore reproducible and systematic than using Excel\n\nI used it when working for the Fed\n\n\nProduces very nice data visualizations"
+  },
+  {
+    "objectID": "lecture1.html#i-dont-want-to-waste-your-time",
+    "href": "lecture1.html#i-dont-want-to-waste-your-time",
+    "title": "R Math Camp",
+    "section": "I don’t want to waste your time:",
+    "text": "I don’t want to waste your time:\n\nMany of you have substantial R experience\nThis course might be too fast/slow for some of you\nCan’t force you to be here!\nReasons why you might still want to be, even if you are an experienced user:\n\nGood refresher\nBuild out your GitHub Repo\n\nCan offer a session on this if interested\n\nWill be using exercises that are based on problem sets/exams from API-209"
+  },
+  {
+    "objectID": "lecture1.html#where-to-turn-for-help",
+    "href": "lecture1.html#where-to-turn-for-help",
+    "title": "R Math Camp",
+    "section": "Where to turn for help:",
+    "text": "Where to turn for help:\n\nR for Data Science\nPosit Recipes\nGoogle\nChatGPT/AI\nCourse Assistants\nMe!"
+  },
+  {
+    "objectID": "lecture1.html#layout-of-course",
+    "href": "lecture1.html#layout-of-course",
+    "title": "R Math Camp",
+    "section": "Layout of course:",
+    "text": "Layout of course:\nWhat are we doing to do during Math Camp (R portion)?\n8 sessions over the next two weeks:\n1. 4 Lessons (2 hours):\n\nI will discuss coding strategies and implementations. Mostly walk-through of examples.\n\n2. Labs (1.5 hours):\n\nA hands-on session where I provide you with a challenge and we solve them together.\nA chance to practice the skills we learn in lessons.\n\n3. Office hours (optional!)"
+  },
+  {
+    "objectID": "lecture1.html#classroom-norms",
+    "href": "lecture1.html#classroom-norms",
+    "title": "R Math Camp",
+    "section": "Classroom Norms:",
+    "text": "Classroom Norms:\n\nEveryone deserves the chance to contribute\nStart with curiosity, not judgement\nAcknowledge varying levels of experience\nPractice collaborative problem solving\nAsk questions, often! No such thing as a “dumb question”\nAttempt first, then seek input\nKeep feedback constructive and kind\nStay present and engaged\nUse tools and online resources appropriately\nRespect everyone’s time and energy"
+  },
+  {
+    "objectID": "lecture1.html#ai-for-troubleshooting",
+    "href": "lecture1.html#ai-for-troubleshooting",
+    "title": "R Math Camp",
+    "section": "AI for Troubleshooting:",
+    "text": "AI for Troubleshooting:\nTo use AI effectively, consider the following:\n\nShare a clear question with your code + error message\nAsk for help identifying the error\nReview the AI’s suggestion critically and make sure you understand the fix\nAlways test solutions in your own R environment\n\nCite when you use AI for troubleshooting, and any code written by AI should include a comment by you describing which AI you used and what the code does in your own words."
+  },
+  {
+    "objectID": "lecture1.html#dont-let-ai-do-the-thinking-for-you",
+    "href": "lecture1.html#dont-let-ai-do-the-thinking-for-you",
+    "title": "R Math Camp",
+    "section": "Don’t let AI do the thinking for you:",
+    "text": "Don’t let AI do the thinking for you:\nAI gives answers, but you need a deeper understanding.\n\nYou can’t debug or adapt code you don’t understand.\n\nKnowing how matters more than getting a quick fix.\n\n\nAI isn’t always correct:\n\nMakes up functions\nSuggests outdated/inefficient code\nDoesn’t know dataset or context"
+  },
+  {
+    "objectID": "lecture1.html#outline",
+    "href": "lecture1.html#outline",
+    "title": "R Math Camp",
+    "section": "Outline:",
+    "text": "Outline:\n\nLesson 1: Welcome, overview, dplyr\n\nLab 1: Working with a dataset on how to compute summary stats, basic data analysis\n\n\n\n\nLesson 2: Installing R, Tidyerse, ggplot, working with other packages\n\nLab 2: Tidy Data and Visualization in R using packages\n\n\n\n\n\nLesson 3: Writing your own functions, Quarto\n\nLab 3: Writing functions to calculate some statistics\n\n\n\n\n\nLesson 4: Data wrangling with multiple datasets, merging and integrating multiple data sources\n\nLab 4: Exercise based on first half of problem set 1"
+  },
+  {
+    "objectID": "lecture1.html#goals-for-today",
+    "href": "lecture1.html#goals-for-today",
+    "title": "R Math Camp",
+    "section": "Goals for today:",
+    "text": "Goals for today:\n\n\nLearn how to import data and do basic data manipulation and cleaning.\n\n\n\n\nWork with a real dataset, understanding code book and documentation\n\n\n\n\nLearn key components of the tidyverse.\n\n\n\n\nUnderstanding data cleaning and data wrangling."
+  },
+  {
+    "objectID": "lecture1.html#steps-to-working-with-data-in-r",
+    "href": "lecture1.html#steps-to-working-with-data-in-r",
+    "title": "R Math Camp",
+    "section": "Steps to working with data in R:",
+    "text": "Steps to working with data in R:\n1. Import (read.csv() is your friend)\n\n2. Tidy (dplyr and stringr are your friends)\n\n\n3. Transform the data (tidyverse is your friend)\n\n\n4. Visualize the data (ggplot is your friend)\n\n\n5. Communicate the data (quarto is your friend)"
+  },
+  {
+    "objectID": "lecture1.html#structure-of-an-r-file",
+    "href": "lecture1.html#structure-of-an-r-file",
+    "title": "R Math Camp",
+    "section": "Structure of an R file:",
+    "text": "Structure of an R file:\nWe begin by writing a preamble and loading in packages:\n\n# filename.do\n# Author: Bradley Katcher\n# Date: \n# Purpose: \n# Description:\n\n\n# packages:\n# to install packages, we use the following function:\n#install.packages('dplyr') # you only need to do this once\nlibrary(dplyr) # this calls the package, you need to do this every time\n\n# storing key variables:\n\n\n\n# begin analysis"
+  },
+  {
+    "objectID": "lecture1.html#reading-in-data",
+    "href": "lecture1.html#reading-in-data",
+    "title": "R Math Camp",
+    "section": "Reading in data:",
+    "text": "Reading in data:\nIdeally most data that you get will be in csv (delimited) format.\n\nYou had experience reading in csv files in the summer work using the read_csv() command.\n\nFor today’s exercise, we are going to work with a dataset on the global diffusion of latent nuclear capabilities, produced by Matthew Fuhrmann:\nCheck out his website here with codebook."
+  },
+  {
+    "objectID": "lecture1.html#reading-in-data-1",
+    "href": "lecture1.html#reading-in-data-1",
+    "title": "R Math Camp",
+    "section": "Reading in data:",
+    "text": "Reading in data:\nIt looks like this dataset is in xlsx format. To read that in, we will 1. Install the openxlsx package 2. Call the openxlsx package 3. Read in the dataset\n\nThere are multiple ways to do this. For example, you could download the file and use the readxl package.\nYou can load multiple datasets into R.\n\n\n#install.packages('openxlsx')\nlibrary(openxlsx)\n\nfull_nuclear_data &lt;- read.xlsx('http://www.matthewfuhrmann.com/uploads/2/5/8/2/25820564/nl_dataset_v.1.2.xlsx')\n\nnuclear_country_year &lt;- read.xlsx('http://www.matthewfuhrmann.com/uploads/2/5/8/2/25820564/country-year_dataset.xlsx')"
+  },
+  {
+    "objectID": "lecture1.html#preview-the-data",
+    "href": "lecture1.html#preview-the-data",
+    "title": "R Math Camp",
+    "section": "Preview the data",
+    "text": "Preview the data\n\nlibrary(dplyr)\n\n# Look at the full data:\nhead(full_nuclear_data)\n\n  country_name ccode                        facility_name facility_ambiguity\n1      Algeria   615     Hot cell facility at Ain Oussera                  0\n2    Argentina   160    Ezeiza – SF Reprocessing Facility                  0\n3    Argentina   160 Ezeiza II – SF Reprocessing Facility                -77\n4    Argentina   160     Pilcaniyeu Enrichment Facility I                  0\n5    Argentina   160    Pilcaniyeu Enrichment Facility II                -77\n6    Australia   900                        Lucas Heights                  0\n  enr_type size construction_start construction_end operation_start\n1        1    1               1986             1992            1992\n2        1    1               1968             1968            1968\n3        1    2               1978             1990            9999\n4        2    2               1979             1987            1987\n5        2    2               2000             9999            9999\n6        3    1               1965             1972            1972\n  operation_end operation2_start operation2_end covert iaea regional military\n1          7777               NA             NA      1    1        0        0\n2          1973               NA             NA      0    0        0        0\n3          9999               NA             NA      0    0        1        0\n4          1994               NA             NA      1    0        1        1\n5          9999               NA             NA      0    1        1        0\n6          1983               NA             NA      0    1        0        0\n  military_ambiguity multinational foreign_assistance\n1                  1             0                  1\n2                  1             0                  0\n3                  0             0                  0\n4                  0             0                  0\n5                  0             0                  0\n6                  1             0                  0\n  foreign_assistance_ambiguity\n1                            0\n2                            1\n3                            1\n4                            1\n5                            1\n6                            0"
+  },
+  {
+    "objectID": "lecture1.html#preview-the-data-1",
+    "href": "lecture1.html#preview-the-data-1",
+    "title": "R Math Camp",
+    "section": "Preview the data:",
+    "text": "Preview the data:\n\nglimpse(full_nuclear_data)\n\nRows: 253\nColumns: 20\n$ country_name                 &lt;chr&gt; \"Algeria\", \"Argentina\", \"Argentina\", \"Arg…\n$ ccode                        &lt;dbl&gt; 615, 160, 160, 160, 160, 900, 900, 211, 1…\n$ facility_name                &lt;chr&gt; \"Hot cell facility at Ain Oussera\", \"Ezei…\n$ facility_ambiguity           &lt;dbl&gt; 0, 0, -77, 0, -77, 0, 0, 0, 0, 0, 0, 0, 0…\n$ enr_type                     &lt;dbl&gt; 1, 1, 1, 2, 2, 3, 7, 1, 7, 3, 3, 3, 6, 1,…\n$ size                         &lt;dbl&gt; 1, 1, 2, 2, 2, 1, 1, 2, 1, 2, 1, 3, 2, 1,…\n$ construction_start           &lt;dbl&gt; 1986, 1968, 1978, 1979, 2000, 1965, 1982,…\n$ construction_end             &lt;dbl&gt; 1992, 1968, 1990, 1987, 9999, 1972, 1992,…\n$ operation_start              &lt;dbl&gt; 1992, 1968, 9999, 1987, 9999, 1972, 1992,…\n$ operation_end                &lt;dbl&gt; 7777, 1973, 9999, 1994, 9999, 1983, 2007,…\n$ operation2_start             &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…\n$ operation2_end               &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…\n$ covert                       &lt;dbl&gt; 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1,…\n$ iaea                         &lt;dbl&gt; 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0,…\n$ regional                     &lt;dbl&gt; 0, 0, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 0,…\n$ military                     &lt;dbl&gt; 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1,…\n$ military_ambiguity           &lt;dbl&gt; 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0,…\n$ multinational                &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0,…\n$ foreign_assistance           &lt;dbl&gt; 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0,…\n$ foreign_assistance_ambiguity &lt;dbl&gt; 0, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1,…\n\n# can also use: full_nuclear_data |&gt; glimpse()"
+  },
+  {
+    "objectID": "lecture1.html#preview-the-data-2",
+    "href": "lecture1.html#preview-the-data-2",
+    "title": "R Math Camp",
+    "section": "Preview the data:",
+    "text": "Preview the data:\n\n# Look at the limited data:\nhead(nuclear_country_year)\n\n  stateabb ccode year latency_lab latency_pilot\n1      USA     2 1939           0             0\n2      USA     2 1940           0             0\n3      USA     2 1941           1             0\n4      USA     2 1942           1             0\n5      USA     2 1943           1             1\n6      USA     2 1944           1             1\n\nglimpse(nuclear_country_year)\n\nRows: 10,147\nColumns: 5\n$ stateabb      &lt;chr&gt; \"USA\", \"USA\", \"USA\", \"USA\", \"USA\", \"USA\", \"USA\", \"USA\", …\n$ ccode         &lt;dbl&gt; 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,…\n$ year          &lt;dbl&gt; 1939, 1940, 1941, 1942, 1943, 1944, 1945, 1946, 1947, 19…\n$ latency_lab   &lt;dbl&gt; 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…\n$ latency_pilot &lt;dbl&gt; 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…"
+  },
+  {
+    "objectID": "lecture1.html#data-manipulation-and-wrangling",
+    "href": "lecture1.html#data-manipulation-and-wrangling",
+    "title": "R Math Camp",
+    "section": "Data Manipulation and Wrangling:",
+    "text": "Data Manipulation and Wrangling:\n\n\nData manipulation:\n\nFocus is changing data structure\nUses specific methods/functions\nWorks with structured data\nEx: sorting, filtering, aggregating\nPart of data wrangling\n\n\nData wrangling:\n\nBroader process with cleaning and transformations\nStructured and unstructured data\nMissing values, multiple datasets, format conversion\nMore time intensive"
+  },
+  {
+    "objectID": "lecture1.html#more-advanced-data-wrangling",
+    "href": "lecture1.html#more-advanced-data-wrangling",
+    "title": "R Math Camp",
+    "section": "More advanced data wrangling:",
+    "text": "More advanced data wrangling:\n\nAdvanced filtering and selection: Conditional filtering and dynamic column selection\nComplex mutate operations: Creating conditional columns using lags and leads\nData reshaping: pivoting data, advanced grouping\nEfficient data handling: joining datasets, parallel processing"
+  },
+  {
+    "objectID": "lecture1.html#key-packages",
+    "href": "lecture1.html#key-packages",
+    "title": "R Math Camp",
+    "section": "Key Packages:",
+    "text": "Key Packages:\nThese are tidyverse R packages that are used for data science, which share a common design philosophy, grammar, and data structures:\n\nggplot2: data visualization\ndplyr: data manipulation\ntidyr: data tidying\nreadr: data import\npurrr: functional programming\ntibble: modern data frames\nstringr: string manipulation\nforcats: categorical data"
+  },
+  {
+    "objectID": "lecture1.html#most-commonly-used-dplyr-functions",
+    "href": "lecture1.html#most-commonly-used-dplyr-functions",
+    "title": "R Math Camp",
+    "section": "Most commonly used dplyr functions:",
+    "text": "Most commonly used dplyr functions:\n\nfilter(): subset rows based on conditions\n\n\n\nselect(): choose columns by name\n\n\n\n\nmutate(): create new columns or modify existing ones\n\ncommonly used with if_else() or case_when()\n\n\n\n\n\narrange(): reorder rows\n\n\n\n\ngroup_by(): group data for summary operations\n\n\n\n\nsummarize(): aggregate data"
+  },
+  {
+    "objectID": "lecture1.html#return-to-the-data",
+    "href": "lecture1.html#return-to-the-data",
+    "title": "R Math Camp",
+    "section": "Return to the data:",
+    "text": "Return to the data:\nCleaning the data. If names were not clean, then we would clean the names, which you could do using the following:\n\nlibrary(janitor)\nhead(nuclear_country_year)\n\n  stateabb ccode year latency_lab latency_pilot\n1      USA     2 1939           0             0\n2      USA     2 1940           0             0\n3      USA     2 1941           1             0\n4      USA     2 1942           1             0\n5      USA     2 1943           1             1\n6      USA     2 1944           1             1\n\nhead(clean_names(nuclear_country_year))\n\n  stateabb ccode year latency_lab latency_pilot\n1      USA     2 1939           0             0\n2      USA     2 1940           0             0\n3      USA     2 1941           1             0\n4      USA     2 1942           1             0\n5      USA     2 1943           1             1\n6      USA     2 1944           1             1"
+  },
+  {
+    "objectID": "lecture1.html#cleaning-a-few-things",
+    "href": "lecture1.html#cleaning-a-few-things",
+    "title": "R Math Camp",
+    "section": "Cleaning a few things:",
+    "text": "Cleaning a few things:\nThe codebook tells us that for many of the variables, there are values that are put in to signify missing values or non-operational facilities.\n\nIt is very important to read through the codebook and look at summary stats of the data:\n\n\nsummary(full_nuclear_data)\n\n country_name           ccode       facility_name      facility_ambiguity\n Length:253         Min.   :  2.0   Length:253         Min.   :-77.000   \n Class :character   1st Qu.:200.0   Class :character   1st Qu.:  0.000   \n Mode  :character   Median :360.0   Mode  :character   Median :  0.000   \n                    Mean   :371.7                      Mean   : -3.474   \n                    3rd Qu.:645.0                      3rd Qu.:  0.000   \n                    Max.   :900.0                      Max.   :  1.000   \n                                                                         \n    enr_type          size      construction_start construction_end\n Min.   :1.000   Min.   :1.00   Min.   : -99       Min.   : -99    \n 1st Qu.:1.000   1st Qu.:1.00   1st Qu.:1943       1st Qu.:1954    \n Median :2.000   Median :2.00   Median :1960       Median :1973    \n Mean   :2.621   Mean   :2.02   Mean   :1513       Mean   :2081    \n 3rd Qu.:3.000   3rd Qu.:3.00   3rd Qu.:1982       3rd Qu.:1988    \n Max.   :8.000   Max.   :3.00   Max.   :2012       Max.   :9999    \n                                                                   \n operation_start operation_end  operation2_start operation2_end\n Min.   : -99    Min.   : -99   Min.   :1969     Min.   :1972  \n 1st Qu.:1956    1st Qu.:1978   1st Qu.:1981     1st Qu.:1988  \n Median :1974    Median :1993   Median :1983     Median :2004  \n Mean   :2328    Mean   :3993   Mean   :1988     Mean   :3919  \n 3rd Qu.:1988    3rd Qu.:7777   3rd Qu.:1996     3rd Qu.:7777  \n Max.   :9999    Max.   :9999   Max.   :2011     Max.   :7777  \n                                NA's   :244      NA's   :244   \n     covert              iaea            regional           military       \n Min.   :-99.0000   Min.   :-99.000   Min.   :-99.0000   Min.   :-99.0000  \n 1st Qu.:  0.0000   1st Qu.:  0.000   1st Qu.:  0.0000   1st Qu.:  0.0000  \n Median :  1.0000   Median :  0.000   Median :  0.0000   Median :  1.0000  \n Mean   : -0.2609   Mean   : -1.617   Mean   : -0.6087   Mean   : -0.9565  \n 3rd Qu.:  1.0000   3rd Qu.:  1.000   3rd Qu.:  0.0000   3rd Qu.:  1.0000  \n Max.   :  1.0000   Max.   :  1.000   Max.   :  1.0000   Max.   :  1.0000  \n                                                                           \n military_ambiguity multinational     foreign_assistance\n Min.   :0.0000     Min.   :0.00000   Min.   :-99.0000  \n 1st Qu.:0.0000     1st Qu.:0.00000   1st Qu.:  0.0000  \n Median :0.0000     Median :0.00000   Median :  0.0000  \n Mean   :0.1897     Mean   :0.09091   Mean   : -0.1146  \n 3rd Qu.:0.0000     3rd Qu.:0.00000   3rd Qu.:  1.0000  \n Max.   :1.0000     Max.   :1.00000   Max.   :  1.0000  \n                                                        \n foreign_assistance_ambiguity\n Min.   :0.0000              \n 1st Qu.:0.0000              \n Median :0.0000              \n Mean   :0.1028              \n 3rd Qu.:0.0000              \n Max.   :1.0000"
+  },
+  {
+    "objectID": "lecture1.html#just-looking-at-specific-variables",
+    "href": "lecture1.html#just-looking-at-specific-variables",
+    "title": "R Math Camp",
+    "section": "Just looking at specific variables:",
+    "text": "Just looking at specific variables:\n\n# just look at one variable:\nsummary(full_nuclear_data$military)\n\n    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. \n-99.0000   0.0000   1.0000  -0.9565   1.0000   1.0000 \n\n# look at multiple variables:\nsummary(full_nuclear_data |&gt; select(military, size))\n\n    military             size     \n Min.   :-99.0000   Min.   :1.00  \n 1st Qu.:  0.0000   1st Qu.:1.00  \n Median :  1.0000   Median :2.00  \n Mean   : -0.9565   Mean   :2.02  \n 3rd Qu.:  1.0000   3rd Qu.:3.00  \n Max.   :  1.0000   Max.   :3.00"
+  },
+  {
+    "objectID": "lecture1.html#tabulating-and-cross-tabbing-the-data",
+    "href": "lecture1.html#tabulating-and-cross-tabbing-the-data",
+    "title": "R Math Camp",
+    "section": "Tabulating and Cross-Tabbing the data:",
+    "text": "Tabulating and Cross-Tabbing the data:\n\n# tabulate technology employed at nuclear plant:\ntable(full_nuclear_data$enr_type)\n\n\n  1   2   3   4   5   6   7   8 \n112  26  67   7   7   7  23   4 \n\n# cross-table of technology employed based on civilian/military status:\ntable(full_nuclear_data$enr_type, full_nuclear_data$military)\n\n   \n    -99  0  1\n  1   2 44 66\n  2   0  2 24\n  3   2 27 38\n  4   0  0  7\n  5   0  2  5\n  6   0  5  2\n  7   0 15  8\n  8   0  0  4"
+  },
+  {
+    "objectID": "lecture1.html#question-1-what-share-of-nuclear-and-plants-in-europe-are-military-as-opposed-to-civilian-what-share-broken-out-by-technology-type",
+    "href": "lecture1.html#question-1-what-share-of-nuclear-and-plants-in-europe-are-military-as-opposed-to-civilian-what-share-broken-out-by-technology-type",
+    "title": "R Math Camp",
+    "section": "Question 1: What share of nuclear and plants in Europe are military as opposed to civilian? What share broken out by technology type?",
+    "text": "Question 1: What share of nuclear and plants in Europe are military as opposed to civilian? What share broken out by technology type?\nWhat do we need to do?\n\n\nFilter to the countries of interest\nSelect the variables that are important to us\nHandle missing/make sure the data is clean\nGroup by technology type/military status\nSummarize"
+  },
+  {
+    "objectID": "lecture1.html#look-at-the-countries",
+    "href": "lecture1.html#look-at-the-countries",
+    "title": "R Math Camp",
+    "section": "Look at the countries:",
+    "text": "Look at the countries:\n\ntable(full_nuclear_data$country_name)\n\n\n       Algeria      Argentina      Australia        Belgium         Brazil \n             1              4              2              1              7 \n        Canada          China Czech Republic          Egypt         France \n             3             18              1              1             24 \n       Germany          India           Iran           Iraq         Israel \n             8             10             10              9              4 \n         Italy          Japan          Libya    Netherlands    North Korea \n             4              9              3              5              3 \n        Norway       Pakistan        Romania         Russia   South Africa \n             2              8              1             32              5 \n   South Korea          Spain         Sweden         Taiwan United Kingdom \n             4              1              2              3             20 \n United States     Yugoslavia \n            44              4 \n\n\n\n# select just European countries:\neurope_nuclear_data &lt;- full_nuclear_data |&gt; \n  filter(country_name %in% \n           c(\"Belgium\", \"Czech Republic\", \"France\", \"Germany\",\n             \"Italy\", \"Netherlands\", \"Norway\", \"Romania\",\n             \"Spain\", \"Sweden\", \"United Kingdom\", \"Yugoslavia\"))"
+  },
+  {
+    "objectID": "lecture1.html#limit-to-the-variables-we-need",
+    "href": "lecture1.html#limit-to-the-variables-we-need",
+    "title": "R Math Camp",
+    "section": "Limit to the variables we need:",
+    "text": "Limit to the variables we need:\n\n# subset to the variables that we need:\neurope_nuclear_data &lt;- europe_nuclear_data |&gt; \n  select(country_name, enr_type, military)\n\n# get summary stats of the dataframe:\nsummary(europe_nuclear_data)\n\n country_name          enr_type        military      \n Length:73          Min.   :1.000   Min.   :-99.000  \n Class :character   1st Qu.:1.000   1st Qu.:  0.000  \n Mode  :character   Median :1.000   Median :  0.000  \n                    Mean   :2.082   Mean   : -2.301  \n                    3rd Qu.:3.000   3rd Qu.:  1.000  \n                    Max.   :7.000   Max.   :  1.000"
+  },
+  {
+    "objectID": "lecture1.html#look-at-military",
+    "href": "lecture1.html#look-at-military",
+    "title": "R Math Camp",
+    "section": "Look at military:",
+    "text": "Look at military:\nWe see that the share of military is negative if we look at summary stats. If we wanted to figure out the share that are military, right now, it wouldn’t make any sense.\n\n# recode the missing observaitons:\nmilitary_summary_data &lt;- europe_nuclear_data |&gt; \n  # recode the missing military to be NA\n  mutate(military = if_else(military == -99, NA, military))\n\n# look at the result:\nmean(military_summary_data$military)\n\n[1] NA\n\n\nWhy didn’t this work? We need to remove NAs:\n\nmean(military_summary_data$military, na.rm = T)\n\n[1] 0.4225352"
+  },
+  {
+    "objectID": "lecture1.html#putting-it-all-together",
+    "href": "lecture1.html#putting-it-all-together",
+    "title": "R Math Camp",
+    "section": "Putting it all together",
+    "text": "Putting it all together\nHow many military and civilian nuclear plants are there by power type?\n\n# compute the number and share of military plants by power type\neurope_power_type &lt;- europe_nuclear_data |&gt;\n  # recode the missing to be NA:\n  mutate(military = if_else(military == -99, NA, military)) |&gt;\n  # remove the missings:\n  filter(!is.na(military)) %&gt;%\n  #group by power type:\n  group_by(enr_type) %&gt;%\n  # summarise the share of military\n  summarise(military = mean(military), # the share of plants that are military\n            n_plants = n()) # the total number of plants by type\n\n# look at the data:\neurope_power_type\n\n# A tibble: 7 × 3\n  enr_type military n_plants\n     &lt;dbl&gt;    &lt;dbl&gt;    &lt;int&gt;\n1        1   0.455        44\n2        2   0.667         3\n3        3   0.0769       13\n4        4   1             2\n5        5   1             4\n6        6   0             2\n7        7   0.333         3"
+  },
+  {
+    "objectID": "lecture1.html#make-it-look-a-little-cleaner",
+    "href": "lecture1.html#make-it-look-a-little-cleaner",
+    "title": "R Math Camp",
+    "section": "Make it look a little cleaner:",
+    "text": "Make it look a little cleaner:\n\n# add strings to teh pwoer type\neurope_power_type  &lt;- europe_power_type |&gt;\n  # create a variable with the name as a string instead of a number\n  mutate(power_type = case_when(\n         enr_type == 1 ~ \"Reprocessing\",\n         enr_type == 2 ~ \"Gaseous diffusion\",\n         enr_type == 3 ~ \"Centrifuge\",\n         enr_type == 4 ~ \"EMIS\",\n         enr_type == 5 ~ \"Chemical & ion exchange\",\n         enr_type == 6 ~ \"Aerodynamic isotope separation\",\n         enr_type == 7 ~ \"Laser\",\n         enr_type == 8 ~ \"Thermal diffusion\")) |&gt;\n  # remove the number\n  select(-enr_type) |&gt;\n  # sort by the number of plants (descending)\n  arrange(-n_plants) |&gt;\n  # make sure that power_type is the first variable:\n  select(power_type, everything())\n\n# look at the results:\neurope_power_type\n\n# A tibble: 7 × 3\n  power_type                     military n_plants\n  &lt;chr&gt;                             &lt;dbl&gt;    &lt;int&gt;\n1 Reprocessing                     0.455        44\n2 Centrifuge                       0.0769       13\n3 Chemical & ion exchange          1             4\n4 Gaseous diffusion                0.667         3\n5 Laser                            0.333         3\n6 EMIS                             1             2\n7 Aerodynamic isotope separation   0             2"
+  },
+  {
+    "objectID": "lecture1.html#recap",
+    "href": "lecture1.html#recap",
+    "title": "R Math Camp",
+    "section": "Recap:",
+    "text": "Recap:\nWhat have we done today?\n\nStarted to get familiar with R\nLearned about good coding practices\nPreviewed the tidyverse\nWork through a practice exercise\n\nComment early and often!"
+  },
+  {
+    "objectID": "lecture1.html#install-r-on-your-machine",
+    "href": "lecture1.html#install-r-on-your-machine",
+    "title": "R Math Camp",
+    "section": "Install R on Your Machine",
+    "text": "Install R on Your Machine\nPlease attempt this prior to the start of next lecture. If you successfully install R and RStudio without any issues, feel free to arrive at 9:15am on Thursday to allow us time to help other students\nTo install R, you should install both R and RStudio. To download and install R, you should click the following:\nDownload and Install R\n\nOnce you get to this website, click the “Download R for macOS” or “Download R for Windows” depending on your machine.\nTo get the R Studio interface, you can click on the same link as above and then click “Download RStudio Desktop.”\n\nIf you would like step by step instructions, you can do so here.\nPlease tell the teaching team if you need assistance!"
+  }
+]

@@ -1,0 +1,11 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "R Math Camp"
+  site-url: "https://bradleykatcher.github.io/r-mathcamp"
+  
+format:
+  html:
+    theme: default
