@@ -15,13 +15,13 @@ Bradley Katcher
 
 Note: I am grateful to Rony Rodriguez-Ramirez and previous Math Camp and API-209 TFs for their materials, of which these are heavily based.
 
-Slides available on
+Slides available on Canvas
 
 ------------------------------------------------------------------------
 
 ## About me:
 
-Bradley Katcher ![](IMG_4201.png){.absolute top="-25" left="800" width="350" height="300"}
+Bradley Katcher ![](/images/IMG_4201.png){.absolute top="-25" left="800" width="350" height="300"}
 
 -   3rd year PhD student at HKS (Econ track)
 
