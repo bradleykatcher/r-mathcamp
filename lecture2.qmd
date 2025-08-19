@@ -1,0 +1,511 @@
+---
+title: "Lecture 2"
+format: revealjs
+editor: visual
+theme: serif
+fontsize: 150%
+---
+
+# Installing R:
+
+## Start by Installing R:
+
+*Please attempt this prior to the start of lecture. If you successfully install R and RStudio without any issues, feel free to arrive at 9:15am on Thursday to allow us time to help other students*
+
+To install R, you should install both R and RStudio. To download and install R, you should click the following:
+
+[**Download and Install R**](https://posit.co/download/rstudio-desktop/)
+
+-   Once you get to this website, click the **"Download R for macOS" or "Download R for Windows**" depending on your machine.
+
+-   To get the R Studio interface, you can click on the same link as above and then click "**Download RStudio Desktop**."
+
+If you would like step by step *instructions*, you can do so [here](https://moderndive.com/1-getting-started.html).
+
+Please tell the teaching team if you need assistance!
+
+## Recap:
+
+Who can tell me what the essential functions do?
+
+-   `filter()`
+
+. . .
+
+-   `arrange()`
+
+. . .
+
+-   `select()`
+
+. . .
+
+-   `mutate()`
+
+. . .
+
+-   `summarise()`
+
+. . .
+
+-   `group_by()`
+
+I highly recommend reading [Hadley Wickham's chapter](https://r4ds.had.co.nz/transform.html) that has descriptions and examples of key functions.
+
+-   You can do 80% of data exploration and analysis using these.
+    -   Often, data analysis is knowing what the right question to ask is. Summary statistics are *very* powerful.
+
+Here is a [**cheatsheet**](https://github.com/rstudio/cheatsheets/blob/main/data-transformation.pdf) I highly recommend.
+
+## Goals for today:
+
+1.  Reinforce principles of data cleaning and dplyr
+2.  Learn about tidy data
+3.  Build plots and understand key points of data visualization
+4.  Replicate a data visualization produced in real reports
+
+## Tidy data:
+
+::: columns
+::: {.column width="50%"}
+A dataset is *tidy* if it satisfies the following conditions:
+
+-   each variable forms a column
+
+-   each observation forms a row
+
+-   each cell is a single measurement
+
+-   long format
+:::
+
+::: {.column width="50%"}
+![](https://media.geeksforgeeks.org/wp-content/uploads/20231006101503/Tidy-data-in-R.png)
+:::
+:::
+
+## Untidy data:
+
+![](https://csdl-images.ieeecomputer.org/trans/tg/2022/01/figures/28tvcg01-bartram-3114830-fig-1-source.gif)
+
+L. Bartram, M. Correll and M. Tory, "Untidy Data: The Unreasonable Effectiveness of Tables" in IEEE Transactions on Visualization & Computer Graphics, vol. 28, no. 01, pp. 686-696, Jan. 2022, doi: 10.1109/TVCG.2021.3114830
+
+## Effective visualization is important!
+
+-   Let's look at some examples of *unique* data visualizations [here](https://viz.wtf/).
+
+-   Data is only as useful as it is understood.
+
+    -   Poor visualization can mislead or confuse: a good plot tells a story, a bad plot hides the truth.
+
+Principles of Effective Data Visualization:
+
+-   Clear: not too busy, appropriate labels
+
+-   Accurate: don't truncate axes, don't mislead color gradients
+
+-   Efficient: convey info quickly and remove non-essential components
+
+-   Consistent: line chart for trends, bar charts for comparison
+
+-   Accessibility: make sure easy to interpret
+
+## Lots of ways to plot in R:
+
+-   There are many different ways to plot in R
+
+    -   You have already seen plots in Base R
+
+-   There are also lots of many different graphs you can make
+
+    -   For a directory, you could see [*The R Graph Gallery*](https://r-graph-gallery.com/)
+
+We will focus on **ggplot2**:
+
+![[ggplot2 documentation](https://ggplot2.tidyverse.org/)](https://ggplot2.tidyverse.org/logo.png)
+
+## How to structure a ggplot:
+
+::: columns
+::: {.column width="50%"}
+![Parts of a chart](https://ggplot2.tidyverse.org/articles/ggplot2_files/figure-html/overview_graphic-1.png) The first 3 are essential, the rest are very helpful!
+:::
+
+::: {.column width="50%"}
+Imagine that you were describing a graph to someone. How would you do it?
+
+-   Data to be visualized
+
+-   Geometric objects that appear on the plot
+
+-   Aesthetic mappings from data to visual components
+
+-   Statistics transform data on the way to visualization
+
+-   Coordinates organize location of geometric objects
+
+-   Scales define the range of values for aesthetics
+
+-   Facets group into subplots
+:::
+:::
+
+## ggplot
+
+For today and most of your time, you will just need the `ggplot2` package from the `tidyverse` mega-package.
+
+-   Consistent with *Grammar of Graphics*
+
+-   Flexible
+
+-   Layering and theme customization
+
+-   Community
+
+## General Formula:
+
+::: columns
+::: {.column width="50%"}
+```{r, echo = T, eval=F}
+ggplot(data = <DATA>,
+    # can also specify aes within a geom function
+    aes(x=<X>, y=<Y>)) +
+    <COORDINATE_FUNCTION> +
+    <FACET_FUNCTION> +
+    <SCALE_FUNCTION> +
+    <THEME_FUNCTION>
+```
+:::
+
+::: {.column width="50%"}
+1.  Data: the data you want to visualize
+2.  Layers: geom\_ and stat\_ : the geometric shapes and statistical summaries representing the data
+3.  Aesthetics: `aes()`: aesthetic mappings of the geometric and statistical objects
+4.  Scales: scale\_: map between the aesthetic dimensions
+5.  Coordinate system: coord\_: maps data into the plane of data rectangle
+6.  Facets: facet\_ arrangement of the data into a grid of plots
+7.  Visual themes: `theme()` and `theme_`: the overall visual defaults of a plot
+:::
+:::
+
+## Start with data:
+
+Load in data and install packages.
+
+Let's look at data on [International Agricultural Productivity](https://www.ers.usda.gov/data-products/international-agricultural-productivity).
+
+```{r, echo = T}
+library(tidyverse)
+
+# load in the data:
+tfp <- read.csv('https://ers.usda.gov/sites/default/files/_laserfiche/DataFiles/51270/AgTFPInternational2022_long.csv?v=1647')
+
+# explore the data:
+head(tfp)
+tail(tfp)
+```
+
+## Creating the data
+
+Let's say that we want to plot total output over time across the globe. We look at the code book and find that the Output Total Variable is the gross Value of agricultural output from crops, livestock and aquaculture, \$1000 at constant 2015 prices.
+
+```{r, echo = T}
+# get just total output:
+output <- tfp %>% filter(Attribute == "Outall_Q")
+
+# look and see what regions we have:
+table(output$Region)
+```
+
+## Creating the data:
+
+This is why inspecting your data is important--we have separate observations for different countries, as well as subtotals by region. If we just summarized, then we would over count! Let's restrict to just the world:
+
+```{r, echo = T}
+world_output <- output %>% 
+  # restrict just to the world
+  filter(Region == "World") %>%
+  # convert to billions (we are currently in thousands)
+  mutate(value_billions = Value/1000000) %>%
+  # select just the variables that we need:
+  select(Year, value_billions)
+
+
+# preview the data:
+head(world_output)
+```
+
+## Starting the plot:
+
+Let's start making the plot:
+
+```{r, echo = T}
+# start by just specifying the data 
+ggplot(data = world_output)
+```
+
+## Making the plot:
+
+Let's map the data to the plot:
+
+-   Mapping is a set of instructions on how the data are mapped onto aesthetic attributes of geometric objects. It translates tidy data to the graphics system.
+
+-   A mapping can be made by using the `aes()` function to make pairs of graphical attributes and parts of the data.
+
+```{r, echo = T}
+# start by just specifying the data 
+ggplot(data = world_output, aes(x=Year, y = value_billions))
+```
+
+## Most commonly used geoms:
+
+-   `geom_bar()` and `geom_col()`: bar charts
+
+-   `geom_boxplot()`: box and whisker plots
+
+-   `geom_density()`: density estimates
+
+-   `geom_jitter()`: jitter points
+
+-   `geom_line()`: line plots
+
+-   `geom_point()`: scatter plots
+
+To know more about layers, look at [this](https://ggplot2.tidyverse.org/reference/).
+
+## Add Layers:
+
+This is the essential part of making the data appear on the chart:
+
+```{r, echo = T}
+# start by just specifying the data 
+ggplot(data = world_output, aes(x=Year, y = value_billions)) + 
+  geom_point() # add points
+```
+
+## Add Layers:
+
+You can add multiple layers to the same chart
+
+```{r, echo = T}
+# start by just specifying the data 
+ggplot(data = world_output, aes(x=Year, y = value_billions)) + 
+  geom_point() + # add points
+  geom_line() # add a line
+```
+
+# Adding Theme:
+
+We will talk about scales, facets, and coordinates later, once we have more data we want to show, but let's focus on theme next:
+
+```{r, echo = T}
+# start by just specifying the data 
+ggplot(data = world_output, aes(x=Year, y = value_billions)) + 
+  geom_point() + # add points
+  geom_line() + # add a line
+  theme_classic() # add a theme
+```
+
+## Add labels:
+
+```{r, echo = T}
+# start by just specifying the data 
+ggplot(data = world_output, aes(x=Year, y = value_billions)) + 
+  geom_point() + # add points
+  geom_line() + # add a line
+  theme_classic() + # add a theme
+  labs(
+  x = "Year",
+  y = "Amount (Billions USD, 2015 terms)",
+  title = "Global TFP Output Over Time",
+  caption = "Source: "
+  ) # add labels
+  
+```
+
+## Another graph:
+
+Let's try to make a graph the countries of Central America, and keep all of the attributes:
+
+```{r, echo=T}
+
+# get a dataset of Cetnral America
+central_america <- tfp |>
+  # restrict to central america:
+  filter(Sub.Region == "Central America") |>
+  # get rid of the subtotal:
+  filter(Country.territory != "Central America") |>
+  # select the attributes we want:
+  filter(Attribute %in% c("Land_Q", "Labor_Q", "Capital_Q")) |>
+  # select the variables we need:
+  select(Country.territory, Year, Value, Attribute)
+
+
+ # preview the data:
+  head(central_america)
+```
+
+## Build the graph:
+
+```{r, echo=T}
+ggplot(data=central_america, aes(x=Year, y = Value)) +
+  geom_point()
+
+```
+
+What's wrong with this?
+
+## Color coding by country:
+
+```{r, echo=T}
+ggplot(data=central_america, aes(x=Year, y = Value, color = Country.territory)) +
+  geom_point()
+
+```
+
+Is this better?
+
+## Scaling the axis:
+
+```{r, echo=T}
+ggplot(data=central_america, aes(x=Year, y = Value, color = Country.territory)) +
+  scale_y_log10() +
+  geom_point()
+
+```
+
+Is this better?
+
+## Separate graph by country:
+
+```{r, echo=T}
+ggplot(data=central_america, aes(x=Year, y = Value, color = Country.territory)) +
+  scale_y_log10() +
+  facet_wrap(~ Country.territory) +
+  geom_point()
+
+```
+
+## Changing our color and adding labels:
+
+```{r, echo=T}
+ggplot(data=central_america, aes(x=Year, y = Value, color = Attribute)) +
+  scale_y_log10() +
+  facet_wrap(~ Country.territory, scales = "free") +
+  geom_point() +
+  labs(y = "Amount (log Thousands USD)", title = "Input Components",
+       color = "Input Factor") +
+  scale_color_manual(labels = c("Capital", "Labor", "Land"),
+                     values = c("red", "darkgreen", "blue"))
+```
+
+## Changing our color and adding labels:
+
+```{r, echo=T}
+ggplot(data=central_america, aes(x=Year, y = Value, color = Country.territory)) +
+  scale_y_log10() +
+  facet_wrap(~ Attribute,
+             labeller = as_labeller(c(
+               "Capital_Q" = "Capital",
+               "Labor_Q" = "Labor",
+               "Land_Q" = "Land"
+             ))) +
+  geom_point() +
+  labs(y = "Amount (log Thousands USD)", title = "Input Components", color = "Country", caption = "Source: USDA ERS") 
+  
+```
+
+## We are going to make this graph:
+
+![](https://ers.usda.gov/sites/default/files/_laserfiche/Charts/61860/ag-productivity_(2).png)
+
+Take a few minutes and talk to your neighbor about the steps.
+
+## Steps:
+
+1.  Select/filter what we need from the dataset
+    1.  Hint: we may need to use a combo of region and countries to filter on
+2.  Recalculate Index
+    1.  We are based in 2015 with this data, we want to convert to 1961 base
+3.  Create a base line plot in ggplot
+4.  Adjust the theme parameters to make it look similar
+
+Work with the group next to you to make this graph, we will check in after a few steps
+
+## My rendition:
+
+```{r, echo = F}
+
+# create the data:
+ers_long <- tfp %>% 
+  filter(Region %in% c("China", "World",
+                       "Transition countries", "Low income") |
+           Country.territory %in% c("Brazil", "United States")) |>
+  mutate(territory = case_when(
+    Region %in% c("China", "World",
+                       "Transition countries", "Low income") ~ Region,
+    Country.territory %in% c("Brazil", "United States") ~ Country.territory
+  )) |>
+  filter(Attribute =="TFP_Index") |>
+  select(Year, territory, Value) %>%
+  filter(Year <= 2011)
+
+# Reindex so that 1961 is basis for index:
+ers_long <- ers_long |>
+  group_by(territory) |>
+  mutate(base_index = Value[Year == 1961]) |>
+  mutate(new_index = Value/base_index*100)
+
+# Create a line plot
+ggplot(ers_long, aes(x = Year, y = new_index, color = territory)) +
+  geom_line(size = 1.2) +
+  scale_color_manual(values = c(
+    "Brazil" = "#8B0000",
+    "China" = "#DAA520",
+    "United States" = "#4682B4",
+    "World" = "#20B2AA",
+    "Transition countries" = "#87CEEB",
+    "Low income" = "#BDB76B"
+  )) +
+  labs(
+    title = "Agricultural productivity (measured as total factor productivity)",
+    subtitle = "Growth for selected countries/country groups, 1961–2011",
+    y = "Index (1961 = 100)",
+    x = NULL,
+    color = NULL,
+    caption = "Source: USDA Economic Research Service, International Agricultural Productivity data product."
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    legend.position = c(0.175, 0.75),
+    legend.key.width = unit(1.2, "cm"),
+    plot.caption = element_text(hjust = 0)
+  ) +
+  scale_y_continuous(limits = c(50,300), breaks = seq(50, 300, by = 50)) +
+  scale_x_continuous(limits = c(1961, 2011), breaks = seq(1961, 2011, by = 5)) +
+  geom_hline(yintercept = 100)
+
+```
+
+## Recap:
+
+What did we learn today?
+
+- **dplyr basics**:  
+  - `filter()` → subset rows  
+  - `arrange()` → order rows  
+  - `select()` → choose columns  
+  - `mutate()` → create/transform variables  
+  - `summarise()` + `group_by()` → summary statistics by group  
+
+- **Tidy data**: each variable = column, each observation = row, each value = one cell  
+
+- **Data visualization with ggplot2**:  
+  - Grammar of Graphics framework (data → aesthetics → geoms → scales → facets → theme)  
+  - Start simple, then layer  
+  - Themes, labels, and scales make plots more effective  
+
+- **Principles of good visualization**:  
+  - Clear, accurate, efficient, consistent, accessible  
+
+✨ Key takeaway: *80% of your data exploration can be done with these dplyr verbs and ggplot2 basics!*  

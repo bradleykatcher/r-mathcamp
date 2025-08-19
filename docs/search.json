@@ -1,5 +1,215 @@
 [
   {
+    "objectID": "lecture2.html#start-by-installing-r",
+    "href": "lecture2.html#start-by-installing-r",
+    "title": "Lecture 2",
+    "section": "Start by Installing R:",
+    "text": "Start by Installing R:\nPlease attempt this prior to the start of lecture. If you successfully install R and RStudio without any issues, feel free to arrive at 9:15am on Thursday to allow us time to help other students\nTo install R, you should install both R and RStudio. To download and install R, you should click the following:\nDownload and Install R\n\nOnce you get to this website, click the “Download R for macOS” or “Download R for Windows” depending on your machine.\nTo get the R Studio interface, you can click on the same link as above and then click “Download RStudio Desktop.”\n\nIf you would like step by step instructions, you can do so here.\nPlease tell the teaching team if you need assistance!"
+  },
+  {
+    "objectID": "lecture2.html#recap",
+    "href": "lecture2.html#recap",
+    "title": "Lecture 2",
+    "section": "Recap:",
+    "text": "Recap:\nWho can tell me what the essential functions do?\n\nfilter()\n\n\n\narrange()\n\n\n\n\nselect()\n\n\n\n\nmutate()\n\n\n\n\nsummarise()\n\n\n\n\ngroup_by()\n\nI highly recommend reading Hadley Wickham’s chapter that has descriptions and examples of key functions.\n\nYou can do 80% of data exploration and analysis using these.\n\nOften, data analysis is knowing what the right question to ask is. Summary statistics are very powerful.\n\n\nHere is a cheatsheet I highly recommend."
+  },
+  {
+    "objectID": "lecture2.html#goals-for-today",
+    "href": "lecture2.html#goals-for-today",
+    "title": "Lecture 2",
+    "section": "Goals for today:",
+    "text": "Goals for today:\n\nReinforce principles of data cleaning and dplyr\nLearn about tidy data\nBuild plots and understand key points of data visualization\nReplicate a data visualization produced in real reports"
+  },
+  {
+    "objectID": "lecture2.html#tidy-data",
+    "href": "lecture2.html#tidy-data",
+    "title": "Lecture 2",
+    "section": "Tidy data:",
+    "text": "Tidy data:\n\n\nA dataset is tidy if it satisfies the following conditions:\n\neach variable forms a column\neach observation forms a row\neach cell is a single measurement\nlong format"
+  },
+  {
+    "objectID": "lecture2.html#untidy-data",
+    "href": "lecture2.html#untidy-data",
+    "title": "Lecture 2",
+    "section": "Untidy data:",
+    "text": "Untidy data:\n\nL. Bartram, M. Correll and M. Tory, “Untidy Data: The Unreasonable Effectiveness of Tables” in IEEE Transactions on Visualization & Computer Graphics, vol. 28, no. 01, pp. 686-696, Jan. 2022, doi: 10.1109/TVCG.2021.3114830"
+  },
+  {
+    "objectID": "lecture2.html#effective-visualization-is-important",
+    "href": "lecture2.html#effective-visualization-is-important",
+    "title": "Lecture 2",
+    "section": "Effective visualization is important!",
+    "text": "Effective visualization is important!\n\nLet’s look at some examples of unique data visualizations here.\nData is only as useful as it is understood.\n\nPoor visualization can mislead or confuse: a good plot tells a story, a bad plot hides the truth.\n\n\nPrinciples of Effective Data Visualization:\n\nClear: not too busy, appropriate labels\nAccurate: don’t truncate axes, don’t mislead color gradients\nEfficient: convey info quickly and remove non-essential components\nConsistent: line chart for trends, bar charts for comparison\nAccessibility: make sure easy to interpret"
+  },
+  {
+    "objectID": "lecture2.html#lots-of-ways-to-plot-in-r",
+    "href": "lecture2.html#lots-of-ways-to-plot-in-r",
+    "title": "Lecture 2",
+    "section": "Lots of ways to plot in R:",
+    "text": "Lots of ways to plot in R:\n\nThere are many different ways to plot in R\n\nYou have already seen plots in Base R\n\nThere are also lots of many different graphs you can make\n\nFor a directory, you could see The R Graph Gallery\n\n\nWe will focus on ggplot2:\n\nggplot2 documentation"
+  },
+  {
+    "objectID": "lecture2.html#how-to-structure-a-ggplot",
+    "href": "lecture2.html#how-to-structure-a-ggplot",
+    "title": "Lecture 2",
+    "section": "How to structure a ggplot:",
+    "text": "How to structure a ggplot:\n\n\n The first 3 are essential, the rest are very helpful!\n\nImagine that you were describing a graph to someone. How would you do it?\n\nData to be visualized\nGeometric objects that appear on the plot\nAesthetic mappings from data to visual components\nStatistics transform data on the way to visualization\nCoordinates organize location of geometric objects\nScales define the range of values for aesthetics\nFacets group into subplots"
+  },
+  {
+    "objectID": "lecture2.html#ggplot",
+    "href": "lecture2.html#ggplot",
+    "title": "Lecture 2",
+    "section": "ggplot",
+    "text": "ggplot\nFor today and most of your time, you will just need the ggplot2 package from the tidyverse mega-package.\n\nConsistent with Grammar of Graphics\nFlexible\nLayering and theme customization\nCommunity"
+  },
+  {
+    "objectID": "lecture2.html#general-formula",
+    "href": "lecture2.html#general-formula",
+    "title": "Lecture 2",
+    "section": "General Formula:",
+    "text": "General Formula:\n\n\n\nggplot(data = &lt;DATA&gt;,\n    # can also specify aes within a geom function\n    aes(x=&lt;X&gt;, y=&lt;Y&gt;)) +\n    &lt;COORDINATE_FUNCTION&gt; +\n    &lt;FACET_FUNCTION&gt; +\n    &lt;SCALE_FUNCTION&gt; +\n    &lt;THEME_FUNCTION&gt;\n\n\n\nData: the data you want to visualize\nLayers: geom_ and stat_ : the geometric shapes and statistical summaries representing the data\nAesthetics: aes(): aesthetic mappings of the geometric and statistical objects\nScales: scale_: map between the aesthetic dimensions\nCoordinate system: coord_: maps data into the plane of data rectangle\nFacets: facet_ arrangement of the data into a grid of plots\nVisual themes: theme() and theme_: the overall visual defaults of a plot"
+  },
+  {
+    "objectID": "lecture2.html#start-with-data",
+    "href": "lecture2.html#start-with-data",
+    "title": "Lecture 2",
+    "section": "Start with data:",
+    "text": "Start with data:\nLoad in data and install packages.\nLet’s look at data on International Agricultural Productivity.\n\nlibrary(tidyverse)\n\n# load in the data:\ntfp &lt;- read.csv('https://ers.usda.gov/sites/default/files/_laserfiche/DataFiles/51270/AgTFPInternational2022_long.csv?v=1647')\n\n# explore the data:\nhead(tfp)\n\n  Order FAO ISO3 Country.territory Region   Sub.Region Inc.I Year     Attribute\n1     1 159  NGA           Nigeria    SSA SSA, Nigeria  MI-L 1961     TFP_Index\n2     1 159  NGA           Nigeria    SSA SSA, Nigeria  MI-L 1961  Outall_Index\n3     1 159  NGA           Nigeria    SSA SSA, Nigeria  MI-L 1961   Input_Index\n4     1 159  NGA           Nigeria    SSA SSA, Nigeria  MI-L 1961    Land_Index\n5     1 159  NGA           Nigeria    SSA SSA, Nigeria  MI-L 1961   Labor_Index\n6     1 159  NGA           Nigeria    SSA SSA, Nigeria  MI-L 1961 Capital_Index\n    Value\n1 88.4780\n2 19.2773\n3 21.7877\n4 40.3669\n5 51.4274\n6  8.6992\n\ntail(tfp)\n\n       Order FAO ISO3 Country.territory                  Region Sub.Region\n259803   242  NA                        G20 (19 countries 2021)           \n259804   242  NA                        G20 (19 countries 2021)           \n259805   242  NA                        G20 (19 countries 2021)           \n259806   242  NA                        G20 (19 countries 2021)           \n259807   242  NA                        G20 (19 countries 2021)           \n259808   242  NA                        G20 (19 countries 2021)           \n       Inc.I Year    Attribute        Value\n259803       2022    Capital_Q    4689431.5\n259804       2022 Fertilizer_Q  163841571.5\n259805       2022       Feed_Q 3482819729.3\n259806       2022   Cropland_Q     868541.5\n259807       2022    Pasture_Q    1645427.0\n259808       2022  IrrigArea_Q     225722.2"
+  },
+  {
+    "objectID": "lecture2.html#creating-the-data",
+    "href": "lecture2.html#creating-the-data",
+    "title": "Lecture 2",
+    "section": "Creating the data",
+    "text": "Creating the data\nLet’s say that we want to plot total output over time across the globe. We look at the code book and find that the Output Total Variable is the gross Value of agricultural output from crops, livestock and aquaculture, $1000 at constant 2015 prices.\n\n# get just total output:\noutput &lt;- tfp %&gt;% filter(Attribute == \"Outall_Q\")\n\n# look and see what regions we have:\ntable(output$Region)\n\n\n                                      ASIA \n                                      2108 \n                               ASIA, Total \n                                        62 \n                           ASIA, Total LDC \n                                        62 \n                                     China \n                                        62 \n                                     CWANA \n                                      1951 \n                              CWANA, Total \n                                        62 \n                      Developing Countries \n                                        62 \n  EU14 (includes E&W Germany, excludes UK) \n                                        62 \nEU27 (27 countries as of 2021 excludes UK) \n                                        62 \n                                    EUROPE \n                                      2651 \n                             EUROPE, Total \n                                        62 \n                       Former Soviet Union \n                                        62 \n                   G20 (19 countries 2021) \n                                        62 \n                               High income \n                                        62 \n                  Industrialized Countries \n                                        62 \n                                       LAC \n                                      2108 \n                                LAC, Total \n                                        62 \n                                Low income \n                                        62 \n                       Lower-middle income \n                                        62 \n                             NORTH AMERICA \n                                       186 \n                                   OCEANIA \n                                       186 \n            OECD (38 countries as of 2021) \n                                        62 \n                                       SSA \n                                      3432 \n                                SSA, Total \n                                        62 \n                      Transition countries \n                                        62 \n                       Upper-middle income \n                                        62 \n      Upper-middle income, excluding China \n                                        62 \n                                     World \n                                        62"
+  },
+  {
+    "objectID": "lecture2.html#creating-the-data-1",
+    "href": "lecture2.html#creating-the-data-1",
+    "title": "Lecture 2",
+    "section": "Creating the data:",
+    "text": "Creating the data:\nThis is why inspecting your data is important–we have separate observations for different countries, as well as subtotals by region. If we just summarized, then we would over count! Let’s restrict to just the world:\n\nworld_output &lt;- output %&gt;% \n  # restrict just to the world\n  filter(Region == \"World\") %&gt;%\n  # convert to billions (we are currently in thousands)\n  mutate(value_billions = Value/1000000) %&gt;%\n  # select just the variables that we need:\n  select(Year, value_billions)\n\n\n# preview the data:\nhead(world_output)\n\n  Year value_billions\n1 1961       1081.469\n2 1962       1116.667\n3 1963       1145.179\n4 1964       1184.011\n5 1965       1209.248\n6 1966       1253.067"
+  },
+  {
+    "objectID": "lecture2.html#starting-the-plot",
+    "href": "lecture2.html#starting-the-plot",
+    "title": "Lecture 2",
+    "section": "Starting the plot:",
+    "text": "Starting the plot:\nLet’s start making the plot:\n\n# start by just specifying the data \nggplot(data = world_output)"
+  },
+  {
+    "objectID": "lecture2.html#making-the-plot",
+    "href": "lecture2.html#making-the-plot",
+    "title": "Lecture 2",
+    "section": "Making the plot:",
+    "text": "Making the plot:\nLet’s map the data to the plot:\n\nMapping is a set of instructions on how the data are mapped onto aesthetic attributes of geometric objects. It translates tidy data to the graphics system.\nA mapping can be made by using the aes() function to make pairs of graphical attributes and parts of the data.\n\n\n# start by just specifying the data \nggplot(data = world_output, aes(x=Year, y = value_billions))"
+  },
+  {
+    "objectID": "lecture2.html#most-commonly-used-geoms",
+    "href": "lecture2.html#most-commonly-used-geoms",
+    "title": "Lecture 2",
+    "section": "Most commonly used geoms:",
+    "text": "Most commonly used geoms:\n\ngeom_bar() and geom_col(): bar charts\ngeom_boxplot(): box and whisker plots\ngeom_density(): density estimates\ngeom_jitter(): jitter points\ngeom_line(): line plots\ngeom_point(): scatter plots\n\nTo know more about layers, look at this."
+  },
+  {
+    "objectID": "lecture2.html#add-layers",
+    "href": "lecture2.html#add-layers",
+    "title": "Lecture 2",
+    "section": "Add Layers:",
+    "text": "Add Layers:\nThis is the essential part of making the data appear on the chart:\n\n# start by just specifying the data \nggplot(data = world_output, aes(x=Year, y = value_billions)) + \n  geom_point() # add points"
+  },
+  {
+    "objectID": "lecture2.html#add-layers-1",
+    "href": "lecture2.html#add-layers-1",
+    "title": "Lecture 2",
+    "section": "Add Layers:",
+    "text": "Add Layers:\nYou can add multiple layers to the same chart\n\n# start by just specifying the data \nggplot(data = world_output, aes(x=Year, y = value_billions)) + \n  geom_point() + # add points\n  geom_line() # add a line"
+  },
+  {
+    "objectID": "lecture2.html#add-labels",
+    "href": "lecture2.html#add-labels",
+    "title": "Lecture 2",
+    "section": "Add labels:",
+    "text": "Add labels:\n\n# start by just specifying the data \nggplot(data = world_output, aes(x=Year, y = value_billions)) + \n  geom_point() + # add points\n  geom_line() + # add a line\n  theme_classic() + # add a theme\n  labs(\n  x = \"Year\",\n  y = \"Amount (Billions USD, 2015 terms)\",\n  title = \"Global TFP Output Over Time\",\n  caption = \"Source: \"\n  ) # add labels"
+  },
+  {
+    "objectID": "lecture2.html#another-graph",
+    "href": "lecture2.html#another-graph",
+    "title": "Lecture 2",
+    "section": "Another graph:",
+    "text": "Another graph:\nLet’s try to make a graph the countries of Central America, and keep all of the attributes:\n\n# get a dataset of Cetnral America\ncentral_america &lt;- tfp |&gt;\n  # restrict to central america:\n  filter(Sub.Region == \"Central America\") |&gt;\n  # get rid of the subtotal:\n  filter(Country.territory != \"Central America\") |&gt;\n  # select the attributes we want:\n  filter(Attribute %in% c(\"Land_Q\", \"Labor_Q\", \"Capital_Q\")) |&gt;\n  # select the variables we need:\n  select(Country.territory, Year, Value, Attribute)\n\n\n # preview the data:\n  head(central_america)\n\n  Country.territory Year   Value Attribute\n1            Belize 1961 43.1018    Land_Q\n2            Belize 1961  9.0096   Labor_Q\n3            Belize 1961 24.8566 Capital_Q\n4            Belize 1962 43.1018    Land_Q\n5            Belize 1962  9.7604   Labor_Q\n6            Belize 1962 28.3185 Capital_Q"
+  },
+  {
+    "objectID": "lecture2.html#build-the-graph",
+    "href": "lecture2.html#build-the-graph",
+    "title": "Lecture 2",
+    "section": "Build the graph:",
+    "text": "Build the graph:\n\nggplot(data=central_america, aes(x=Year, y = Value)) +\n  geom_point()\n\n\nWhat’s wrong with this?"
+  },
+  {
+    "objectID": "lecture2.html#color-coding-by-country",
+    "href": "lecture2.html#color-coding-by-country",
+    "title": "Lecture 2",
+    "section": "Color coding by country:",
+    "text": "Color coding by country:\n\nggplot(data=central_america, aes(x=Year, y = Value, color = Country.territory)) +\n  geom_point()\n\n\nIs this better?"
+  },
+  {
+    "objectID": "lecture2.html#scaling-the-axis",
+    "href": "lecture2.html#scaling-the-axis",
+    "title": "Lecture 2",
+    "section": "Scaling the axis:",
+    "text": "Scaling the axis:\n\nggplot(data=central_america, aes(x=Year, y = Value, color = Country.territory)) +\n  scale_y_log10() +\n  geom_point()\n\n\nIs this better?"
+  },
+  {
+    "objectID": "lecture2.html#separate-graph-by-country",
+    "href": "lecture2.html#separate-graph-by-country",
+    "title": "Lecture 2",
+    "section": "Separate graph by country:",
+    "text": "Separate graph by country:\n\nggplot(data=central_america, aes(x=Year, y = Value, color = Country.territory)) +\n  scale_y_log10() +\n  facet_wrap(~ Country.territory) +\n  geom_point()"
+  },
+  {
+    "objectID": "lecture2.html#changing-our-color-and-adding-labels",
+    "href": "lecture2.html#changing-our-color-and-adding-labels",
+    "title": "Lecture 2",
+    "section": "Changing our color and adding labels:",
+    "text": "Changing our color and adding labels:\n\nggplot(data=central_america, aes(x=Year, y = Value, color = Attribute)) +\n  scale_y_log10() +\n  facet_wrap(~ Country.territory, scales = \"free\") +\n  geom_point() +\n  labs(y = \"Amount (log Thousands USD)\", title = \"Input Components\",\n       color = \"Input Factor\") +\n  scale_color_manual(labels = c(\"Capital\", \"Labor\", \"Land\"),\n                     values = c(\"red\", \"darkgreen\", \"blue\"))"
+  },
+  {
+    "objectID": "lecture2.html#changing-our-color-and-adding-labels-1",
+    "href": "lecture2.html#changing-our-color-and-adding-labels-1",
+    "title": "Lecture 2",
+    "section": "Changing our color and adding labels:",
+    "text": "Changing our color and adding labels:\n\nggplot(data=central_america, aes(x=Year, y = Value, color = Country.territory)) +\n  scale_y_log10() +\n  facet_wrap(~ Attribute,\n             labeller = as_labeller(c(\n               \"Capital_Q\" = \"Capital\",\n               \"Labor_Q\" = \"Labor\",\n               \"Land_Q\" = \"Land\"\n             ))) +\n  geom_point() +\n  labs(y = \"Amount (log Thousands USD)\", title = \"Input Components\", color = \"Country\", caption = \"Source: USDA ERS\")"
+  },
+  {
+    "objectID": "lecture2.html#we-are-going-to-make-this-graph",
+    "href": "lecture2.html#we-are-going-to-make-this-graph",
+    "title": "Lecture 2",
+    "section": "We are going to make this graph:",
+    "text": "We are going to make this graph:\n\nTake a few minutes and talk to your neighbor about the steps."
+  },
+  {
+    "objectID": "lecture2.html#steps",
+    "href": "lecture2.html#steps",
+    "title": "Lecture 2",
+    "section": "Steps:",
+    "text": "Steps:\n\nSelect/filter what we need from the dataset\n\nHint: we may need to use a combo of region and countries to filter on\n\nRecalculate Index\n\nWe are based in 2015 with this data, we want to convert to 1961 base\n\nCreate a base line plot in ggplot\nAdjust the theme parameters to make it look similar\n\nWork with the group next to you to make this graph, we will check in after a few steps"
+  },
+  {
+    "objectID": "lecture2.html#my-rendition",
+    "href": "lecture2.html#my-rendition",
+    "title": "Lecture 2",
+    "section": "My rendition:",
+    "text": "My rendition:"
+  },
+  {
+    "objectID": "lecture2.html#recap-1",
+    "href": "lecture2.html#recap-1",
+    "title": "Lecture 2",
+    "section": "Recap:",
+    "text": "Recap:\nWhat did we learn today?\n\ndplyr basics:\n\nfilter() → subset rows\n\narrange() → order rows\n\nselect() → choose columns\n\nmutate() → create/transform variables\n\nsummarise() + group_by() → summary statistics by group\n\nTidy data: each variable = column, each observation = row, each value = one cell\nData visualization with ggplot2:\n\nGrammar of Graphics framework (data → aesthetics → geoms → scales → facets → theme)\n\nStart simple, then layer\n\nThemes, labels, and scales make plots more effective\n\nPrinciples of good visualization:\n\nClear, accurate, efficient, consistent, accessible\n\n\n✨ Key takeaway: 80% of your data exploration can be done with these dplyr verbs and ggplot2 basics!"
+  },
+  {
     "objectID": "lecture1.html#about-me",
     "href": "lecture1.html#about-me",
     "title": "R Math Camp",
