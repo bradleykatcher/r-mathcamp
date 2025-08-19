@@ -15,7 +15,9 @@ Bradley Katcher
 
 Note: I am grateful to Rony Rodriguez-Ramirez and previous Math Camp and API-209 TFs for their materials, of which these are heavily based.
 
-Slides available on Canvas
+-   Slides available on Canvas
+
+-   To access the materials, you can either click this \[link\](https://posit.cloud/content/10715351) and save a copy to your Posit Cloud like you did for the summer assignment, or you can download it from Canvas.
 
 ------------------------------------------------------------------------
 
@@ -223,7 +225,7 @@ AI isn't always correct:
 
 ## Steps to working with data in R:
 
-1\. Import (`read.csv()` is your friend)
+1\. Import (`read.csv()`/`read_csv()` is your friend)
 
 . . .
 
