@@ -95,7 +95,7 @@
     "href": "lecture1.html#steps-to-working-with-data-in-r",
     "title": "R Math Camp",
     "section": "Steps to working with data in R:",
-    "text": "Steps to working with data in R:\n1. Import (read.csv() is your friend)\n\n2. Tidy (dplyr and stringr are your friends)\n\n\n3. Transform the data (tidyverse is your friend)\n\n\n4. Visualize the data (ggplot is your friend)\n\n\n5. Communicate the data (quarto is your friend)"
+    "text": "Steps to working with data in R:\n1. Import (read.csv()/read_csv() is your friend)\n\n2. Tidy (dplyr and stringr are your friends)\n\n\n3. Transform the data (tidyverse is your friend)\n\n\n4. Visualize the data (ggplot is your friend)\n\n\n5. Communicate the data (quarto is your friend)"
   },
   {
     "objectID": "lecture1.html#structure-of-an-r-file",
