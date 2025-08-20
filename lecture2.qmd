@@ -457,7 +457,9 @@ ers_long <- ers_long |>
   mutate(new_index = Value/base_index*100)
 
 # Create a line plot
-ggplot(ers_long, aes(x = Year, y = new_index, color = territory)) +
+ggplot(ers_long, aes(x = Year, y = new_index,
+                     color = territory,
+                     linetype = territory)) +
   geom_line(size = 1.2) +
   scale_color_manual(values = c(
     "Brazil" = "#8B0000",
@@ -467,12 +469,21 @@ ggplot(ers_long, aes(x = Year, y = new_index, color = territory)) +
     "Transition countries" = "#87CEEB",
     "Low income" = "#BDB76B"
   )) +
+  scale_linetype_manual(values = c(
+    "World" = "dashed",
+    "Brazil" = "solid",
+    "China" = "solid",
+    "United States" = "solid",
+    "Transition countries" = "solid",
+    "Low income" = "solid"
+  )) +
   labs(
     title = "Agricultural productivity (measured as total factor productivity)",
     subtitle = "Growth for selected countries/country groups, 1961–2011",
     y = "Index (1961 = 100)",
     x = NULL,
     color = NULL,
+    linetype = NULL,
     caption = "Source: USDA Economic Research Service, International Agricultural Productivity data product."
   ) +
   theme_minimal(base_size = 14) +
@@ -491,21 +502,24 @@ ggplot(ers_long, aes(x = Year, y = new_index, color = territory)) +
 
 What did we learn today?
 
-- **dplyr basics**:  
-  - `filter()` → subset rows  
-  - `arrange()` → order rows  
-  - `select()` → choose columns  
-  - `mutate()` → create/transform variables  
-  - `summarise()` + `group_by()` → summary statistics by group  
+-   **dplyr basics**:
 
-- **Tidy data**: each variable = column, each observation = row, each value = one cell  
+    -   `filter()` → subset rows\
+    -   `arrange()` → order rows\
+    -   `select()` → choose columns\
+    -   `mutate()` → create/transform variables\
+    -   `summarise()` + `group_by()` → summary statistics by group
 
-- **Data visualization with ggplot2**:  
-  - Grammar of Graphics framework (data → aesthetics → geoms → scales → facets → theme)  
-  - Start simple, then layer  
-  - Themes, labels, and scales make plots more effective  
+-   **Tidy data**: each variable = column, each observation = row, each value = one cell
 
-- **Principles of good visualization**:  
-  - Clear, accurate, efficient, consistent, accessible  
+-   **Data visualization with ggplot2**:
 
-✨ Key takeaway: *80% of your data exploration can be done with these dplyr verbs and ggplot2 basics!*  
+    -   Grammar of Graphics framework (data → aesthetics → geoms → scales → facets → theme)\
+    -   Start simple, then layer\
+    -   Themes, labels, and scales make plots more effective
+
+-   **Principles of good visualization**:
+
+    -   Clear, accurate, efficient, consistent, accessible
+
+✨ Key takeaway: *80% of your data exploration can be done with these dplyr verbs and ggplot2 basics!*
