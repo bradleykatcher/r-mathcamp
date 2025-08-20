@@ -1,0 +1,182 @@
+---
+title: "R Lab One"
+author: "Bradley Katcher"
+format: html
+editor: visual
+---
+
+## Getting Started
+
+### Installing Packages
+
+```{r, echo = T}
+library(dplyr)
+library(openxlsx)
+```
+
+### Step 0: Install and Load the dataset in R:
+
+Give the [codebook](http://www.matthewfuhrmann.com/uploads/2/5/8/2/25820564/nl_dataset_-_codebook_2015-1215.pdf) a read!
+
+```{r, echo = T}
+# load in the data
+full_nuclear_data <- read.xlsx('http://www.matthewfuhrmann.com/uploads/2/5/8/2/25820564/nl_dataset_v.1.2.xlsx')
+```
+
+# Exercise Tasks:
+
+## Task A: Data preview and understanding:
+
+-   Display the first few rows of `full_nuclear_data`
+-   Use the `glimpse()` command to explore names and types
+-   Identify at least 3 key indicator variables (e.g. `enr_type`, `military`, `foreign_assistance`, `covert`, etc.) and clean them as appropriate for missing
+
+```{r, echo = T}
+# first few rows:
+head(full_nuclear_data)
+
+# glimpse the data:
+glimpse(full_nuclear_data)
+
+# cleaning some indicator variables:
+full_nuclear_data <- full_nuclear_data |>
+  mutate(across(covert:foreign_assistance,
+                ~ if_else(. %in% c(-99, -77), NA, .)))
+
+summary(full_nuclear_data)
+```
+
+## Task B: Time trends by region:
+
+-   Create a new variable for geographic region (e.g. Europe, Asia, Middle East, etc.)
+-   Summarize the number of new ENR facilities per decade (hint: you'll want to create a new variable for decade, maybe use the `case_when()` function)
+-   Optional: we haven't introduced ggplot yet, but you can make an easy line chart over time using the following code structure in base R. Try to visualize your number of facilities per decade!
+
+```{r, echo = TRUE}
+# Do your work here!
+table(full_nuclear_data$country_name)
+
+# my cateogrization of countries:
+full_nuclear_data <- full_nuclear_data |>
+  mutate(region = case_when(
+    country_name %in% c("Algeria","Egypt","Iran","Iraq","Israel","Libya") ~ "MENA",
+    country_name %in% c("Belgium","Czech Republic","France","Germany","Italy","Netherlands",
+                   "Norway","Romania","Spain","Sweden","United Kingdom","Yugoslavia") ~ "Europe",
+    country_name %in% c("China","India","Japan","North Korea","Pakistan","South Korea","Taiwan") ~ "Asia",
+    country_name %in% c("Argentina","Brazil","Canada","United States") ~ "Americas",
+    country_name == "South Africa" ~ "Africa",
+    country_name == "Australia" ~ "Oceania",
+    country_name == "Russia" ~ "Eurasia",
+    TRUE ~ "Other"
+  ))
+
+# number of ENR facilites per decade:
+facilities_per_decade <- full_nuclear_data |>
+  mutate(decade = case_when(construction_end < 0 | construction_end > 2025 ~ NA,
+                            TRUE ~ (construction_end %/% 10) * 10)) %>% 
+  group_by(decade) %>% 
+  summarise(n_faciliites = n())
+
+```
+
+```{r, echo=TRUE}
+# sample code to make a plot:
+
+  # make the plot:
+  plot(x = facilities_per_decade$decade, y= facilities_per_decade$n_faciliites, type = 'b',
+       xlab = "Decade", ylab = "# of Facilities",
+       main = "Number of New Facilities per Decade")
+```
+
+## Task C: Foreign assistance and secrecy:
+
+-   Investigate how often facilities were covert `(covert == 1)` or built with foreign assistance `(foreign_assistance == 1)`.
+-   Tabulate cross-classifications: covert_only, foreign-only, both, or neither
+-   Compute proportions of these categories among military-run vs. civilian run facilities.
+
+```{r, echo = TRUE}
+
+# get tables based on foreign assistance and covert status
+table(full_nuclear_data$covert)
+
+# try foreign assistance:
+table(full_nuclear_data$foreign_assistance)
+
+# get cross classifictations:
+cross_tab <- table(full_nuclear_data$covert, full_nuclear_data$foreign_assistance); cross_tab
+# add labels
+rownames(cross_tab) <- c("Non-Covert", "Covert")
+colnames(cross_tab) <- c("No Assistance", "Foreign Assistance")
+
+# re-do with proportions:
+military_nuclear <- full_nuclear_data |> filter(military == 1)
+civilian_nuclear <- full_nuclear_data |> filter(military == 0)
+
+
+# Make the military table:
+military_tab <- table(
+  Covert = military_nuclear$covert,
+  ForeignAssistance = military_nuclear$foreign_assistance
+)
+
+# Convert to proportions (row-wise or overall)
+military_prop <- prop.table(military_tab) 
+
+# Print results
+military_tab
+military_prop
+
+
+# Make the civilian table:
+civilian_tab <- table(
+  Covert = civilian_nuclear$covert,
+  ForeignAssistance = civilian_nuclear$foreign_assistance
+)
+
+# Convert to proportions (row-wise or overall)
+civilian_prop <- prop.table(civilian_tab) 
+
+# Print results
+civilian_tab
+civilian_prop
+```
+
+## Task D: Impact of Safeguards:
+
+-   Use the safeguard variable (`iaea`) to investigate:
+
+1.  Whether civilian or military facilities were more likely to be under IAEA safeguards
+2.  Whether safeguards were more common in certain decades or regions.
+
+```{r, echo = TRUE}
+
+# get a cross-tab table:
+safeguard_tab <- table(
+  Military = full_nuclear_data$military,
+  Safeguard = full_nuclear_data$iaea
+)
+
+
+# convert to proportions, getting the proptions by row:
+prop.table(safeguard_tab, margin = 1)
+
+
+# check to see if safegards are more common in decades:
+full_nuclear_data |>
+  # create our decade variable:
+    mutate(decade = case_when(construction_end < 0 | construction_end > 2025 ~ NA,
+                            TRUE ~ (construction_end %/% 10) * 10)) |>
+  # group by decade
+  group_by(decade) |>
+  # get the mean by decade:
+  summarise(iaea = mean(iaea, na.rm = T))
+
+
+
+# check to see if safeguards are more common in some regions:
+full_nuclear_data |>
+  # group by decade
+  group_by(region) |>
+  # get the mean by decade:
+  summarise(iaea = mean(iaea, na.rm = T))
+```
