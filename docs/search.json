@@ -1,220 +1,283 @@
 [
   {
-    "objectID": "lecture2.html#start-by-installing-r",
-    "href": "lecture2.html#start-by-installing-r",
-    "title": "Lecture 2",
-    "section": "Start by Installing R:",
-    "text": "Start by Installing R:\nPlease attempt this prior to the start of lecture. If you successfully install R and RStudio without any issues, feel free to arrive at 9:15am on Thursday to allow us time to help other students\nTo install R, you should install both R and RStudio. To download and install R, you should click the following:\nDownload and Install R\n\nOnce you get to this website, click the “Download R for macOS” or “Download R for Windows” depending on your machine.\nTo get the R Studio interface, you can click on the same link as above and then click “Download RStudio Desktop.”\n\nIf you would like step by step instructions, you can do so here.\nPlease tell the teaching team if you need assistance!"
+    "objectID": "lab3_solutions.html",
+    "href": "lab3_solutions.html",
+    "title": "Hands-On Session: Introduction to Quarto for Problem Sets",
+    "section": "",
+    "text": "I thank Rony Rodriguez-Ramirez for assistance in the creation of this exercise."
   },
   {
-    "objectID": "lecture2.html#recap",
-    "href": "lecture2.html#recap",
-    "title": "Lecture 2",
-    "section": "Recap:",
-    "text": "Recap:\nWho can tell me what the essential functions do?\n\nfilter()\n\n\n\narrange()\n\n\n\n\nselect()\n\n\n\n\nmutate()\n\n\n\n\nsummarise()\n\n\n\n\ngroup_by()\n\nI highly recommend reading Hadley Wickham’s chapter that has descriptions and examples of key functions.\n\nYou can do 80% of data exploration and analysis using these.\n\nOften, data analysis is knowing what the right question to ask is. Summary statistics are very powerful.\n\n\nHere is a cheatsheet I highly recommend."
+    "objectID": "lab3_solutions.html#introduction",
+    "href": "lab3_solutions.html#introduction",
+    "title": "Hands-On Session: Introduction to Quarto for Problem Sets",
+    "section": "Introduction",
+    "text": "Introduction\nIn this hands-on session, you will learn how to create a Quarto document that you can use for your problem sets. The goal is to familiarize you with the basic structure of a Quarto project, how to format text, and how to integrate R code for data analysis. By the end of this session, you’ll be able to create a fully reproducible report that you can apply to future problem sets."
   },
   {
-    "objectID": "lecture2.html#goals-for-today",
-    "href": "lecture2.html#goals-for-today",
-    "title": "Lecture 2",
-    "section": "Goals for today:",
-    "text": "Goals for today:\n\nReinforce principles of data cleaning and dplyr\nLearn about tidy data\nBuild plots and understand key points of data visualization\nReplicate a data visualization produced in real reports"
+    "objectID": "lab3_solutions.html#exercise-1-setting-up-your-quarto-project",
+    "href": "lab3_solutions.html#exercise-1-setting-up-your-quarto-project",
+    "title": "Hands-On Session: Introduction to Quarto for Problem Sets",
+    "section": "Exercise 1: Setting Up Your Quarto Project",
+    "text": "Exercise 1: Setting Up Your Quarto Project\n\nObjective\nSet up a Quarto project and create a Quarto document that will serve as the foundation for your report.\n\n\nInstructions\n\nCreate a New Quarto Project:\n\nOpen RStudio.\nGo to File &gt; New Project &gt; New Directory &gt; Quarto Project.\nName your project (e.g., ProblemSet1) and choose a location on your computer.\nClick “Create Project.”\n\nCreate a New Quarto Document:\n\nInside your project, go to File &gt; New File &gt; Quarto Document.\nChoose “HTML” as the output format.\n\nAdd Document Metadata:\n\nIn the new document, add a title, your name as the author, and the date.\nExample:\n---\ntitle: \"Problem Set 1\"\nauthor: \"Your Name\"\ndate: \"2024-08-26\"\nformat: html\n---\n\nSave Your Document:\n\nSave the file with a descriptive name, like PS00.qmd.\n\n\n\n\nExercise 2: Formatting Your Document\n\nObjective\nLearn how to format text and structure your Quarto document.\n\n\nInstructions\n\nCreate Headings:\n\nHeadings help to organize your document into sections and subsections. In Quarto, you can create headings using the # symbol. The number of # symbols indicates the level of the heading:\n\n# for the main heading\n## for a subheading\n### for a sub-subheading\n\n\nExample:\n# Main Heading\n\n## Subheading\n\n### Sub-subheading\n\nThis hierarchical structure helps in navigating your document and making it more readable.\n\nWrite an Introduction Section:\n\nStart by introducing the problem set and the dataset you will be using. Use a main heading for the introduction:\n# Introduction\n\nIn this problem set, we will analyze primary school enrollment data from various countries. The objective is to explore trends and identify key insights from the data.\n\nFormat Text:\n\nYou can format your text to emphasize important parts or create lists for better organization.\nBold text: Use double asterisks (**) or double underscores (__) around your text.\nItalic text: Use single asterisk (*) or single underscore (_) around your text.\nLists: Create a list using - for unordered lists or 1. for ordered lists.\n\nExample:\n**Bold Text** and *Italic Text*\n\n- Item 1\n- Item 2\n\n1. First item\n2. Second item\nInclude Links and Other Formatting:\n\nYou can include links in your document by wrapping the link text in square brackets [] and the URL in parentheses ():\nYou can find more about Quarto basics on this [page](https://quarto.org/docs/authoring/markdown-basics.html).\n\nYou can find more about Quarto basics on this page.\n\nTo create block quotes, use the &gt; symbol at the beginning of a line:\n&gt; This is a block quote, often used to highlight important information or quotes.\n\nAnd it should render as:\n\nThis is a block quote, often used to highlight important information or quotes."
   },
   {
-    "objectID": "lecture2.html#tidy-data",
-    "href": "lecture2.html#tidy-data",
-    "title": "Lecture 2",
-    "section": "Tidy data:",
-    "text": "Tidy data:\n\n\nA dataset is tidy if it satisfies the following conditions:\n\neach variable forms a column\neach observation forms a row\neach cell is a single measurement\nlong format"
+    "objectID": "lab3_solutions.html#exercise-3-loading-and-exploring-the-data",
+    "href": "lab3_solutions.html#exercise-3-loading-and-exploring-the-data",
+    "title": "Hands-On Session: Introduction to Quarto for Problem Sets",
+    "section": "Exercise 3: Loading and Exploring the Data",
+    "text": "Exercise 3: Loading and Exploring the Data\n\nObjective\nLoad the dataset and explore its structure to understand the variables.\n\n\nInstructions\n\nLoad the Required Libraries:\n\nAdd a code chunk at the top of your document to load the tidyverse package.\n\n```{r}\nlibrary(tidyverse)\n```\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.0     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\n\nTo prevent the code from being displayed in the final report, you can use the echo option to hide the code. Using #| echo: false in the first line of your code chunk.\n\nLoad the Dataset:\n\nUse the read_csv() function to load the dataset from this link.\n\n# Load the dataset\nenrollment_data &lt;- read_csv(\"https://www.dropbox.com/scl/fi/pbkj0my9trhu0truqjezw/primary-enrollment-selected-countries.csv?rlkey=nty93tu3hykel4bpx1102xwj9&dl=1\")\n\nRows: 7838 Columns: 4\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (2): Entity, Code\ndbl (2): Year, Combined total net enrolment rate, primary, both sexes\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\n\n\nExplore the Data:\n\nUse functions like head(), and glimpse() to get an overview of the dataset.\n\nhead(enrollment_data)\nglimpse(enrollment_data)\n\n\nWrite a Data Description Section:\n\nDescribe the dataset, including the key variables.\n# Data Description\n\nThe dataset includes information on the primary school \nenrollment rate in various countries from 1820 to 2018. \nKey variables include the country name, country code, \nyear, and the combined total net enrollment rate for both sexes.\nYou can also use inline code in the description if you want to reference specific values from the data. For example:\nThe data includes enrollment rates from the earliest \nrecorded year, 1820, to the \nmost recent year, 2019."
   },
   {
-    "objectID": "lecture2.html#untidy-data",
-    "href": "lecture2.html#untidy-data",
-    "title": "Lecture 2",
-    "section": "Untidy data:",
-    "text": "Untidy data:\n\nL. Bartram, M. Correll and M. Tory, “Untidy Data: The Unreasonable Effectiveness of Tables” in IEEE Transactions on Visualization & Computer Graphics, vol. 28, no. 01, pp. 686-696, Jan. 2022, doi: 10.1109/TVCG.2021.3114830"
+    "objectID": "lab3_solutions.html#exercise-4-data-analysis",
+    "href": "lab3_solutions.html#exercise-4-data-analysis",
+    "title": "Hands-On Session: Introduction to Quarto for Problem Sets",
+    "section": "Exercise 4: Data Analysis",
+    "text": "Exercise 4: Data Analysis\n\nObjective\nPerform basic data analysis to answer specific questions about the dataset.\n\n\nInstructions\nNow, your turn:\n\nQuestion 1: Which country has the maximum enrollment rate in 1990?\n\nThe country with the max enrollment in 1990 is France\n\nQuestion 2: Which country has the lowest enrollment rate in 1990?\n\nThe country with the min enrollment in 1990 is Niger\n\nQuestion 3: How many countries had an enrollment rate greater than 50% in 1950?\nQuestion 5: What was the trend of enrollment rates in 4 selected countries from 1990 to their last year?\n\nChoose four countries and create a line plot, facets. You should get a plot similar as the one below:\n\n\n\n\n\n\n\n\n\n\n\nThis exercise was inspired by Our World in Data:"
   },
   {
-    "objectID": "lecture2.html#effective-visualization-is-important",
-    "href": "lecture2.html#effective-visualization-is-important",
-    "title": "Lecture 2",
-    "section": "Effective visualization is important!",
-    "text": "Effective visualization is important!\n\nLet’s look at some examples of unique data visualizations here.\nData is only as useful as it is understood.\n\nPoor visualization can mislead or confuse: a good plot tells a story, a bad plot hides the truth.\n\n\nPrinciples of Effective Data Visualization:\n\nClear: not too busy, appropriate labels\nAccurate: don’t truncate axes, don’t mislead color gradients\nEfficient: convey info quickly and remove non-essential components\nConsistent: line chart for trends, bar charts for comparison\nAccessibility: make sure easy to interpret"
+    "objectID": "lab3_solutions.html#exercise-5-conclusion",
+    "href": "lab3_solutions.html#exercise-5-conclusion",
+    "title": "Hands-On Session: Introduction to Quarto for Problem Sets",
+    "section": "Exercise 5: Conclusion",
+    "text": "Exercise 5: Conclusion\n\nObjective\nSummarize your findings from the analysis.\n\n\nInstructions\n\nWrite a Conclusion Section:\n\nDiscuss the key insights gained from the data analysis.\n# Conclusion\n\nThis analysis of primary school enrollment data revealed significant trends over time...\n\nSuggest Further Analysis:\n\nMention additional questions or analyses that could be explored."
   },
   {
-    "objectID": "lecture2.html#lots-of-ways-to-plot-in-r",
-    "href": "lecture2.html#lots-of-ways-to-plot-in-r",
-    "title": "Lecture 2",
-    "section": "Lots of ways to plot in R:",
-    "text": "Lots of ways to plot in R:\n\nThere are many different ways to plot in R\n\nYou have already seen plots in Base R\n\nThere are also lots of many different graphs you can make\n\nFor a directory, you could see The R Graph Gallery\n\n\nWe will focus on ggplot2:\n\nggplot2 documentation"
+    "objectID": "lab3_solutions.html#final-steps-rendering-and-sharing-your-report",
+    "href": "lab3_solutions.html#final-steps-rendering-and-sharing-your-report",
+    "title": "Hands-On Session: Introduction to Quarto for Problem Sets",
+    "section": "Final Steps: Rendering and Sharing Your Report",
+    "text": "Final Steps: Rendering and Sharing Your Report"
   },
   {
-    "objectID": "lecture2.html#how-to-structure-a-ggplot",
-    "href": "lecture2.html#how-to-structure-a-ggplot",
-    "title": "Lecture 2",
-    "section": "How to structure a ggplot:",
-    "text": "How to structure a ggplot:\n\n\n The first 3 are essential, the rest are very helpful!\n\nImagine that you were describing a graph to someone. How would you do it?\n\nData to be visualized\nGeometric objects that appear on the plot\nAesthetic mappings from data to visual components\nStatistics transform data on the way to visualization\nCoordinates organize location of geometric objects\nScales define the range of values for aesthetics\nFacets group into subplots"
+    "objectID": "lab3_solutions.html#objective-5",
+    "href": "lab3_solutions.html#objective-5",
+    "title": "Hands-On Session: Introduction to Quarto for Problem Sets",
+    "section": "Objective",
+    "text": "Objective\nRender your Quarto document to HTML and share your results."
   },
   {
-    "objectID": "lecture2.html#ggplot",
-    "href": "lecture2.html#ggplot",
-    "title": "Lecture 2",
-    "section": "ggplot",
-    "text": "ggplot\nFor today and most of your time, you will just need the ggplot2 package from the tidyverse mega-package.\n\nConsistent with Grammar of Graphics\nFlexible\nLayering and theme customization\nCommunity"
+    "objectID": "lab3_solutions.html#instructions-5",
+    "href": "lab3_solutions.html#instructions-5",
+    "title": "Hands-On Session: Introduction to Quarto for Problem Sets",
+    "section": "Instructions",
+    "text": "Instructions\n\nRender the Document:\n\nClick the “Render” button in RStudio to generate the HTML output.\n\nReview the Report:\n\nCheck the output for any errors or formatting issues.\n\nShare Your Report:\n\nSave the rendered HTML file and share it with your peers or instructor."
   },
   {
-    "objectID": "lecture2.html#general-formula",
-    "href": "lecture2.html#general-formula",
-    "title": "Lecture 2",
-    "section": "General Formula:",
-    "text": "General Formula:\n\n\n\nggplot(data = &lt;DATA&gt;,\n    # can also specify aes within a geom function\n    aes(x=&lt;X&gt;, y=&lt;Y&gt;)) +\n    &lt;COORDINATE_FUNCTION&gt; +\n    &lt;FACET_FUNCTION&gt; +\n    &lt;SCALE_FUNCTION&gt; +\n    &lt;THEME_FUNCTION&gt;\n\n\n\nData: the data you want to visualize\nLayers: geom_ and stat_ : the geometric shapes and statistical summaries representing the data\nAesthetics: aes(): aesthetic mappings of the geometric and statistical objects\nScales: scale_: map between the aesthetic dimensions\nCoordinate system: coord_: maps data into the plane of data rectangle\nFacets: facet_ arrangement of the data into a grid of plots\nVisual themes: theme() and theme_: the overall visual defaults of a plot"
+    "objectID": "lecture3.html#recap-lecture-2",
+    "href": "lecture3.html#recap-lecture-2",
+    "title": "R Math Camp",
+    "section": "Recap: Lecture 2",
+    "text": "Recap: Lecture 2\n\ndplyr basics\n\nfilter() → subset rows\narrange() → order rows\nselect() → choose columns\nmutate() → create/transform variables\nsummarise() + group_by() → summary statistics\n\nTidy data principles\n\nEach variable = column\nEach observation = row\nEach value = one cell\n\nData visualization with ggplot2\n\nGrammar of Graphics: data → aesthetics → geoms → scales → facets → themes\nStart simple, then layer\nGood visualization = Clear, Accurate, Efficient, Consistent, Accessible"
   },
   {
-    "objectID": "lecture2.html#start-with-data",
-    "href": "lecture2.html#start-with-data",
-    "title": "Lecture 2",
-    "section": "Start with data:",
-    "text": "Start with data:\nLoad in data and install packages.\nLet’s look at data on International Agricultural Productivity.\n\nlibrary(tidyverse)\n\n# load in the data:\ntfp &lt;- read.csv('https://ers.usda.gov/sites/default/files/_laserfiche/DataFiles/51270/AgTFPInternational2022_long.csv?v=1647')\n\n# explore the data:\nhead(tfp)\n\n  Order FAO ISO3 Country.territory Region   Sub.Region Inc.I Year     Attribute\n1     1 159  NGA           Nigeria    SSA SSA, Nigeria  MI-L 1961     TFP_Index\n2     1 159  NGA           Nigeria    SSA SSA, Nigeria  MI-L 1961  Outall_Index\n3     1 159  NGA           Nigeria    SSA SSA, Nigeria  MI-L 1961   Input_Index\n4     1 159  NGA           Nigeria    SSA SSA, Nigeria  MI-L 1961    Land_Index\n5     1 159  NGA           Nigeria    SSA SSA, Nigeria  MI-L 1961   Labor_Index\n6     1 159  NGA           Nigeria    SSA SSA, Nigeria  MI-L 1961 Capital_Index\n    Value\n1 88.4780\n2 19.2773\n3 21.7877\n4 40.3669\n5 51.4274\n6  8.6992\n\ntail(tfp)\n\n       Order FAO ISO3 Country.territory                  Region Sub.Region\n259803   242  NA                        G20 (19 countries 2021)           \n259804   242  NA                        G20 (19 countries 2021)           \n259805   242  NA                        G20 (19 countries 2021)           \n259806   242  NA                        G20 (19 countries 2021)           \n259807   242  NA                        G20 (19 countries 2021)           \n259808   242  NA                        G20 (19 countries 2021)           \n       Inc.I Year    Attribute        Value\n259803       2022    Capital_Q    4689431.5\n259804       2022 Fertilizer_Q  163841571.5\n259805       2022       Feed_Q 3482819729.3\n259806       2022   Cropland_Q     868541.5\n259807       2022    Pasture_Q    1645427.0\n259808       2022  IrrigArea_Q     225722.2"
+    "objectID": "lecture3.html#goals-for-today",
+    "href": "lecture3.html#goals-for-today",
+    "title": "R Math Camp",
+    "section": "Goals for Today",
+    "text": "Goals for Today\n\nLearn how to use loops (for, while) to repeat actions\nUnderstand common loop mistakes and how to avoid them\nWrite your own functions to make code more efficient\nExplore the importance of reproducibility in policy analysis\nPractice using Quarto for dynamic, reproducible reports"
   },
   {
-    "objectID": "lecture2.html#creating-the-data",
-    "href": "lecture2.html#creating-the-data",
-    "title": "Lecture 2",
-    "section": "Creating the data",
-    "text": "Creating the data\nLet’s say that we want to plot total output over time across the globe. We look at the code book and find that the Output Total Variable is the gross Value of agricultural output from crops, livestock and aquaculture, $1000 at constant 2015 prices.\n\n# get just total output:\noutput &lt;- tfp %&gt;% filter(Attribute == \"Outall_Q\")\n\n# look and see what regions we have:\ntable(output$Region)\n\n\n                                      ASIA \n                                      2108 \n                               ASIA, Total \n                                        62 \n                           ASIA, Total LDC \n                                        62 \n                                     China \n                                        62 \n                                     CWANA \n                                      1951 \n                              CWANA, Total \n                                        62 \n                      Developing Countries \n                                        62 \n  EU14 (includes E&W Germany, excludes UK) \n                                        62 \nEU27 (27 countries as of 2021 excludes UK) \n                                        62 \n                                    EUROPE \n                                      2651 \n                             EUROPE, Total \n                                        62 \n                       Former Soviet Union \n                                        62 \n                   G20 (19 countries 2021) \n                                        62 \n                               High income \n                                        62 \n                  Industrialized Countries \n                                        62 \n                                       LAC \n                                      2108 \n                                LAC, Total \n                                        62 \n                                Low income \n                                        62 \n                       Lower-middle income \n                                        62 \n                             NORTH AMERICA \n                                       186 \n                                   OCEANIA \n                                       186 \n            OECD (38 countries as of 2021) \n                                        62 \n                                       SSA \n                                      3432 \n                                SSA, Total \n                                        62 \n                      Transition countries \n                                        62 \n                       Upper-middle income \n                                        62 \n      Upper-middle income, excluding China \n                                        62 \n                                     World \n                                        62"
+    "objectID": "lecture3.html#loops",
+    "href": "lecture3.html#loops",
+    "title": "R Math Camp",
+    "section": "Loops:",
+    "text": "Loops:\n\nLoops let us repeat actions multiple times.\nThey are common when working with:\n\nVectors\nLists\nData processing tasks\n\nTwo common loops in R:\n\nfor loop\nwhile loop"
   },
   {
-    "objectID": "lecture2.html#creating-the-data-1",
-    "href": "lecture2.html#creating-the-data-1",
-    "title": "Lecture 2",
-    "section": "Creating the data:",
-    "text": "Creating the data:\nThis is why inspecting your data is important–we have separate observations for different countries, as well as subtotals by region. If we just summarized, then we would over count! Let’s restrict to just the world:\n\nworld_output &lt;- output %&gt;% \n  # restrict just to the world\n  filter(Region == \"World\") %&gt;%\n  # convert to billions (we are currently in thousands)\n  mutate(value_billions = Value/1000000) %&gt;%\n  # select just the variables that we need:\n  select(Year, value_billions)\n\n\n# preview the data:\nhead(world_output)\n\n  Year value_billions\n1 1961       1081.469\n2 1962       1116.667\n3 1963       1145.179\n4 1964       1184.011\n5 1965       1209.248\n6 1966       1253.067"
+    "objectID": "lecture3.html#the-for-loop",
+    "href": "lecture3.html#the-for-loop",
+    "title": "R Math Camp",
+    "section": "The for loop:",
+    "text": "The for loop:\n\nfor (i in 1:5){\n  print(i)\n}\n\n[1] 1\n[1] 2\n[1] 3\n[1] 4\n[1] 5\n\n\n\ni takes on values from 1 to 5\nLoop body runs once for each value\nUseful for iterating over lists, vectors, and sequences\n\n\nnumbers &lt;- c(10,20,30)\nfor (n in numbers) {\n  print(n*2)\n}\n\n[1] 20\n[1] 40\n[1] 60"
   },
   {
-    "objectID": "lecture2.html#starting-the-plot",
-    "href": "lecture2.html#starting-the-plot",
-    "title": "Lecture 2",
-    "section": "Starting the plot:",
-    "text": "Starting the plot:\nLet’s start making the plot:\n\n# start by just specifying the data \nggplot(data = world_output)"
+    "objectID": "lecture3.html#while-loops",
+    "href": "lecture3.html#while-loops",
+    "title": "R Math Camp",
+    "section": "While loops:",
+    "text": "While loops:\n\nRuns as long as a condition is true\nUseful when the number of repetitions isn’t fixed\n\n\nx &lt;- 1\nwhile (x &lt;= 5){\n  print(x)\n  \n  #reindex x:\n  x &lt;- x + 1\n}\n\n[1] 1\n[1] 2\n[1] 3\n[1] 4\n[1] 5"
   },
   {
-    "objectID": "lecture2.html#making-the-plot",
-    "href": "lecture2.html#making-the-plot",
-    "title": "Lecture 2",
-    "section": "Making the plot:",
-    "text": "Making the plot:\nLet’s map the data to the plot:\n\nMapping is a set of instructions on how the data are mapped onto aesthetic attributes of geometric objects. It translates tidy data to the graphics system.\nA mapping can be made by using the aes() function to make pairs of graphical attributes and parts of the data.\n\n\n# start by just specifying the data \nggplot(data = world_output, aes(x=Year, y = value_billions))"
+    "objectID": "lecture3.html#common-loop-mistakes",
+    "href": "lecture3.html#common-loop-mistakes",
+    "title": "R Math Camp",
+    "section": "Common Loop Mistakes:",
+    "text": "Common Loop Mistakes:\n\nInfinite loop (forget to update condition)\nOff-by-one errors\nOverwriting variables inside loops\nNot vectoring when you could"
   },
   {
-    "objectID": "lecture2.html#most-commonly-used-geoms",
-    "href": "lecture2.html#most-commonly-used-geoms",
-    "title": "Lecture 2",
-    "section": "Most commonly used geoms:",
-    "text": "Most commonly used geoms:\n\ngeom_bar() and geom_col(): bar charts\ngeom_boxplot(): box and whisker plots\ngeom_density(): density estimates\ngeom_jitter(): jitter points\ngeom_line(): line plots\ngeom_point(): scatter plots\n\nTo know more about layers, look at this."
+    "objectID": "lecture3.html#functions",
+    "href": "lecture3.html#functions",
+    "title": "R Math Camp",
+    "section": "Functions:",
+    "text": "Functions:\nFunctions allow you to automate common tasks in a more powerful way than copying-and-pasting. This has a few key advantages:\n\nYou can give a function a custom name to make it easier to understand.\nAs you update your code, you only need to do it in one spot, rather than multiple.\nEliminates copy and pasting– makes it more efficient and less likely that you make a mistake."
   },
   {
-    "objectID": "lecture2.html#add-layers",
-    "href": "lecture2.html#add-layers",
-    "title": "Lecture 2",
-    "section": "Add Layers:",
-    "text": "Add Layers:\nThis is the essential part of making the data appear on the chart:\n\n# start by just specifying the data \nggplot(data = world_output, aes(x=Year, y = value_billions)) + \n  geom_point() # add points"
+    "objectID": "lecture3.html#what-are-some-examples-of-pre-existing-functions",
+    "href": "lecture3.html#what-are-some-examples-of-pre-existing-functions",
+    "title": "R Math Camp",
+    "section": "What are some examples of pre-existing functions?",
+    "text": "What are some examples of pre-existing functions?\nTake mean() for example:\n\n# define a vector and calculate the mean of it:\nnums &lt;- c(4 ,-2, 3, 7, 8, 10, 0, 2)\nmean(nums)\n\n[1] 4\n\n# writing a function to calculate mean without relying on functions:\ncalc_mean &lt;- function(numbers) {\n  total &lt;- 0 # keep track of the sum of elements in x\n  count &lt;- 0 # keeps track of the # of elements\n  \n  # loop over all numbers and add them to \n  for (i in numbers) {\n    total &lt;- total + i\n    count &lt;- count + 1\n    \n    print(paste0(\"Total \" , total, \". Count: \", count))\n  }\n  \n  # calcualte the mean as the sum over the number of elements:\n  result &lt;- total/count\n  return(result)\n  \n}\n\n# run the function:\ncalc_mean(nums)\n\n[1] \"Total 4. Count: 1\"\n[1] \"Total 2. Count: 2\"\n[1] \"Total 5. Count: 3\"\n[1] \"Total 12. Count: 4\"\n[1] \"Total 20. Count: 5\"\n[1] \"Total 30. Count: 6\"\n[1] \"Total 30. Count: 7\"\n[1] \"Total 32. Count: 8\"\n\n\n[1] 4"
   },
   {
-    "objectID": "lecture2.html#add-layers-1",
-    "href": "lecture2.html#add-layers-1",
-    "title": "Lecture 2",
-    "section": "Add Layers:",
-    "text": "Add Layers:\nYou can add multiple layers to the same chart\n\n# start by just specifying the data \nggplot(data = world_output, aes(x=Year, y = value_billions)) + \n  geom_point() + # add points\n  geom_line() # add a line"
+    "objectID": "lecture3.html#reproducibility-in-policy",
+    "href": "lecture3.html#reproducibility-in-policy",
+    "title": "R Math Camp",
+    "section": "Reproducibility in Policy:",
+    "text": "Reproducibility in Policy:\n\nReproducibility = allow someone to reproduce your analysis and get the same result\nPolicymakers should make decisions based on credible, transparent evidence, ensuring:\n\nResults can be verified\nMethods can be audited\nAnalyses can be updated over time\n\nUndetected errors can mislead stakeholders, undermine public trust, be built on outdated or incorrect data, and can hinder collaboration."
   },
   {
-    "objectID": "lecture2.html#add-labels",
-    "href": "lecture2.html#add-labels",
-    "title": "Lecture 2",
-    "section": "Add labels:",
-    "text": "Add labels:\n\n# start by just specifying the data \nggplot(data = world_output, aes(x=Year, y = value_billions)) + \n  geom_point() + # add points\n  geom_line() + # add a line\n  theme_classic() + # add a theme\n  labs(\n  x = \"Year\",\n  y = \"Amount (Billions USD, 2015 terms)\",\n  title = \"Global TFP Output Over Time\",\n  caption = \"Source: \"\n  ) # add labels"
+    "objectID": "lecture3.html#what-does-reproducible-policy-analysis-look-like",
+    "href": "lecture3.html#what-does-reproducible-policy-analysis-look-like",
+    "title": "R Math Camp",
+    "section": "What does reproducible policy analysis look like?",
+    "text": "What does reproducible policy analysis look like?\n\nAll steps are scripted, documented, and commented\nCode, data, and methods are stored together.\nOutput (charts, tables, models) are generated automatically.\nAnalyses can be re-run with new data."
   },
   {
-    "objectID": "lecture2.html#another-graph",
-    "href": "lecture2.html#another-graph",
-    "title": "Lecture 2",
-    "section": "Another graph:",
-    "text": "Another graph:\nLet’s try to make a graph the countries of Central America, and keep all of the attributes:\n\n# get a dataset of Cetnral America\ncentral_america &lt;- tfp |&gt;\n  # restrict to central america:\n  filter(Sub.Region == \"Central America\") |&gt;\n  # get rid of the subtotal:\n  filter(Country.territory != \"Central America\") |&gt;\n  # select the attributes we want:\n  filter(Attribute %in% c(\"Land_Q\", \"Labor_Q\", \"Capital_Q\")) |&gt;\n  # select the variables we need:\n  select(Country.territory, Year, Value, Attribute)\n\n\n # preview the data:\n  head(central_america)\n\n  Country.territory Year   Value Attribute\n1            Belize 1961 43.1018    Land_Q\n2            Belize 1961  9.0096   Labor_Q\n3            Belize 1961 24.8566 Capital_Q\n4            Belize 1962 43.1018    Land_Q\n5            Belize 1962  9.7604   Labor_Q\n6            Belize 1962 28.3185 Capital_Q"
+    "objectID": "lecture3.html#enter-quarto",
+    "href": "lecture3.html#enter-quarto",
+    "title": "R Math Camp",
+    "section": "Enter Quarto:",
+    "text": "Enter Quarto:\n\nDynamic documents that update when the data or code change\nCan produce reports, briefs, slides, or dashboards\n\nIntegrates analysis and narrative\n\nWay more digestible than traditional code.\n\n\nSupport citations and footnotes for transparency\nHelps build repeatable templates for reporting.\n\nQuarto is an open-source scientific and technical publishing system that enables researchers to create dynamic documents, reports, presentations, and websites."
   },
   {
-    "objectID": "lecture2.html#build-the-graph",
-    "href": "lecture2.html#build-the-graph",
-    "title": "Lecture 2",
-    "section": "Build the graph:",
-    "text": "Build the graph:\n\nggplot(data=central_america, aes(x=Year, y = Value)) +\n  geom_point()\n\n\nWhat’s wrong with this?"
+    "objectID": "lecture3.html#practice-with-quarto",
+    "href": "lecture3.html#practice-with-quarto",
+    "title": "R Math Camp",
+    "section": "Practice with Quarto:",
+    "text": "Practice with Quarto:\nYou will use Quarto for your problem sets, but let’s produce a report regarding how the first set of global, country-specific reciprocal tariffs were calculated by the Trump administration:"
   },
   {
-    "objectID": "lecture2.html#color-coding-by-country",
-    "href": "lecture2.html#color-coding-by-country",
-    "title": "Lecture 2",
-    "section": "Color coding by country:",
-    "text": "Color coding by country:\n\nggplot(data=central_america, aes(x=Year, y = Value, color = Country.territory)) +\n  geom_point()\n\n\nIs this better?"
+    "objectID": "lecture3.html#create-a-new-quarto-document",
+    "href": "lecture3.html#create-a-new-quarto-document",
+    "title": "R Math Camp",
+    "section": "Create a new Quarto Document:",
+    "text": "Create a new Quarto Document:\n\nOpen RStudio\nGo to File &gt; New File &gt; Quarto Document…\nFill in: Title, Author, Click “HTML” as the output\nFill in the metadata at the top and save with a descriptive name."
   },
   {
-    "objectID": "lecture2.html#scaling-the-axis",
-    "href": "lecture2.html#scaling-the-axis",
-    "title": "Lecture 2",
-    "section": "Scaling the axis:",
-    "text": "Scaling the axis:\n\nggplot(data=central_america, aes(x=Year, y = Value, color = Country.territory)) +\n  scale_y_log10() +\n  geom_point()\n\n\nIs this better?"
+    "objectID": "lecture3.html#reciprocal-tariffs-as-calculated-by-the-trump-administration",
+    "href": "lecture3.html#reciprocal-tariffs-as-calculated-by-the-trump-administration",
+    "title": "R Math Camp",
+    "section": "Reciprocal Tariffs as Calculated by the Trump Administration:",
+    "text": "Reciprocal Tariffs as Calculated by the Trump Administration:\nPer the US Trade Representative:\nReciprocal tariffs are calculated as the tariff rate necessary to balance bilateral trade deficits between the U.S. and each of our trading partners. This calculation assumes that persistent trade deficits are due to a combination of tariff and non-tariff factors that prevent trade from balancing.\nTariffs work through direct reductions of imports. Reciprocal tariff rates range from 0 percent to 99 percent, with unweighted and import-weighted averages of 20 percent and 41 percent\nWrite a brief introduction for the tariffs, as if you were a policy analyst who was going to evaluate the tariffs for your committee."
   },
   {
-    "objectID": "lecture2.html#separate-graph-by-country",
-    "href": "lecture2.html#separate-graph-by-country",
-    "title": "Lecture 2",
-    "section": "Separate graph by country:",
-    "text": "Separate graph by country:\n\nggplot(data=central_america, aes(x=Year, y = Value, color = Country.territory)) +\n  scale_y_log10() +\n  facet_wrap(~ Country.territory) +\n  geom_point()"
+    "objectID": "lecture3.html#the-formula",
+    "href": "lecture3.html#the-formula",
+    "title": "R Math Camp",
+    "section": "The Formula:",
+    "text": "The Formula:\nAgain, from the USTR:\nConsider an environment in which the U.S. levies a tariff of rate \\(\\tau_i\\) on country i and \\(\\Delta \\tau_i\\) reflects the change in the tariff rate. Let \\(\\epsilon&lt;0\\) represent the elasticity of imports with respect to import prices, let \\(\\phi &gt; 0\\) represent the passthrough from tariffs to import prices, let \\(m_i&gt;0\\) represent total imports from country i, and let \\(x_i &gt; 0\\) represent total exports. Then the decrease in imports due to a change in tariffs equals \\(\\tau_i \\cdot \\phi \\cdot m_i &lt; 0\\).Assuming that offsetting exchange rate and general equilibrium effects are small enough to be ignored, the reciprocal tariff that results in a bilateral trade balance of zero satisfies:\n\\[ \\Delta \\tau_i = \\frac{x_i - m_i}{\\epsilon \\cdot \\phi \\cdot m_i}\\] Write a brief description of the logic and your formula:"
   },
   {
-    "objectID": "lecture2.html#changing-our-color-and-adding-labels",
-    "href": "lecture2.html#changing-our-color-and-adding-labels",
-    "title": "Lecture 2",
-    "section": "Changing our color and adding labels:",
-    "text": "Changing our color and adding labels:\n\nggplot(data=central_america, aes(x=Year, y = Value, color = Attribute)) +\n  scale_y_log10() +\n  facet_wrap(~ Country.territory, scales = \"free\") +\n  geom_point() +\n  labs(y = \"Amount (log Thousands USD)\", title = \"Input Components\",\n       color = \"Input Factor\") +\n  scale_color_manual(labels = c(\"Capital\", \"Labor\", \"Land\"),\n                     values = c(\"red\", \"darkgreen\", \"blue\"))"
+    "objectID": "lecture3.html#trade-data",
+    "href": "lecture3.html#trade-data",
+    "title": "R Math Camp",
+    "section": "Trade data:",
+    "text": "Trade data:\nThere is data from selected trading partners available on the Tax Foundation’s website and you can read it in via the following:\n\ntrade_data &lt;- read.csv('https://www.dropbox.com/scl/fi/hutc0dys9ha9op19jc0ov/trade_data.csv?rlkey=zc4px5zku4ddxpn3a6ivj35n4&e=1&dl=1')\n\n# look at the data:\nhead(trade_data)\n\n         Country trade_surplus_deficit_goods us_exports_goods us_imports_goods\n1          China                   -295401.6         143545.7         438947.4\n2 European Union                   -235571.2         370189.2         605760.4\n3          Japan                    -68467.7          79740.8         148208.6\n4        Vietnam                   -123463.0          13098.2         136561.2\n5    South Korea                    -66007.4          65541.8         131549.2\n6         Taiwan                    -73927.2          42336.9         116264.0\n  alleged_tariff_rate us_response\n1                 67%         34%\n2                 39%         20%\n3                 46%         24%\n4                 90%         46%\n5                 50%         25%\n6                 64%         32%"
   },
   {
-    "objectID": "lecture2.html#changing-our-color-and-adding-labels-1",
-    "href": "lecture2.html#changing-our-color-and-adding-labels-1",
-    "title": "Lecture 2",
-    "section": "Changing our color and adding labels:",
-    "text": "Changing our color and adding labels:\n\nggplot(data=central_america, aes(x=Year, y = Value, color = Country.territory)) +\n  scale_y_log10() +\n  facet_wrap(~ Attribute,\n             labeller = as_labeller(c(\n               \"Capital_Q\" = \"Capital\",\n               \"Labor_Q\" = \"Labor\",\n               \"Land_Q\" = \"Land\"\n             ))) +\n  geom_point() +\n  labs(y = \"Amount (log Thousands USD)\", title = \"Input Components\", color = \"Country\", caption = \"Source: USDA ERS\")"
+    "objectID": "lecture3.html#lets-implement-the-formula",
+    "href": "lecture3.html#lets-implement-the-formula",
+    "title": "R Math Camp",
+    "section": "Let’s implement the formula:",
+    "text": "Let’s implement the formula:\n\ntariff &lt;- function(x,m,e,phi){\n  \n  # compute numerator and denominator\n  numerator &lt;- (x - m)\n  denominator &lt;- (e * phi * m)\n  \n  # compute change in rate and multiply by 100 to turn into percent:\n  delta_t = numerator/denominator*100\n  \n  # return delta_t\n  return(delta_t)\n}\n\n# now, let's implement it on the data\ntrade_data &lt;- trade_data |&gt;\n  mutate(calculated_rate = tariff(x=us_exports_goods,\n                       m=us_imports_goods,\n                       e=4,\n                       phi=0.25))\n\n# let's take a look at what the resulting data frame looks like:\ntrade_data %&gt;% select(Country, alleged_tariff_rate, us_response, calculated_rate)\n\n          Country alleged_tariff_rate us_response calculated_rate\n1           China                 67%         34%      -67.297745\n2  European Union                 39%         20%      -38.888511\n3           Japan                 46%         24%      -46.196914\n4         Vietnam                 90%         46%      -90.408549\n5     South Korea                 50%         25%      -50.176968\n6          Taiwan                 64%         32%      -63.585547\n7           India                 52%         26%      -52.236994\n8  United Kingdom                 10%         10%       17.414830\n9       Singapore                 10%         10%        6.547819\n10         Brazil                 10%         10%       17.370848"
   },
   {
-    "objectID": "lecture2.html#we-are-going-to-make-this-graph",
-    "href": "lecture2.html#we-are-going-to-make-this-graph",
-    "title": "Lecture 2",
-    "section": "We are going to make this graph:",
-    "text": "We are going to make this graph:\n\nTake a few minutes and talk to your neighbor about the steps."
+    "objectID": "lecture3.html#lets-edit-the-function-to-also-compute-the-response",
+    "href": "lecture3.html#lets-edit-the-function-to-also-compute-the-response",
+    "title": "R Math Camp",
+    "section": "Let’s edit the function to also compute the response:",
+    "text": "Let’s edit the function to also compute the response:\n\n# update our function:\ntariff_response &lt;- function(x,m,e,phi){\n  \n  # compute numerator and denominator\n  numerator &lt;- (x - m)\n  denominator &lt;- (e * phi * m)\n  \n  # compute change in rate and multiply by 100 to turn into percent:\n  delta_t = abs(round(numerator/denominator*100))\n  \n  # the response is half of the difference rounded up with a minimum of 10:\n  computed_response = round(pmax(\n    abs(delta_t/2),\n    10))\n  \n  # return delta_t\n  return(list(delta_t = delta_t,\n              computed_response = computed_response))\n}\n\n# now, let's implement it on the data\ntrade_data &lt;- trade_data |&gt;\n  \n  # extract the calculated rate from our function:\n  mutate(calc_rate = \n           tariff_response(\n             x=us_exports_goods,\n             m=us_imports_goods,\n             e=4,\n             phi=0.25)$delta_t,\n         \n         # extract the calculated response from our function\n         calc_response = \n           tariff_response(x=us_exports_goods,\n                       m=us_imports_goods,\n                       e=4,\n                       phi=0.25)$computed_response)\n\n# let's take a look at what the resulting data frame looks like:\ntrade_data %&gt;% select(Country, alleged_tariff_rate, us_response, calc_rate, calc_response)\n\n          Country alleged_tariff_rate us_response calc_rate calc_response\n1           China                 67%         34%        67            34\n2  European Union                 39%         20%        39            20\n3           Japan                 46%         24%        46            23\n4         Vietnam                 90%         46%        90            45\n5     South Korea                 50%         25%        50            25\n6          Taiwan                 64%         32%        64            32\n7           India                 52%         26%        52            26\n8  United Kingdom                 10%         10%        17            10\n9       Singapore                 10%         10%         7            10\n10         Brazil                 10%         10%        17            10"
   },
   {
-    "objectID": "lecture2.html#steps",
-    "href": "lecture2.html#steps",
-    "title": "Lecture 2",
-    "section": "Steps:",
-    "text": "Steps:\n\nSelect/filter what we need from the dataset\n\nHint: we may need to use a combo of region and countries to filter on\n\nRecalculate Index\n\nWe are based in 2015 with this data, we want to convert to 1961 base\n\nCreate a base line plot in ggplot\nAdjust the theme parameters to make it look similar\n\nWork with the group next to you to make this graph, we will check in after a few steps"
+    "objectID": "lecture3.html#nice-thing-about-a-function",
+    "href": "lecture3.html#nice-thing-about-a-function",
+    "title": "R Math Camp",
+    "section": "Nice thing about a function:",
+    "text": "Nice thing about a function:\nWe can easily change the parameters. Let’s try an elasticity of 3:\n\ntrade_data &lt;- trade_data |&gt;\n  \n  # extract the calculated rate from our function:\n  mutate(calc_rate = \n           tariff_response(\n             x=us_exports_goods,\n             m=us_imports_goods,\n             e=3,\n             phi=0.25)$delta_t,\n         \n         # extract the calculated response from our function\n         calc_response = \n           tariff_response(x=us_exports_goods,\n                       m=us_imports_goods,\n                       e=3,\n                       phi=0.25)$computed_response)\n\n# let's take a look at what the resulting data frame looks like:\ntrade_data %&gt;% select(Country, alleged_tariff_rate, us_response, calc_rate, calc_response)\n\n          Country alleged_tariff_rate us_response calc_rate calc_response\n1           China                 67%         34%        90            45\n2  European Union                 39%         20%        52            26\n3           Japan                 46%         24%        62            31\n4         Vietnam                 90%         46%       121            60\n5     South Korea                 50%         25%        67            34\n6          Taiwan                 64%         32%        85            42\n7           India                 52%         26%        70            35\n8  United Kingdom                 10%         10%        23            12\n9       Singapore                 10%         10%         9            10\n10         Brazil                 10%         10%        23            12"
   },
   {
-    "objectID": "lecture2.html#my-rendition",
-    "href": "lecture2.html#my-rendition",
-    "title": "Lecture 2",
-    "section": "My rendition:",
-    "text": "My rendition:"
+    "objectID": "lecture3.html#we-could-also-try-changing-the-formula",
+    "href": "lecture3.html#we-could-also-try-changing-the-formula",
+    "title": "R Math Camp",
+    "section": "We could also try changing the formula:",
+    "text": "We could also try changing the formula:\nLet’s try squaring the numerator and denominator:\n\n# update our function:\ntariff_response &lt;- function(x,m,e,phi){\n  \n  # compute numerator and denominator \n  # adding the square of the numerator and denominator:\n  numerator &lt;- (x - m)**2\n  denominator &lt;- (e * phi * m)**2\n  \n  # compute change in rate and multiply by 100 to turn into percent:\n  delta_t = abs(round(numerator/denominator*100))\n  \n  # the response is half of the difference rounded up with a minimum of 10:\n  computed_response = round(pmax(\n    abs(delta_t/2),\n    10))\n  \n  # return delta_t\n  return(list(delta_t = delta_t,\n              computed_response = computed_response))\n}\n\n# now, let's implement it on the data\ntrade_data &lt;- trade_data |&gt;\n  \n  # extract the calculated rate from our function:\n  mutate(calc_rate = \n           tariff_response(\n             x=us_exports_goods,\n             m=us_imports_goods,\n             e=4,\n             phi=0.25)$delta_t,\n         \n         # extract the calculated response from our function\n         calc_response = \n           tariff_response(x=us_exports_goods,\n                       m=us_imports_goods,\n                       e=4,\n                       phi=0.25)$computed_response)\n\n# let's take a look at what the resulting data frame looks like:\ntrade_data %&gt;% select(Country, alleged_tariff_rate, us_response, calc_rate, calc_response)\n\n          Country alleged_tariff_rate us_response calc_rate calc_response\n1           China                 67%         34%        45            22\n2  European Union                 39%         20%        15            10\n3           Japan                 46%         24%        21            10\n4         Vietnam                 90%         46%        82            41\n5     South Korea                 50%         25%        25            12\n6          Taiwan                 64%         32%        40            20\n7           India                 52%         26%        27            14\n8  United Kingdom                 10%         10%         3            10\n9       Singapore                 10%         10%         0            10\n10         Brazil                 10%         10%         3            10"
   },
   {
-    "objectID": "lecture2.html#my-code",
-    "href": "lecture2.html#my-code",
-    "title": "Lecture 2",
-    "section": "My code:",
-    "text": "My code:\n\n# create the data:\ners_long &lt;- tfp %&gt;% \n  filter(Region %in% c(\"China\", \"World\",\n                       \"Transition countries\", \"Low income\") |\n           Country.territory %in% c(\"Brazil\", \"United States\")) |&gt;\n  mutate(territory = case_when(\n    Region %in% c(\"China\", \"World\",\n                       \"Transition countries\", \"Low income\") ~ Region,\n    Country.territory %in% c(\"Brazil\", \"United States\") ~ Country.territory\n  )) |&gt;\n  filter(Attribute ==\"TFP_Index\") |&gt;\n  select(Year, territory, Value) %&gt;%\n  filter(Year &lt;= 2011)\n\n# Reindex so that 1961 is basis for index:\ners_long &lt;- ers_long |&gt;\n  group_by(territory) |&gt;\n  mutate(base_index = Value[Year == 1961]) |&gt;\n  mutate(new_index = Value/base_index*100)\n\n# Create a line plot\nggplot(ers_long, aes(x = Year, y = new_index,\n                     color = territory,\n                     linetype = territory)) +\n  geom_line(size = 1.2) +\n  scale_color_manual(values = c(\n    \"Brazil\" = \"#8B0000\",\n    \"China\" = \"#DAA520\",\n    \"United States\" = \"#4682B4\",\n    \"World\" = \"#20B2AA\",\n    \"Transition countries\" = \"#87CEEB\",\n    \"Low income\" = \"#BDB76B\"\n  )) +\n  scale_linetype_manual(values = c(\n    \"World\" = \"dashed\",\n    \"Brazil\" = \"solid\",\n    \"China\" = \"solid\",\n    \"United States\" = \"solid\",\n    \"Transition countries\" = \"solid\",\n    \"Low income\" = \"solid\"\n  )) +\n  labs(\n    title = \"Agricultural productivity (measured as total factor productivity)\",\n    subtitle = \"Growth for selected countries/country groups, 1961–2011\",\n    y = \"Index (1961 = 100)\",\n    x = NULL,\n    color = NULL,\n    linetype = NULL,\n    caption = \"Source: USDA Economic Research Service, International Agricultural Productivity data product.\"\n  ) +\n  theme_minimal(base_size = 14) +\n  theme(\n    legend.position = c(0.175, 0.75),\n    legend.key.width = unit(1.2, \"cm\"),\n    plot.caption = element_text(hjust = 0)\n  ) +\n  scale_y_continuous(limits = c(50,300), breaks = seq(50, 300, by = 50)) +\n  scale_x_continuous(limits = c(1961, 2011), breaks = seq(1961, 2011, by = 5)) +\n  geom_hline(yintercept = 100)"
+    "objectID": "lecture3.html#develop-your-own-tariff-structure",
+    "href": "lecture3.html#develop-your-own-tariff-structure",
+    "title": "R Math Camp",
+    "section": "Develop your own Tariff Structure:",
+    "text": "Develop your own Tariff Structure:\nIt’s now your turn. Write a small report on a tariff structure that you would recommend adopting. It could be for the United States or whatever country you would like. Include a few visuals that motivate your approach and some that display your results.\nThe dataset that I recommend working with is the Country Trade by Partner, Bilateral Trade, HS92 data. Feel free to use whatever data source you would like. Some of the other datasets on that website have trade by sector, if that’s more interesting to you!\n\n# load in the data:\nintl_trade_data &lt;- read.csv('https://www.dropbox.com/scl/fi/6x1hhfsepayx55buy5idy/growth_lab_trade_data.csv?rlkey=4xtyf8nv7khmful85nly3jn3v&dl=1')\n\n# preview the data:\nhead(intl_trade_data)\n\n  country_id country_iso3_code partner_country_id partner_iso3_code year\n1          4               AFG                  8               ALB 2002\n2          4               AFG                  8               ALB 2007\n3          4               AFG                  8               ALB 2010\n4          4               AFG                  8               ALB 2011\n5          4               AFG                  8               ALB 2017\n6          4               AFG                  8               ALB 2018\n  export_value import_value\n1            0        99163\n2            0      2057713\n3            0        28203\n4            0        98774\n5            0        23355\n6        37007            0"
   },
   {
-    "objectID": "lecture2.html#recap-1",
-    "href": "lecture2.html#recap-1",
-    "title": "Lecture 2",
-    "section": "Recap:",
-    "text": "Recap:\nWhat did we learn today?\n\ndplyr basics:\n\nfilter() → subset rows\n\narrange() → order rows\n\nselect() → choose columns\n\nmutate() → create/transform variables\n\nsummarise() + group_by() → summary statistics by group\n\nTidy data: each variable = column, each observation = row, each value = one cell\nData visualization with ggplot2:\n\nGrammar of Graphics framework (data → aesthetics → geoms → scales → facets → theme)\n\nStart simple, then layer\n\nThemes, labels, and scales make plots more effective\n\nPrinciples of good visualization:\n\nClear, accurate, efficient, consistent, accessible\n\n\n✨ Key takeaway: 80% of your data exploration can be done with these dplyr verbs and ggplot2 basics!"
+    "objectID": "lecture3.html#recap-lecture-3",
+    "href": "lecture3.html#recap-lecture-3",
+    "title": "R Math Camp",
+    "section": "Recap: Lecture 3",
+    "text": "Recap: Lecture 3\n\nLoops: automate repetition (for, while)\nFunctions: reusable code blocks that simplify workflows\nReproducibility: critical for transparent and credible policy analysis\nQuarto: integrates analysis + narrative, dynamic updates, reproducible outputs\n\n✨ Key takeaway: Loops and functions make your code efficient, Quarto makes your work reproducible and professional."
+  },
+  {
+    "objectID": "lab1_solutions.html",
+    "href": "lab1_solutions.html",
+    "title": "R Lab One",
+    "section": "",
+    "text": "library(dplyr)\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\nlibrary(openxlsx)\n\nWarning: package 'openxlsx' was built under R version 4.3.3\n\n\n\n\n\nGive the codebook a read!\n\n# load in the data\nfull_nuclear_data &lt;- read.xlsx('http://www.matthewfuhrmann.com/uploads/2/5/8/2/25820564/nl_dataset_v.1.2.xlsx')"
+  },
+  {
+    "objectID": "lab1_solutions.html#getting-started",
+    "href": "lab1_solutions.html#getting-started",
+    "title": "R Lab One",
+    "section": "",
+    "text": "library(dplyr)\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\nlibrary(openxlsx)\n\nWarning: package 'openxlsx' was built under R version 4.3.3\n\n\n\n\n\nGive the codebook a read!\n\n# load in the data\nfull_nuclear_data &lt;- read.xlsx('http://www.matthewfuhrmann.com/uploads/2/5/8/2/25820564/nl_dataset_v.1.2.xlsx')"
+  },
+  {
+    "objectID": "lab1_solutions.html#task-a-data-preview-and-understanding",
+    "href": "lab1_solutions.html#task-a-data-preview-and-understanding",
+    "title": "R Lab One",
+    "section": "Task A: Data preview and understanding:",
+    "text": "Task A: Data preview and understanding:\n\nDisplay the first few rows of full_nuclear_data\nUse the glimpse() command to explore names and types\nIdentify at least 3 key indicator variables (e.g. enr_type, military, foreign_assistance, covert, etc.) and clean them as appropriate for missing\n\n\n# first few rows:\nhead(full_nuclear_data)\n\n  country_name ccode                        facility_name facility_ambiguity\n1      Algeria   615     Hot cell facility at Ain Oussera                  0\n2    Argentina   160    Ezeiza – SF Reprocessing Facility                  0\n3    Argentina   160 Ezeiza II – SF Reprocessing Facility                -77\n4    Argentina   160     Pilcaniyeu Enrichment Facility I                  0\n5    Argentina   160    Pilcaniyeu Enrichment Facility II                -77\n6    Australia   900                        Lucas Heights                  0\n  enr_type size construction_start construction_end operation_start\n1        1    1               1986             1992            1992\n2        1    1               1968             1968            1968\n3        1    2               1978             1990            9999\n4        2    2               1979             1987            1987\n5        2    2               2000             9999            9999\n6        3    1               1965             1972            1972\n  operation_end operation2_start operation2_end covert iaea regional military\n1          7777               NA             NA      1    1        0        0\n2          1973               NA             NA      0    0        0        0\n3          9999               NA             NA      0    0        1        0\n4          1994               NA             NA      1    0        1        1\n5          9999               NA             NA      0    1        1        0\n6          1983               NA             NA      0    1        0        0\n  military_ambiguity multinational foreign_assistance\n1                  1             0                  1\n2                  1             0                  0\n3                  0             0                  0\n4                  0             0                  0\n5                  0             0                  0\n6                  1             0                  0\n  foreign_assistance_ambiguity\n1                            0\n2                            1\n3                            1\n4                            1\n5                            1\n6                            0\n\n# glimpse the data:\nglimpse(full_nuclear_data)\n\nRows: 253\nColumns: 20\n$ country_name                 &lt;chr&gt; \"Algeria\", \"Argentina\", \"Argentina\", \"Arg…\n$ ccode                        &lt;dbl&gt; 615, 160, 160, 160, 160, 900, 900, 211, 1…\n$ facility_name                &lt;chr&gt; \"Hot cell facility at Ain Oussera\", \"Ezei…\n$ facility_ambiguity           &lt;dbl&gt; 0, 0, -77, 0, -77, 0, 0, 0, 0, 0, 0, 0, 0…\n$ enr_type                     &lt;dbl&gt; 1, 1, 1, 2, 2, 3, 7, 1, 7, 3, 3, 3, 6, 1,…\n$ size                         &lt;dbl&gt; 1, 1, 2, 2, 2, 1, 1, 2, 1, 2, 1, 3, 2, 1,…\n$ construction_start           &lt;dbl&gt; 1986, 1968, 1978, 1979, 2000, 1965, 1982,…\n$ construction_end             &lt;dbl&gt; 1992, 1968, 1990, 1987, 9999, 1972, 1992,…\n$ operation_start              &lt;dbl&gt; 1992, 1968, 9999, 1987, 9999, 1972, 1992,…\n$ operation_end                &lt;dbl&gt; 7777, 1973, 9999, 1994, 9999, 1983, 2007,…\n$ operation2_start             &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…\n$ operation2_end               &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…\n$ covert                       &lt;dbl&gt; 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1,…\n$ iaea                         &lt;dbl&gt; 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0,…\n$ regional                     &lt;dbl&gt; 0, 0, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 0,…\n$ military                     &lt;dbl&gt; 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1,…\n$ military_ambiguity           &lt;dbl&gt; 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0,…\n$ multinational                &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0,…\n$ foreign_assistance           &lt;dbl&gt; 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0,…\n$ foreign_assistance_ambiguity &lt;dbl&gt; 0, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1,…\n\n# cleaning some indicator variables:\nfull_nuclear_data &lt;- full_nuclear_data |&gt;\n  mutate(across(covert:foreign_assistance,\n                ~ if_else(. %in% c(-99, -77), NA, .)))\n\nsummary(full_nuclear_data)\n\n country_name           ccode       facility_name      facility_ambiguity\n Length:253         Min.   :  2.0   Length:253         Min.   :-77.000   \n Class :character   1st Qu.:200.0   Class :character   1st Qu.:  0.000   \n Mode  :character   Median :360.0   Mode  :character   Median :  0.000   \n                    Mean   :371.7                      Mean   : -3.474   \n                    3rd Qu.:645.0                      3rd Qu.:  0.000   \n                    Max.   :900.0                      Max.   :  1.000   \n                                                                         \n    enr_type          size      construction_start construction_end\n Min.   :1.000   Min.   :1.00   Min.   : -99       Min.   : -99    \n 1st Qu.:1.000   1st Qu.:1.00   1st Qu.:1943       1st Qu.:1954    \n Median :2.000   Median :2.00   Median :1960       Median :1973    \n Mean   :2.621   Mean   :2.02   Mean   :1513       Mean   :2081    \n 3rd Qu.:3.000   3rd Qu.:3.00   3rd Qu.:1982       3rd Qu.:1988    \n Max.   :8.000   Max.   :3.00   Max.   :2012       Max.   :9999    \n                                                                   \n operation_start operation_end  operation2_start operation2_end\n Min.   : -99    Min.   : -99   Min.   :1969     Min.   :1972  \n 1st Qu.:1956    1st Qu.:1978   1st Qu.:1981     1st Qu.:1988  \n Median :1974    Median :1993   Median :1983     Median :2004  \n Mean   :2328    Mean   :3993   Mean   :1988     Mean   :3919  \n 3rd Qu.:1988    3rd Qu.:7777   3rd Qu.:1996     3rd Qu.:7777  \n Max.   :9999    Max.   :9999   Max.   :2011     Max.   :7777  \n                                NA's   :244      NA's   :244   \n     covert            iaea           regional         military     \n Min.   :0.0000   Min.   :0.0000   Min.   :0.0000   Min.   :0.0000  \n 1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.:0.0000  \n Median :1.0000   Median :0.0000   Median :0.0000   Median :1.0000  \n Mean   :0.5259   Mean   :0.3468   Mean   :0.1753   Mean   :0.6185  \n 3rd Qu.:1.0000   3rd Qu.:1.0000   3rd Qu.:0.0000   3rd Qu.:1.0000  \n Max.   :1.0000   Max.   :1.0000   Max.   :1.0000   Max.   :1.0000  \n NA's   :2        NA's   :5        NA's   :2        NA's   :4       \n military_ambiguity multinational     foreign_assistance\n Min.   :0.0000     Min.   :0.00000   Min.   :0.0000    \n 1st Qu.:0.0000     1st Qu.:0.00000   1st Qu.:0.0000    \n Median :0.0000     Median :0.00000   Median :0.0000    \n Mean   :0.1897     Mean   :0.09091   Mean   :0.2778    \n 3rd Qu.:0.0000     3rd Qu.:0.00000   3rd Qu.:1.0000    \n Max.   :1.0000     Max.   :1.00000   Max.   :1.0000    \n                                      NA's   :1         \n foreign_assistance_ambiguity\n Min.   :0.0000              \n 1st Qu.:0.0000              \n Median :0.0000              \n Mean   :0.1028              \n 3rd Qu.:0.0000              \n Max.   :1.0000"
+  },
+  {
+    "objectID": "lab1_solutions.html#task-b-time-trends-by-region",
+    "href": "lab1_solutions.html#task-b-time-trends-by-region",
+    "title": "R Lab One",
+    "section": "Task B: Time trends by region:",
+    "text": "Task B: Time trends by region:\n\nCreate a new variable for geographic region (e.g. Europe, Asia, Middle East, etc.)\nSummarize the number of new ENR facilities per decade (hint: you’ll want to create a new variable for decade, maybe use the case_when() function)\nOptional: we haven’t introduced ggplot yet, but you can make an easy line chart over time using the following code structure in base R. Try to visualize your number of facilities per decade!\n\n\n# Do your work here!\ntable(full_nuclear_data$country_name)\n\n\n       Algeria      Argentina      Australia        Belgium         Brazil \n             1              4              2              1              7 \n        Canada          China Czech Republic          Egypt         France \n             3             18              1              1             24 \n       Germany          India           Iran           Iraq         Israel \n             8             10             10              9              4 \n         Italy          Japan          Libya    Netherlands    North Korea \n             4              9              3              5              3 \n        Norway       Pakistan        Romania         Russia   South Africa \n             2              8              1             32              5 \n   South Korea          Spain         Sweden         Taiwan United Kingdom \n             4              1              2              3             20 \n United States     Yugoslavia \n            44              4 \n\n# my cateogrization of countries:\nfull_nuclear_data &lt;- full_nuclear_data |&gt;\n  mutate(region = case_when(\n    country_name %in% c(\"Algeria\",\"Egypt\",\"Iran\",\"Iraq\",\"Israel\",\"Libya\") ~ \"MENA\",\n    country_name %in% c(\"Belgium\",\"Czech Republic\",\"France\",\"Germany\",\"Italy\",\"Netherlands\",\n                   \"Norway\",\"Romania\",\"Spain\",\"Sweden\",\"United Kingdom\",\"Yugoslavia\") ~ \"Europe\",\n    country_name %in% c(\"China\",\"India\",\"Japan\",\"North Korea\",\"Pakistan\",\"South Korea\",\"Taiwan\") ~ \"Asia\",\n    country_name %in% c(\"Argentina\",\"Brazil\",\"Canada\",\"United States\") ~ \"Americas\",\n    country_name == \"South Africa\" ~ \"Africa\",\n    country_name == \"Australia\" ~ \"Oceania\",\n    country_name == \"Russia\" ~ \"Eurasia\",\n    TRUE ~ \"Other\"\n  ))\n\n# number of ENR facilites per decade:\nfacilities_per_decade &lt;- full_nuclear_data |&gt;\n  mutate(decade = case_when(construction_end &lt; 0 | construction_end &gt; 2025 ~ NA,\n                            TRUE ~ (construction_end %/% 10) * 10)) %&gt;% \n  group_by(decade) %&gt;% \n  summarise(n_faciliites = n())\n\n\n# sample code to make a plot:\n\n  # make the plot:\n  plot(x = facilities_per_decade$decade, y= facilities_per_decade$n_faciliites, type = 'b',\n       xlab = \"Decade\", ylab = \"# of Facilities\",\n       main = \"Number of New Facilities per Decade\")"
+  },
+  {
+    "objectID": "lab1_solutions.html#task-c-foreign-assistance-and-secrecy",
+    "href": "lab1_solutions.html#task-c-foreign-assistance-and-secrecy",
+    "title": "R Lab One",
+    "section": "Task C: Foreign assistance and secrecy:",
+    "text": "Task C: Foreign assistance and secrecy:\n\nInvestigate how often facilities were covert (covert == 1) or built with foreign assistance (foreign_assistance == 1).\nTabulate cross-classifications: covert_only, foreign-only, both, or neither\nCompute proportions of these categories among military-run vs. civilian run facilities.\n\n\n# get tables based on foreign assistance and covert status\ntable(full_nuclear_data$covert)\n\n\n  0   1 \n119 132 \n\n# try foreign assistance:\ntable(full_nuclear_data$foreign_assistance)\n\n\n  0   1 \n182  70 \n\n# get cross classifictations:\ncross_tab &lt;- table(full_nuclear_data$covert, full_nuclear_data$foreign_assistance); cross_tab\n\n   \n      0   1\n  0  80  39\n  1 102  30\n\n# add labels\nrownames(cross_tab) &lt;- c(\"Non-Covert\", \"Covert\")\ncolnames(cross_tab) &lt;- c(\"No Assistance\", \"Foreign Assistance\")\n\n# re-do with proportions:\nmilitary_nuclear &lt;- full_nuclear_data |&gt; filter(military == 1)\ncivilian_nuclear &lt;- full_nuclear_data |&gt; filter(military == 0)\n\n\n# Make the military table:\nmilitary_tab &lt;- table(\n  Covert = military_nuclear$covert,\n  ForeignAssistance = military_nuclear$foreign_assistance\n)\n\n# Convert to proportions (row-wise or overall)\nmilitary_prop &lt;- prop.table(military_tab) \n\n# Print results\nmilitary_tab\n\n      ForeignAssistance\nCovert  0  1\n     0 25  6\n     1 95 27\n\nmilitary_prop\n\n      ForeignAssistance\nCovert          0          1\n     0 0.16339869 0.03921569\n     1 0.62091503 0.17647059\n\n# Make the civilian table:\ncivilian_tab &lt;- table(\n  Covert = civilian_nuclear$covert,\n  ForeignAssistance = civilian_nuclear$foreign_assistance\n)\n\n# Convert to proportions (row-wise or overall)\ncivilian_prop &lt;- prop.table(civilian_tab) \n\n# Print results\ncivilian_tab\n\n      ForeignAssistance\nCovert  0  1\n     0 53 33\n     1  7  2\n\ncivilian_prop\n\n      ForeignAssistance\nCovert          0          1\n     0 0.55789474 0.34736842\n     1 0.07368421 0.02105263"
+  },
+  {
+    "objectID": "lab1_solutions.html#task-d-impact-of-safeguards",
+    "href": "lab1_solutions.html#task-d-impact-of-safeguards",
+    "title": "R Lab One",
+    "section": "Task D: Impact of Safeguards:",
+    "text": "Task D: Impact of Safeguards:\n\nUse the safeguard variable (iaea) to investigate:\n\n\nWhether civilian or military facilities were more likely to be under IAEA safeguards\nWhether safeguards were more common in certain decades or regions.\n\n\n# get a cross-tab table:\nsafeguard_tab &lt;- table(\n  Military = full_nuclear_data$military,\n  Safeguard = full_nuclear_data$iaea\n)\n\n\n# convert to proportions, getting the proptions by row:\nprop.table(safeguard_tab, margin = 1)\n\n        Safeguard\nMilitary         0         1\n       0 0.3655914 0.6344086\n       1 0.8223684 0.1776316\n\n# check to see if safegards are more common in decades:\nfull_nuclear_data |&gt;\n  # create our decade variable:\n    mutate(decade = case_when(construction_end &lt; 0 | construction_end &gt; 2025 ~ NA,\n                            TRUE ~ (construction_end %/% 10) * 10)) |&gt;\n  # group by decade\n  group_by(decade) |&gt;\n  # get the mean by decade:\n  summarise(iaea = mean(iaea, na.rm = T))\n\n# A tibble: 9 × 2\n  decade  iaea\n   &lt;dbl&gt; &lt;dbl&gt;\n1   1940 0    \n2   1950 0.184\n3   1960 0.194\n4   1970 0.417\n5   1980 0.5  \n6   1990 0.654\n7   2000 0.625\n8   2010 0.429\n9     NA 0.263\n\n# check to see if safeguards are more common in some regions:\nfull_nuclear_data |&gt;\n  # group by decade\n  group_by(region) |&gt;\n  # get the mean by decade:\n  summarise(iaea = mean(iaea, na.rm = T))\n\n# A tibble: 7 × 2\n  region     iaea\n  &lt;chr&gt;     &lt;dbl&gt;\n1 Africa   0.6   \n2 Americas 0.214 \n3 Asia     0.352 \n4 Eurasia  0.0312\n5 Europe   0.521 \n6 MENA     0.429 \n7 Oceania  1"
+  },
+  {
+    "objectID": "lab2_solutions.html",
+    "href": "lab2_solutions.html",
+    "title": "Lab 2: Tidy Data and Visualization in R – PISA",
+    "section": "",
+    "text": "I am grateful to Rony Rodriguez-Ramierz for the creation of this."
+  },
+  {
+    "objectID": "lab2_solutions.html#description-of-the-dataset",
+    "href": "lab2_solutions.html#description-of-the-dataset",
+    "title": "Lab 2: Tidy Data and Visualization in R – PISA",
+    "section": "Description of the Dataset",
+    "text": "Description of the Dataset\nThe dataset contains the following variables:\n\nyear: Year of the PISA data. Factor.\ncountry: Country 3-character code. Note that some regions/territories are coded as country for ease of input. Factor.\nschool_id: The school identification number, unique for each country and year combination. Factor.\nstudent_id: The student identification number, unique for each school, country, and year combination. Factor.\nmother_educ: Highest level of mother’s education. Ranges from “less than ISCED1” to “ISCED 3A”. Factor. Note that in 2000, all entries are missing.\nfather_educ: Highest level of father’s education. Ranges from “less than ISCED1” to “ISCED 3A”. Factor. Note that in 2000, all entries are missing.\ngender: Gender of the student. Only “male” and “female” are recorded. Factor. Note that we call this variable gender and not sex as this term was used in the OECD PISA database.\ncomputer: Possession of a computer. Only “yes” and “no” are recorded. Factor.\ninternet: Access to the internet. Only “yes” and “no” are recorded. Factor.\nmath: Simulated score in mathematics. Numeric.\nread: Simulated score in reading. Numeric.\nscience: Simulated score in science. Numeric.\nstu_wgt: The final survey weight score for the student. Numeric.\ndesk: Possession of a desk to study at. Only “yes” and “no” are recorded. Factor.\nroom: Possession of a room of your own. Only “yes” and “no” are recorded. Factor.\ndishwasher: Possession of a dishwasher. Only “yes” and “no” are recorded. Factor. Note that in 2015 and 2018, all entries are missing.\ntelevision: Number of televisions. “0”, “1”, “2” are coded for no, one, and two TVs in the house. “3+” codes for three or more TVs. Factor. Note that in 2003, all entries are missing.\ncomputer_n: Number of computers. “0”, “1”, “2” are coded for no, one, and two computers in the house. “3+” codes for three or more computers. Factor. Note that in 2003, all entries are missing.\ncar: Number of cars. “0”, “1”, “2” are coded for no, one, and two cars in the house. “3+” codes for three or more cars. Factor. Note that in 2003, all entries are missing.\nbook: Number of books. Factor. Note that encoding is different in the years 2000 and 2003 compared to all other years. Evaluate table(student$book, student$year) for a demo.\nwealth: Family wealth. Numeric. Note that in 2003, all entries are missing.\nescs: Index of economic, social, and cultural status. Numeric."
+  },
+  {
+    "objectID": "lab2_solutions.html#extra-exercises",
+    "href": "lab2_solutions.html#extra-exercises",
+    "title": "Lab 2: Tidy Data and Visualization in R – PISA",
+    "section": "Extra exercises",
+    "text": "Extra exercises\n\nExercise 8: Customizing the Plot\nExperiment with different themes and color palettes to make the plot more visually appealing.\n\nggplot(data = pisa_long, aes(x = year, y = score, color = country)) +\n  geom_line(size = 1) +\n  geom_point(size = 2) +\n  facet_wrap(~ test) +\n  labs(\n    title = \"Average PISA Scores by Country and Subject\",\n    x = \"Year\", y = \"Average Score\"\n  ) +\n  theme_classic(base_size = 10) +\n  scale_color_brewer(palette = \"Set1\")\n\nWarning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.\nℹ Please use `linewidth` instead.\n\n\nWarning: Removed 1 row containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\n\n\n\nExercise 9: Adding Context to the Visualization\nAdd annotations or text to the plot to highlight significant events or changes in the data.\n\nggplot(data = pisa_long, aes(x = year, y = score, color = country)) +\n  geom_line(size = 1) +\n  geom_point(size = 2) +\n  facet_wrap(~ test) +\n  labs(\n    title = \"Average PISA Scores by Country and Subject\",\n    x = \"Year\", y = \"Average Score\"\n  ) +\n  theme_classic(base_size = 10) +\n  scale_color_brewer(palette = \"Set1\") +\n  annotate(\"rect\", xmin = 2015, xmax = 2015, ymin = 300, ymax = 600,\n           alpha = 0.1, fill = \"blue\") +\n  annotate(\"text\", x = 2015, y = 350, label = \"PISA framework change\", \n           angle = 90, vjust = -0.5, color = \"red\", size = 2.5)\n\nWarning: Removed 1 row containing missing values or values outside the scale range\n(`geom_point()`)."
   },
   {
     "objectID": "lecture1.html#about-me",
@@ -469,220 +532,220 @@
     "text": "Install R on Your Machine\nPlease attempt this prior to the start of next lecture. If you successfully install R and RStudio without any issues, feel free to arrive at 9:15am on Thursday to allow us time to help other students\nTo install R, you should install both R and RStudio. To download and install R, you should click the following:\nDownload and Install R\n\nOnce you get to this website, click the “Download R for macOS” or “Download R for Windows” depending on your machine.\nTo get the R Studio interface, you can click on the same link as above and then click “Download RStudio Desktop.”\n\nIf you would like step by step instructions, you can do so here.\nPlease tell the teaching team if you need assistance!"
   },
   {
-    "objectID": "lab2_solutions.html",
-    "href": "lab2_solutions.html",
-    "title": "Lab 2: Tidy Data and Visualization in R – PISA",
-    "section": "",
-    "text": "I am grateful to Rony Rodriguez-Ramierz for the creation of this."
+    "objectID": "lecture2.html#start-by-installing-r",
+    "href": "lecture2.html#start-by-installing-r",
+    "title": "Lecture 2",
+    "section": "Start by Installing R:",
+    "text": "Start by Installing R:\nPlease attempt this prior to the start of lecture. If you successfully install R and RStudio without any issues, feel free to arrive at 9:15am on Thursday to allow us time to help other students\nTo install R, you should install both R and RStudio. To download and install R, you should click the following:\nDownload and Install R\n\nOnce you get to this website, click the “Download R for macOS” or “Download R for Windows” depending on your machine.\nTo get the R Studio interface, you can click on the same link as above and then click “Download RStudio Desktop.”\n\nIf you would like step by step instructions, you can do so here.\nPlease tell the teaching team if you need assistance!"
   },
   {
-    "objectID": "lab2_solutions.html#description-of-the-dataset",
-    "href": "lab2_solutions.html#description-of-the-dataset",
-    "title": "Lab 2: Tidy Data and Visualization in R – PISA",
-    "section": "Description of the Dataset",
-    "text": "Description of the Dataset\nThe dataset contains the following variables:\n\nyear: Year of the PISA data. Factor.\ncountry: Country 3-character code. Note that some regions/territories are coded as country for ease of input. Factor.\nschool_id: The school identification number, unique for each country and year combination. Factor.\nstudent_id: The student identification number, unique for each school, country, and year combination. Factor.\nmother_educ: Highest level of mother’s education. Ranges from “less than ISCED1” to “ISCED 3A”. Factor. Note that in 2000, all entries are missing.\nfather_educ: Highest level of father’s education. Ranges from “less than ISCED1” to “ISCED 3A”. Factor. Note that in 2000, all entries are missing.\ngender: Gender of the student. Only “male” and “female” are recorded. Factor. Note that we call this variable gender and not sex as this term was used in the OECD PISA database.\ncomputer: Possession of a computer. Only “yes” and “no” are recorded. Factor.\ninternet: Access to the internet. Only “yes” and “no” are recorded. Factor.\nmath: Simulated score in mathematics. Numeric.\nread: Simulated score in reading. Numeric.\nscience: Simulated score in science. Numeric.\nstu_wgt: The final survey weight score for the student. Numeric.\ndesk: Possession of a desk to study at. Only “yes” and “no” are recorded. Factor.\nroom: Possession of a room of your own. Only “yes” and “no” are recorded. Factor.\ndishwasher: Possession of a dishwasher. Only “yes” and “no” are recorded. Factor. Note that in 2015 and 2018, all entries are missing.\ntelevision: Number of televisions. “0”, “1”, “2” are coded for no, one, and two TVs in the house. “3+” codes for three or more TVs. Factor. Note that in 2003, all entries are missing.\ncomputer_n: Number of computers. “0”, “1”, “2” are coded for no, one, and two computers in the house. “3+” codes for three or more computers. Factor. Note that in 2003, all entries are missing.\ncar: Number of cars. “0”, “1”, “2” are coded for no, one, and two cars in the house. “3+” codes for three or more cars. Factor. Note that in 2003, all entries are missing.\nbook: Number of books. Factor. Note that encoding is different in the years 2000 and 2003 compared to all other years. Evaluate table(student$book, student$year) for a demo.\nwealth: Family wealth. Numeric. Note that in 2003, all entries are missing.\nescs: Index of economic, social, and cultural status. Numeric."
+    "objectID": "lecture2.html#recap",
+    "href": "lecture2.html#recap",
+    "title": "Lecture 2",
+    "section": "Recap:",
+    "text": "Recap:\nWho can tell me what the essential functions do?\n\nfilter()\n\n\n\narrange()\n\n\n\n\nselect()\n\n\n\n\nmutate()\n\n\n\n\nsummarise()\n\n\n\n\ngroup_by()\n\nI highly recommend reading Hadley Wickham’s chapter that has descriptions and examples of key functions.\n\nYou can do 80% of data exploration and analysis using these.\n\nOften, data analysis is knowing what the right question to ask is. Summary statistics are very powerful.\n\n\nHere is a cheatsheet I highly recommend."
   },
   {
-    "objectID": "lab2_solutions.html#extra-exercises",
-    "href": "lab2_solutions.html#extra-exercises",
-    "title": "Lab 2: Tidy Data and Visualization in R – PISA",
-    "section": "Extra exercises",
-    "text": "Extra exercises\n\nExercise 8: Customizing the Plot\nExperiment with different themes and color palettes to make the plot more visually appealing.\n\nggplot(data = pisa_long, aes(x = year, y = score, color = country)) +\n  geom_line(size = 1) +\n  geom_point(size = 2) +\n  facet_wrap(~ test) +\n  labs(\n    title = \"Average PISA Scores by Country and Subject\",\n    x = \"Year\", y = \"Average Score\"\n  ) +\n  theme_classic(base_size = 10) +\n  scale_color_brewer(palette = \"Set1\")\n\nWarning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.\nℹ Please use `linewidth` instead.\n\n\nWarning: Removed 1 row containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\n\n\n\nExercise 9: Adding Context to the Visualization\nAdd annotations or text to the plot to highlight significant events or changes in the data.\n\nggplot(data = pisa_long, aes(x = year, y = score, color = country)) +\n  geom_line(size = 1) +\n  geom_point(size = 2) +\n  facet_wrap(~ test) +\n  labs(\n    title = \"Average PISA Scores by Country and Subject\",\n    x = \"Year\", y = \"Average Score\"\n  ) +\n  theme_classic(base_size = 10) +\n  scale_color_brewer(palette = \"Set1\") +\n  annotate(\"rect\", xmin = 2015, xmax = 2015, ymin = 300, ymax = 600,\n           alpha = 0.1, fill = \"blue\") +\n  annotate(\"text\", x = 2015, y = 350, label = \"PISA framework change\", \n           angle = 90, vjust = -0.5, color = \"red\", size = 2.5)\n\nWarning: Removed 1 row containing missing values or values outside the scale range\n(`geom_point()`)."
+    "objectID": "lecture2.html#goals-for-today",
+    "href": "lecture2.html#goals-for-today",
+    "title": "Lecture 2",
+    "section": "Goals for today:",
+    "text": "Goals for today:\n\nReinforce principles of data cleaning and dplyr\nLearn about tidy data\nBuild plots and understand key points of data visualization\nReplicate a data visualization produced in real reports"
   },
   {
-    "objectID": "lab1_solutions.html",
-    "href": "lab1_solutions.html",
-    "title": "R Lab One",
-    "section": "",
-    "text": "library(dplyr)\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\nlibrary(openxlsx)\n\nWarning: package 'openxlsx' was built under R version 4.3.3\n\n\n\n\n\nGive the codebook a read!\n\n# load in the data\nfull_nuclear_data &lt;- read.xlsx('http://www.matthewfuhrmann.com/uploads/2/5/8/2/25820564/nl_dataset_v.1.2.xlsx')"
+    "objectID": "lecture2.html#tidy-data",
+    "href": "lecture2.html#tidy-data",
+    "title": "Lecture 2",
+    "section": "Tidy data:",
+    "text": "Tidy data:\n\n\nA dataset is tidy if it satisfies the following conditions:\n\neach variable forms a column\neach observation forms a row\neach cell is a single measurement\nlong format"
   },
   {
-    "objectID": "lab1_solutions.html#getting-started",
-    "href": "lab1_solutions.html#getting-started",
-    "title": "R Lab One",
-    "section": "",
-    "text": "library(dplyr)\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\nlibrary(openxlsx)\n\nWarning: package 'openxlsx' was built under R version 4.3.3\n\n\n\n\n\nGive the codebook a read!\n\n# load in the data\nfull_nuclear_data &lt;- read.xlsx('http://www.matthewfuhrmann.com/uploads/2/5/8/2/25820564/nl_dataset_v.1.2.xlsx')"
+    "objectID": "lecture2.html#untidy-data",
+    "href": "lecture2.html#untidy-data",
+    "title": "Lecture 2",
+    "section": "Untidy data:",
+    "text": "Untidy data:\n\nL. Bartram, M. Correll and M. Tory, “Untidy Data: The Unreasonable Effectiveness of Tables” in IEEE Transactions on Visualization & Computer Graphics, vol. 28, no. 01, pp. 686-696, Jan. 2022, doi: 10.1109/TVCG.2021.3114830"
   },
   {
-    "objectID": "lab1_solutions.html#task-a-data-preview-and-understanding",
-    "href": "lab1_solutions.html#task-a-data-preview-and-understanding",
-    "title": "R Lab One",
-    "section": "Task A: Data preview and understanding:",
-    "text": "Task A: Data preview and understanding:\n\nDisplay the first few rows of full_nuclear_data\nUse the glimpse() command to explore names and types\nIdentify at least 3 key indicator variables (e.g. enr_type, military, foreign_assistance, covert, etc.) and clean them as appropriate for missing\n\n\n# first few rows:\nhead(full_nuclear_data)\n\n  country_name ccode                        facility_name facility_ambiguity\n1      Algeria   615     Hot cell facility at Ain Oussera                  0\n2    Argentina   160    Ezeiza – SF Reprocessing Facility                  0\n3    Argentina   160 Ezeiza II – SF Reprocessing Facility                -77\n4    Argentina   160     Pilcaniyeu Enrichment Facility I                  0\n5    Argentina   160    Pilcaniyeu Enrichment Facility II                -77\n6    Australia   900                        Lucas Heights                  0\n  enr_type size construction_start construction_end operation_start\n1        1    1               1986             1992            1992\n2        1    1               1968             1968            1968\n3        1    2               1978             1990            9999\n4        2    2               1979             1987            1987\n5        2    2               2000             9999            9999\n6        3    1               1965             1972            1972\n  operation_end operation2_start operation2_end covert iaea regional military\n1          7777               NA             NA      1    1        0        0\n2          1973               NA             NA      0    0        0        0\n3          9999               NA             NA      0    0        1        0\n4          1994               NA             NA      1    0        1        1\n5          9999               NA             NA      0    1        1        0\n6          1983               NA             NA      0    1        0        0\n  military_ambiguity multinational foreign_assistance\n1                  1             0                  1\n2                  1             0                  0\n3                  0             0                  0\n4                  0             0                  0\n5                  0             0                  0\n6                  1             0                  0\n  foreign_assistance_ambiguity\n1                            0\n2                            1\n3                            1\n4                            1\n5                            1\n6                            0\n\n# glimpse the data:\nglimpse(full_nuclear_data)\n\nRows: 253\nColumns: 20\n$ country_name                 &lt;chr&gt; \"Algeria\", \"Argentina\", \"Argentina\", \"Arg…\n$ ccode                        &lt;dbl&gt; 615, 160, 160, 160, 160, 900, 900, 211, 1…\n$ facility_name                &lt;chr&gt; \"Hot cell facility at Ain Oussera\", \"Ezei…\n$ facility_ambiguity           &lt;dbl&gt; 0, 0, -77, 0, -77, 0, 0, 0, 0, 0, 0, 0, 0…\n$ enr_type                     &lt;dbl&gt; 1, 1, 1, 2, 2, 3, 7, 1, 7, 3, 3, 3, 6, 1,…\n$ size                         &lt;dbl&gt; 1, 1, 2, 2, 2, 1, 1, 2, 1, 2, 1, 3, 2, 1,…\n$ construction_start           &lt;dbl&gt; 1986, 1968, 1978, 1979, 2000, 1965, 1982,…\n$ construction_end             &lt;dbl&gt; 1992, 1968, 1990, 1987, 9999, 1972, 1992,…\n$ operation_start              &lt;dbl&gt; 1992, 1968, 9999, 1987, 9999, 1972, 1992,…\n$ operation_end                &lt;dbl&gt; 7777, 1973, 9999, 1994, 9999, 1983, 2007,…\n$ operation2_start             &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…\n$ operation2_end               &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…\n$ covert                       &lt;dbl&gt; 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1,…\n$ iaea                         &lt;dbl&gt; 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0,…\n$ regional                     &lt;dbl&gt; 0, 0, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 0,…\n$ military                     &lt;dbl&gt; 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1,…\n$ military_ambiguity           &lt;dbl&gt; 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0,…\n$ multinational                &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0,…\n$ foreign_assistance           &lt;dbl&gt; 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0,…\n$ foreign_assistance_ambiguity &lt;dbl&gt; 0, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1,…\n\n# cleaning some indicator variables:\nfull_nuclear_data &lt;- full_nuclear_data |&gt;\n  mutate(across(covert:foreign_assistance,\n                ~ if_else(. %in% c(-99, -77), NA, .)))\n\nsummary(full_nuclear_data)\n\n country_name           ccode       facility_name      facility_ambiguity\n Length:253         Min.   :  2.0   Length:253         Min.   :-77.000   \n Class :character   1st Qu.:200.0   Class :character   1st Qu.:  0.000   \n Mode  :character   Median :360.0   Mode  :character   Median :  0.000   \n                    Mean   :371.7                      Mean   : -3.474   \n                    3rd Qu.:645.0                      3rd Qu.:  0.000   \n                    Max.   :900.0                      Max.   :  1.000   \n                                                                         \n    enr_type          size      construction_start construction_end\n Min.   :1.000   Min.   :1.00   Min.   : -99       Min.   : -99    \n 1st Qu.:1.000   1st Qu.:1.00   1st Qu.:1943       1st Qu.:1954    \n Median :2.000   Median :2.00   Median :1960       Median :1973    \n Mean   :2.621   Mean   :2.02   Mean   :1513       Mean   :2081    \n 3rd Qu.:3.000   3rd Qu.:3.00   3rd Qu.:1982       3rd Qu.:1988    \n Max.   :8.000   Max.   :3.00   Max.   :2012       Max.   :9999    \n                                                                   \n operation_start operation_end  operation2_start operation2_end\n Min.   : -99    Min.   : -99   Min.   :1969     Min.   :1972  \n 1st Qu.:1956    1st Qu.:1978   1st Qu.:1981     1st Qu.:1988  \n Median :1974    Median :1993   Median :1983     Median :2004  \n Mean   :2328    Mean   :3993   Mean   :1988     Mean   :3919  \n 3rd Qu.:1988    3rd Qu.:7777   3rd Qu.:1996     3rd Qu.:7777  \n Max.   :9999    Max.   :9999   Max.   :2011     Max.   :7777  \n                                NA's   :244      NA's   :244   \n     covert            iaea           regional         military     \n Min.   :0.0000   Min.   :0.0000   Min.   :0.0000   Min.   :0.0000  \n 1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.:0.0000  \n Median :1.0000   Median :0.0000   Median :0.0000   Median :1.0000  \n Mean   :0.5259   Mean   :0.3468   Mean   :0.1753   Mean   :0.6185  \n 3rd Qu.:1.0000   3rd Qu.:1.0000   3rd Qu.:0.0000   3rd Qu.:1.0000  \n Max.   :1.0000   Max.   :1.0000   Max.   :1.0000   Max.   :1.0000  \n NA's   :2        NA's   :5        NA's   :2        NA's   :4       \n military_ambiguity multinational     foreign_assistance\n Min.   :0.0000     Min.   :0.00000   Min.   :0.0000    \n 1st Qu.:0.0000     1st Qu.:0.00000   1st Qu.:0.0000    \n Median :0.0000     Median :0.00000   Median :0.0000    \n Mean   :0.1897     Mean   :0.09091   Mean   :0.2778    \n 3rd Qu.:0.0000     3rd Qu.:0.00000   3rd Qu.:1.0000    \n Max.   :1.0000     Max.   :1.00000   Max.   :1.0000    \n                                      NA's   :1         \n foreign_assistance_ambiguity\n Min.   :0.0000              \n 1st Qu.:0.0000              \n Median :0.0000              \n Mean   :0.1028              \n 3rd Qu.:0.0000              \n Max.   :1.0000"
+    "objectID": "lecture2.html#effective-visualization-is-important",
+    "href": "lecture2.html#effective-visualization-is-important",
+    "title": "Lecture 2",
+    "section": "Effective visualization is important!",
+    "text": "Effective visualization is important!\n\nLet’s look at some examples of unique data visualizations here.\nData is only as useful as it is understood.\n\nPoor visualization can mislead or confuse: a good plot tells a story, a bad plot hides the truth.\n\n\nPrinciples of Effective Data Visualization:\n\nClear: not too busy, appropriate labels\nAccurate: don’t truncate axes, don’t mislead color gradients\nEfficient: convey info quickly and remove non-essential components\nConsistent: line chart for trends, bar charts for comparison\nAccessibility: make sure easy to interpret"
   },
   {
-    "objectID": "lab1_solutions.html#task-b-time-trends-by-region",
-    "href": "lab1_solutions.html#task-b-time-trends-by-region",
-    "title": "R Lab One",
-    "section": "Task B: Time trends by region:",
-    "text": "Task B: Time trends by region:\n\nCreate a new variable for geographic region (e.g. Europe, Asia, Middle East, etc.)\nSummarize the number of new ENR facilities per decade (hint: you’ll want to create a new variable for decade, maybe use the case_when() function)\nOptional: we haven’t introduced ggplot yet, but you can make an easy line chart over time using the following code structure in base R. Try to visualize your number of facilities per decade!\n\n\n# Do your work here!\ntable(full_nuclear_data$country_name)\n\n\n       Algeria      Argentina      Australia        Belgium         Brazil \n             1              4              2              1              7 \n        Canada          China Czech Republic          Egypt         France \n             3             18              1              1             24 \n       Germany          India           Iran           Iraq         Israel \n             8             10             10              9              4 \n         Italy          Japan          Libya    Netherlands    North Korea \n             4              9              3              5              3 \n        Norway       Pakistan        Romania         Russia   South Africa \n             2              8              1             32              5 \n   South Korea          Spain         Sweden         Taiwan United Kingdom \n             4              1              2              3             20 \n United States     Yugoslavia \n            44              4 \n\n# my cateogrization of countries:\nfull_nuclear_data &lt;- full_nuclear_data |&gt;\n  mutate(region = case_when(\n    country_name %in% c(\"Algeria\",\"Egypt\",\"Iran\",\"Iraq\",\"Israel\",\"Libya\") ~ \"MENA\",\n    country_name %in% c(\"Belgium\",\"Czech Republic\",\"France\",\"Germany\",\"Italy\",\"Netherlands\",\n                   \"Norway\",\"Romania\",\"Spain\",\"Sweden\",\"United Kingdom\",\"Yugoslavia\") ~ \"Europe\",\n    country_name %in% c(\"China\",\"India\",\"Japan\",\"North Korea\",\"Pakistan\",\"South Korea\",\"Taiwan\") ~ \"Asia\",\n    country_name %in% c(\"Argentina\",\"Brazil\",\"Canada\",\"United States\") ~ \"Americas\",\n    country_name == \"South Africa\" ~ \"Africa\",\n    country_name == \"Australia\" ~ \"Oceania\",\n    country_name == \"Russia\" ~ \"Eurasia\",\n    TRUE ~ \"Other\"\n  ))\n\n# number of ENR facilites per decade:\nfacilities_per_decade &lt;- full_nuclear_data |&gt;\n  mutate(decade = case_when(construction_end &lt; 0 | construction_end &gt; 2025 ~ NA,\n                            TRUE ~ (construction_end %/% 10) * 10)) %&gt;% \n  group_by(decade) %&gt;% \n  summarise(n_faciliites = n())\n\n\n# sample code to make a plot:\n\n  # make the plot:\n  plot(x = facilities_per_decade$decade, y= facilities_per_decade$n_faciliites, type = 'b',\n       xlab = \"Decade\", ylab = \"# of Facilities\",\n       main = \"Number of New Facilities per Decade\")"
+    "objectID": "lecture2.html#lots-of-ways-to-plot-in-r",
+    "href": "lecture2.html#lots-of-ways-to-plot-in-r",
+    "title": "Lecture 2",
+    "section": "Lots of ways to plot in R:",
+    "text": "Lots of ways to plot in R:\n\nThere are many different ways to plot in R\n\nYou have already seen plots in Base R\n\nThere are also lots of many different graphs you can make\n\nFor a directory, you could see The R Graph Gallery\n\n\nWe will focus on ggplot2:\n\nggplot2 documentation"
   },
   {
-    "objectID": "lab1_solutions.html#task-c-foreign-assistance-and-secrecy",
-    "href": "lab1_solutions.html#task-c-foreign-assistance-and-secrecy",
-    "title": "R Lab One",
-    "section": "Task C: Foreign assistance and secrecy:",
-    "text": "Task C: Foreign assistance and secrecy:\n\nInvestigate how often facilities were covert (covert == 1) or built with foreign assistance (foreign_assistance == 1).\nTabulate cross-classifications: covert_only, foreign-only, both, or neither\nCompute proportions of these categories among military-run vs. civilian run facilities.\n\n\n# get tables based on foreign assistance and covert status\ntable(full_nuclear_data$covert)\n\n\n  0   1 \n119 132 \n\n# try foreign assistance:\ntable(full_nuclear_data$foreign_assistance)\n\n\n  0   1 \n182  70 \n\n# get cross classifictations:\ncross_tab &lt;- table(full_nuclear_data$covert, full_nuclear_data$foreign_assistance); cross_tab\n\n   \n      0   1\n  0  80  39\n  1 102  30\n\n# add labels\nrownames(cross_tab) &lt;- c(\"Non-Covert\", \"Covert\")\ncolnames(cross_tab) &lt;- c(\"No Assistance\", \"Foreign Assistance\")\n\n# re-do with proportions:\nmilitary_nuclear &lt;- full_nuclear_data |&gt; filter(military == 1)\ncivilian_nuclear &lt;- full_nuclear_data |&gt; filter(military == 0)\n\n\n# Make the military table:\nmilitary_tab &lt;- table(\n  Covert = military_nuclear$covert,\n  ForeignAssistance = military_nuclear$foreign_assistance\n)\n\n# Convert to proportions (row-wise or overall)\nmilitary_prop &lt;- prop.table(military_tab) \n\n# Print results\nmilitary_tab\n\n      ForeignAssistance\nCovert  0  1\n     0 25  6\n     1 95 27\n\nmilitary_prop\n\n      ForeignAssistance\nCovert          0          1\n     0 0.16339869 0.03921569\n     1 0.62091503 0.17647059\n\n# Make the civilian table:\ncivilian_tab &lt;- table(\n  Covert = civilian_nuclear$covert,\n  ForeignAssistance = civilian_nuclear$foreign_assistance\n)\n\n# Convert to proportions (row-wise or overall)\ncivilian_prop &lt;- prop.table(civilian_tab) \n\n# Print results\ncivilian_tab\n\n      ForeignAssistance\nCovert  0  1\n     0 53 33\n     1  7  2\n\ncivilian_prop\n\n      ForeignAssistance\nCovert          0          1\n     0 0.55789474 0.34736842\n     1 0.07368421 0.02105263"
+    "objectID": "lecture2.html#how-to-structure-a-ggplot",
+    "href": "lecture2.html#how-to-structure-a-ggplot",
+    "title": "Lecture 2",
+    "section": "How to structure a ggplot:",
+    "text": "How to structure a ggplot:\n\n\n The first 3 are essential, the rest are very helpful!\n\nImagine that you were describing a graph to someone. How would you do it?\n\nData to be visualized\nGeometric objects that appear on the plot\nAesthetic mappings from data to visual components\nStatistics transform data on the way to visualization\nCoordinates organize location of geometric objects\nScales define the range of values for aesthetics\nFacets group into subplots"
   },
   {
-    "objectID": "lab1_solutions.html#task-d-impact-of-safeguards",
-    "href": "lab1_solutions.html#task-d-impact-of-safeguards",
-    "title": "R Lab One",
-    "section": "Task D: Impact of Safeguards:",
-    "text": "Task D: Impact of Safeguards:\n\nUse the safeguard variable (iaea) to investigate:\n\n\nWhether civilian or military facilities were more likely to be under IAEA safeguards\nWhether safeguards were more common in certain decades or regions.\n\n\n# get a cross-tab table:\nsafeguard_tab &lt;- table(\n  Military = full_nuclear_data$military,\n  Safeguard = full_nuclear_data$iaea\n)\n\n\n# convert to proportions, getting the proptions by row:\nprop.table(safeguard_tab, margin = 1)\n\n        Safeguard\nMilitary         0         1\n       0 0.3655914 0.6344086\n       1 0.8223684 0.1776316\n\n# check to see if safegards are more common in decades:\nfull_nuclear_data |&gt;\n  # create our decade variable:\n    mutate(decade = case_when(construction_end &lt; 0 | construction_end &gt; 2025 ~ NA,\n                            TRUE ~ (construction_end %/% 10) * 10)) |&gt;\n  # group by decade\n  group_by(decade) |&gt;\n  # get the mean by decade:\n  summarise(iaea = mean(iaea, na.rm = T))\n\n# A tibble: 9 × 2\n  decade  iaea\n   &lt;dbl&gt; &lt;dbl&gt;\n1   1940 0    \n2   1950 0.184\n3   1960 0.194\n4   1970 0.417\n5   1980 0.5  \n6   1990 0.654\n7   2000 0.625\n8   2010 0.429\n9     NA 0.263\n\n# check to see if safeguards are more common in some regions:\nfull_nuclear_data |&gt;\n  # group by decade\n  group_by(region) |&gt;\n  # get the mean by decade:\n  summarise(iaea = mean(iaea, na.rm = T))\n\n# A tibble: 7 × 2\n  region     iaea\n  &lt;chr&gt;     &lt;dbl&gt;\n1 Africa   0.6   \n2 Americas 0.214 \n3 Asia     0.352 \n4 Eurasia  0.0312\n5 Europe   0.521 \n6 MENA     0.429 \n7 Oceania  1"
+    "objectID": "lecture2.html#ggplot",
+    "href": "lecture2.html#ggplot",
+    "title": "Lecture 2",
+    "section": "ggplot",
+    "text": "ggplot\nFor today and most of your time, you will just need the ggplot2 package from the tidyverse mega-package.\n\nConsistent with Grammar of Graphics\nFlexible\nLayering and theme customization\nCommunity"
   },
   {
-    "objectID": "lecture3.html#recap-lecture-2",
-    "href": "lecture3.html#recap-lecture-2",
-    "title": "R Math Camp",
-    "section": "Recap: Lecture 2",
-    "text": "Recap: Lecture 2\n\ndplyr basics\n\nfilter() → subset rows\narrange() → order rows\nselect() → choose columns\nmutate() → create/transform variables\nsummarise() + group_by() → summary statistics\n\nTidy data principles\n\nEach variable = column\nEach observation = row\nEach value = one cell\n\nData visualization with ggplot2\n\nGrammar of Graphics: data → aesthetics → geoms → scales → facets → themes\nStart simple, then layer\nGood visualization = Clear, Accurate, Efficient, Consistent, Accessible"
+    "objectID": "lecture2.html#general-formula",
+    "href": "lecture2.html#general-formula",
+    "title": "Lecture 2",
+    "section": "General Formula:",
+    "text": "General Formula:\n\n\n\nggplot(data = &lt;DATA&gt;,\n    # can also specify aes within a geom function\n    aes(x=&lt;X&gt;, y=&lt;Y&gt;)) +\n    &lt;COORDINATE_FUNCTION&gt; +\n    &lt;FACET_FUNCTION&gt; +\n    &lt;SCALE_FUNCTION&gt; +\n    &lt;THEME_FUNCTION&gt;\n\n\n\nData: the data you want to visualize\nLayers: geom_ and stat_ : the geometric shapes and statistical summaries representing the data\nAesthetics: aes(): aesthetic mappings of the geometric and statistical objects\nScales: scale_: map between the aesthetic dimensions\nCoordinate system: coord_: maps data into the plane of data rectangle\nFacets: facet_ arrangement of the data into a grid of plots\nVisual themes: theme() and theme_: the overall visual defaults of a plot"
   },
   {
-    "objectID": "lecture3.html#goals-for-today",
-    "href": "lecture3.html#goals-for-today",
-    "title": "R Math Camp",
-    "section": "Goals for Today",
-    "text": "Goals for Today\n\nLearn how to use loops (for, while) to repeat actions\nUnderstand common loop mistakes and how to avoid them\nWrite your own functions to make code more efficient\nExplore the importance of reproducibility in policy analysis\nPractice using Quarto for dynamic, reproducible reports"
+    "objectID": "lecture2.html#start-with-data",
+    "href": "lecture2.html#start-with-data",
+    "title": "Lecture 2",
+    "section": "Start with data:",
+    "text": "Start with data:\nLoad in data and install packages.\nLet’s look at data on International Agricultural Productivity.\n\nlibrary(tidyverse)\n\n# load in the data:\ntfp &lt;- read.csv('https://ers.usda.gov/sites/default/files/_laserfiche/DataFiles/51270/AgTFPInternational2022_long.csv?v=1647')\n\n# explore the data:\nhead(tfp)\n\n  Order FAO ISO3 Country.territory Region   Sub.Region Inc.I Year     Attribute\n1     1 159  NGA           Nigeria    SSA SSA, Nigeria  MI-L 1961     TFP_Index\n2     1 159  NGA           Nigeria    SSA SSA, Nigeria  MI-L 1961  Outall_Index\n3     1 159  NGA           Nigeria    SSA SSA, Nigeria  MI-L 1961   Input_Index\n4     1 159  NGA           Nigeria    SSA SSA, Nigeria  MI-L 1961    Land_Index\n5     1 159  NGA           Nigeria    SSA SSA, Nigeria  MI-L 1961   Labor_Index\n6     1 159  NGA           Nigeria    SSA SSA, Nigeria  MI-L 1961 Capital_Index\n    Value\n1 88.4780\n2 19.2773\n3 21.7877\n4 40.3669\n5 51.4274\n6  8.6992\n\ntail(tfp)\n\n       Order FAO ISO3 Country.territory                  Region Sub.Region\n259803   242  NA                        G20 (19 countries 2021)           \n259804   242  NA                        G20 (19 countries 2021)           \n259805   242  NA                        G20 (19 countries 2021)           \n259806   242  NA                        G20 (19 countries 2021)           \n259807   242  NA                        G20 (19 countries 2021)           \n259808   242  NA                        G20 (19 countries 2021)           \n       Inc.I Year    Attribute        Value\n259803       2022    Capital_Q    4689431.5\n259804       2022 Fertilizer_Q  163841571.5\n259805       2022       Feed_Q 3482819729.3\n259806       2022   Cropland_Q     868541.5\n259807       2022    Pasture_Q    1645427.0\n259808       2022  IrrigArea_Q     225722.2"
   },
   {
-    "objectID": "lecture3.html#loops",
-    "href": "lecture3.html#loops",
-    "title": "R Math Camp",
-    "section": "Loops:",
-    "text": "Loops:\n\nLoops let us repeat actions multiple times.\nThey are common when working with:\n\nVectors\nLists\nData processing tasks\n\nTwo common loops in R:\n\nfor loop\nwhile loop"
+    "objectID": "lecture2.html#creating-the-data",
+    "href": "lecture2.html#creating-the-data",
+    "title": "Lecture 2",
+    "section": "Creating the data",
+    "text": "Creating the data\nLet’s say that we want to plot total output over time across the globe. We look at the code book and find that the Output Total Variable is the gross Value of agricultural output from crops, livestock and aquaculture, $1000 at constant 2015 prices.\n\n# get just total output:\noutput &lt;- tfp %&gt;% filter(Attribute == \"Outall_Q\")\n\n# look and see what regions we have:\ntable(output$Region)\n\n\n                                      ASIA \n                                      2108 \n                               ASIA, Total \n                                        62 \n                           ASIA, Total LDC \n                                        62 \n                                     China \n                                        62 \n                                     CWANA \n                                      1951 \n                              CWANA, Total \n                                        62 \n                      Developing Countries \n                                        62 \n  EU14 (includes E&W Germany, excludes UK) \n                                        62 \nEU27 (27 countries as of 2021 excludes UK) \n                                        62 \n                                    EUROPE \n                                      2651 \n                             EUROPE, Total \n                                        62 \n                       Former Soviet Union \n                                        62 \n                   G20 (19 countries 2021) \n                                        62 \n                               High income \n                                        62 \n                  Industrialized Countries \n                                        62 \n                                       LAC \n                                      2108 \n                                LAC, Total \n                                        62 \n                                Low income \n                                        62 \n                       Lower-middle income \n                                        62 \n                             NORTH AMERICA \n                                       186 \n                                   OCEANIA \n                                       186 \n            OECD (38 countries as of 2021) \n                                        62 \n                                       SSA \n                                      3432 \n                                SSA, Total \n                                        62 \n                      Transition countries \n                                        62 \n                       Upper-middle income \n                                        62 \n      Upper-middle income, excluding China \n                                        62 \n                                     World \n                                        62"
   },
   {
-    "objectID": "lecture3.html#the-for-loop",
-    "href": "lecture3.html#the-for-loop",
-    "title": "R Math Camp",
-    "section": "The for loop:",
-    "text": "The for loop:\n\nfor (i in 1:5){\n  print(i)\n}\n\n[1] 1\n[1] 2\n[1] 3\n[1] 4\n[1] 5\n\n\n\ni takes on values from 1 to 5\nLoop body runs once for each value\nUseful for iterating over lists, vectors, and sequences\n\n\nnumbers &lt;- c(10,20,30)\nfor (n in numbers) {\n  print(n*2)\n}\n\n[1] 20\n[1] 40\n[1] 60"
+    "objectID": "lecture2.html#creating-the-data-1",
+    "href": "lecture2.html#creating-the-data-1",
+    "title": "Lecture 2",
+    "section": "Creating the data:",
+    "text": "Creating the data:\nThis is why inspecting your data is important–we have separate observations for different countries, as well as subtotals by region. If we just summarized, then we would over count! Let’s restrict to just the world:\n\nworld_output &lt;- output %&gt;% \n  # restrict just to the world\n  filter(Region == \"World\") %&gt;%\n  # convert to billions (we are currently in thousands)\n  mutate(value_billions = Value/1000000) %&gt;%\n  # select just the variables that we need:\n  select(Year, value_billions)\n\n\n# preview the data:\nhead(world_output)\n\n  Year value_billions\n1 1961       1081.469\n2 1962       1116.667\n3 1963       1145.179\n4 1964       1184.011\n5 1965       1209.248\n6 1966       1253.067"
   },
   {
-    "objectID": "lecture3.html#while-loops",
-    "href": "lecture3.html#while-loops",
-    "title": "R Math Camp",
-    "section": "While loops:",
-    "text": "While loops:\n\nRuns as long as a condition is true\nUseful when the number of repetitions isn’t fixed\n\n\nx &lt;- 1\nwhile (x &lt;= 5){\n  print(x)\n  \n  #reindex x:\n  x &lt;- x + 1\n}\n\n[1] 1\n[1] 2\n[1] 3\n[1] 4\n[1] 5"
+    "objectID": "lecture2.html#starting-the-plot",
+    "href": "lecture2.html#starting-the-plot",
+    "title": "Lecture 2",
+    "section": "Starting the plot:",
+    "text": "Starting the plot:\nLet’s start making the plot:\n\n# start by just specifying the data \nggplot(data = world_output)"
   },
   {
-    "objectID": "lecture3.html#common-loop-mistakes",
-    "href": "lecture3.html#common-loop-mistakes",
-    "title": "R Math Camp",
-    "section": "Common Loop Mistakes:",
-    "text": "Common Loop Mistakes:\n\nInfinite loop (forget to update condition)\nOff-by-one errors\nOverwriting variables inside loops\nNot vectoring when you could"
+    "objectID": "lecture2.html#making-the-plot",
+    "href": "lecture2.html#making-the-plot",
+    "title": "Lecture 2",
+    "section": "Making the plot:",
+    "text": "Making the plot:\nLet’s map the data to the plot:\n\nMapping is a set of instructions on how the data are mapped onto aesthetic attributes of geometric objects. It translates tidy data to the graphics system.\nA mapping can be made by using the aes() function to make pairs of graphical attributes and parts of the data.\n\n\n# start by just specifying the data \nggplot(data = world_output, aes(x=Year, y = value_billions))"
   },
   {
-    "objectID": "lecture3.html#functions",
-    "href": "lecture3.html#functions",
-    "title": "R Math Camp",
-    "section": "Functions:",
-    "text": "Functions:\nFunctions allow you to automate common tasks in a more powerful way than copying-and-pasting. This has a few key advantages:\n\nYou can give a function a custom name to make it easier to understand.\nAs you update your code, you only need to do it in one spot, rather than multiple.\nEliminates copy and pasting– makes it more efficient and less likely that you make a mistake."
+    "objectID": "lecture2.html#most-commonly-used-geoms",
+    "href": "lecture2.html#most-commonly-used-geoms",
+    "title": "Lecture 2",
+    "section": "Most commonly used geoms:",
+    "text": "Most commonly used geoms:\n\ngeom_bar() and geom_col(): bar charts\ngeom_boxplot(): box and whisker plots\ngeom_density(): density estimates\ngeom_jitter(): jitter points\ngeom_line(): line plots\ngeom_point(): scatter plots\n\nTo know more about layers, look at this."
   },
   {
-    "objectID": "lecture3.html#what-are-some-examples-of-pre-existing-functions",
-    "href": "lecture3.html#what-are-some-examples-of-pre-existing-functions",
-    "title": "R Math Camp",
-    "section": "What are some examples of pre-existing functions?",
-    "text": "What are some examples of pre-existing functions?\nTake mean() for example:\n\n# define a vector and calculate the mean of it:\nnums &lt;- c(4 ,-2, 3, 7, 8, 10, 0, 2)\nmean(nums)\n\n[1] 4\n\n# writing a function to calculate mean without relying on functions:\ncalc_mean &lt;- function(numbers) {\n  total &lt;- 0 # keep track of the sum of elements in x\n  count &lt;- 0 # keeps track of the # of elements\n  \n  # loop over all numbers and add them to \n  for (i in numbers) {\n    total &lt;- total + i\n    count &lt;- count + 1\n    \n    print(paste0(\"Total \" , total, \". Count: \", count))\n  }\n  \n  # calcualte the mean as the sum over the number of elements:\n  result &lt;- total/count\n  return(result)\n  \n}\n\n# run the function:\ncalc_mean(nums)\n\n[1] \"Total 4. Count: 1\"\n[1] \"Total 2. Count: 2\"\n[1] \"Total 5. Count: 3\"\n[1] \"Total 12. Count: 4\"\n[1] \"Total 20. Count: 5\"\n[1] \"Total 30. Count: 6\"\n[1] \"Total 30. Count: 7\"\n[1] \"Total 32. Count: 8\"\n\n\n[1] 4"
+    "objectID": "lecture2.html#add-layers",
+    "href": "lecture2.html#add-layers",
+    "title": "Lecture 2",
+    "section": "Add Layers:",
+    "text": "Add Layers:\nThis is the essential part of making the data appear on the chart:\n\n# start by just specifying the data \nggplot(data = world_output, aes(x=Year, y = value_billions)) + \n  geom_point() # add points"
   },
   {
-    "objectID": "lecture3.html#reproducibility-in-policy",
-    "href": "lecture3.html#reproducibility-in-policy",
-    "title": "R Math Camp",
-    "section": "Reproducibility in Policy:",
-    "text": "Reproducibility in Policy:\n\nReproducibility = allow someone to reproduce your analysis and get the same result\nPolicymakers should make decisions based on credible, transparent evidence, ensuring:\n\nResults can be verified\nMethods can be audited\nAnalyses can be updated over time\n\nUndetected errors can mislead stakeholders, undermine public trust, be built on outdated or incorrect data, and can hinder collaboration."
+    "objectID": "lecture2.html#add-layers-1",
+    "href": "lecture2.html#add-layers-1",
+    "title": "Lecture 2",
+    "section": "Add Layers:",
+    "text": "Add Layers:\nYou can add multiple layers to the same chart\n\n# start by just specifying the data \nggplot(data = world_output, aes(x=Year, y = value_billions)) + \n  geom_point() + # add points\n  geom_line() # add a line"
   },
   {
-    "objectID": "lecture3.html#what-does-reproducible-policy-analysis-look-like",
-    "href": "lecture3.html#what-does-reproducible-policy-analysis-look-like",
-    "title": "R Math Camp",
-    "section": "What does reproducible policy analysis look like?",
-    "text": "What does reproducible policy analysis look like?\n\nAll steps are scripted, documented, and commented\nCode, data, and methods are stored together.\nOutput (charts, tables, models) are generated automatically.\nAnalyses can be re-run with new data."
+    "objectID": "lecture2.html#add-labels",
+    "href": "lecture2.html#add-labels",
+    "title": "Lecture 2",
+    "section": "Add labels:",
+    "text": "Add labels:\n\n# start by just specifying the data \nggplot(data = world_output, aes(x=Year, y = value_billions)) + \n  geom_point() + # add points\n  geom_line() + # add a line\n  theme_classic() + # add a theme\n  labs(\n  x = \"Year\",\n  y = \"Amount (Billions USD, 2015 terms)\",\n  title = \"Global TFP Output Over Time\",\n  caption = \"Source: \"\n  ) # add labels"
   },
   {
-    "objectID": "lecture3.html#enter-quarto",
-    "href": "lecture3.html#enter-quarto",
-    "title": "R Math Camp",
-    "section": "Enter Quarto:",
-    "text": "Enter Quarto:\n\nDynamic documents that update when the data or code change\nCan produce reports, briefs, slides, or dashboards\n\nIntegrates analysis and narrative\n\nWay more digestible than traditional code.\n\n\nSupport citations and footnotes for transparency\nHelps build repeatable templates for reporting.\n\nQuarto is an open-source scientific and technical publishing system that enables researchers to create dynamic documents, reports, presentations, and websites."
+    "objectID": "lecture2.html#another-graph",
+    "href": "lecture2.html#another-graph",
+    "title": "Lecture 2",
+    "section": "Another graph:",
+    "text": "Another graph:\nLet’s try to make a graph the countries of Central America, and keep all of the attributes:\n\n# get a dataset of Cetnral America\ncentral_america &lt;- tfp |&gt;\n  # restrict to central america:\n  filter(Sub.Region == \"Central America\") |&gt;\n  # get rid of the subtotal:\n  filter(Country.territory != \"Central America\") |&gt;\n  # select the attributes we want:\n  filter(Attribute %in% c(\"Land_Q\", \"Labor_Q\", \"Capital_Q\")) |&gt;\n  # select the variables we need:\n  select(Country.territory, Year, Value, Attribute)\n\n\n # preview the data:\n  head(central_america)\n\n  Country.territory Year   Value Attribute\n1            Belize 1961 43.1018    Land_Q\n2            Belize 1961  9.0096   Labor_Q\n3            Belize 1961 24.8566 Capital_Q\n4            Belize 1962 43.1018    Land_Q\n5            Belize 1962  9.7604   Labor_Q\n6            Belize 1962 28.3185 Capital_Q"
   },
   {
-    "objectID": "lecture3.html#practice-with-quarto",
-    "href": "lecture3.html#practice-with-quarto",
-    "title": "R Math Camp",
-    "section": "Practice with Quarto:",
-    "text": "Practice with Quarto:\nYou will use Quarto for your problem sets, but let’s produce a report regarding how the first set of global, country-specific reciprocal tariffs were calculated by the Trump administration:"
+    "objectID": "lecture2.html#build-the-graph",
+    "href": "lecture2.html#build-the-graph",
+    "title": "Lecture 2",
+    "section": "Build the graph:",
+    "text": "Build the graph:\n\nggplot(data=central_america, aes(x=Year, y = Value)) +\n  geom_point()\n\n\nWhat’s wrong with this?"
   },
   {
-    "objectID": "lecture3.html#create-a-new-quarto-document",
-    "href": "lecture3.html#create-a-new-quarto-document",
-    "title": "R Math Camp",
-    "section": "Create a new Quarto Document:",
-    "text": "Create a new Quarto Document:\n\nOpen RStudio\nGo to File &gt; New File &gt; Quarto Document…\nFill in: Title, Author, Click “HTML” as the output\nFill in the metadata at the top and save with a descriptive name."
+    "objectID": "lecture2.html#color-coding-by-country",
+    "href": "lecture2.html#color-coding-by-country",
+    "title": "Lecture 2",
+    "section": "Color coding by country:",
+    "text": "Color coding by country:\n\nggplot(data=central_america, aes(x=Year, y = Value, color = Country.territory)) +\n  geom_point()\n\n\nIs this better?"
   },
   {
-    "objectID": "lecture3.html#reciprocal-tariffs-as-calculated-by-the-trump-administration",
-    "href": "lecture3.html#reciprocal-tariffs-as-calculated-by-the-trump-administration",
-    "title": "R Math Camp",
-    "section": "Reciprocal Tariffs as Calculated by the Trump Administration:",
-    "text": "Reciprocal Tariffs as Calculated by the Trump Administration:\nPer the US Trade Representative:\nReciprocal tariffs are calculated as the tariff rate necessary to balance bilateral trade deficits between the U.S. and each of our trading partners. This calculation assumes that persistent trade deficits are due to a combination of tariff and non-tariff factors that prevent trade from balancing.\nTariffs work through direct reductions of imports. Reciprocal tariff rates range from 0 percent to 99 percent, with unweighted and import-weighted averages of 20 percent and 41 percent\nWrite a brief introduction for the tariffs, as if you were a policy analyst who was going to evaluate the tariffs for your committee."
+    "objectID": "lecture2.html#scaling-the-axis",
+    "href": "lecture2.html#scaling-the-axis",
+    "title": "Lecture 2",
+    "section": "Scaling the axis:",
+    "text": "Scaling the axis:\n\nggplot(data=central_america, aes(x=Year, y = Value, color = Country.territory)) +\n  scale_y_log10() +\n  geom_point()\n\n\nIs this better?"
   },
   {
-    "objectID": "lecture3.html#the-formula",
-    "href": "lecture3.html#the-formula",
-    "title": "R Math Camp",
-    "section": "The Formula:",
-    "text": "The Formula:\nAgain, from the USTR:\nConsider an environment in which the U.S. levies a tariff of rate \\(\\tau_i\\) on country i and \\(\\Delta \\tau_i\\) reflects the change in the tariff rate. Let \\(\\epsilon&lt;0\\) represent the elasticity of imports with respect to import prices, let \\(\\phi &gt; 0\\) represent the passthrough from tariffs to import prices, let \\(m_i&gt;0\\) represent total imports from country i, and let \\(x_i &gt; 0\\) represent total exports. Then the decrease in imports due to a change in tariffs equals \\(\\tau_i \\cdot \\phi \\cdot m_i &lt; 0\\).Assuming that offsetting exchange rate and general equilibrium effects are small enough to be ignored, the reciprocal tariff that results in a bilateral trade balance of zero satisfies:\n\\[ \\Delta \\tau_i = \\frac{x_i - m_i}{\\epsilon \\cdot \\phi \\cdot m_i}\\] Write a brief description of the logic and your formula:"
+    "objectID": "lecture2.html#separate-graph-by-country",
+    "href": "lecture2.html#separate-graph-by-country",
+    "title": "Lecture 2",
+    "section": "Separate graph by country:",
+    "text": "Separate graph by country:\n\nggplot(data=central_america, aes(x=Year, y = Value, color = Country.territory)) +\n  scale_y_log10() +\n  facet_wrap(~ Country.territory) +\n  geom_point()"
   },
   {
-    "objectID": "lecture3.html#trade-data",
-    "href": "lecture3.html#trade-data",
-    "title": "R Math Camp",
-    "section": "Trade data:",
-    "text": "Trade data:\nThere is data from selected trading partners available on the Tax Foundation’s website and you can read it in via the following:\n\ntrade_data &lt;- read.csv('https://www.dropbox.com/scl/fi/hutc0dys9ha9op19jc0ov/trade_data.csv?rlkey=zc4px5zku4ddxpn3a6ivj35n4&e=1&dl=1')\n\n# look at the data:\nhead(trade_data)\n\n         Country trade_surplus_deficit_goods us_exports_goods us_imports_goods\n1          China                   -295401.6         143545.7         438947.4\n2 European Union                   -235571.2         370189.2         605760.4\n3          Japan                    -68467.7          79740.8         148208.6\n4        Vietnam                   -123463.0          13098.2         136561.2\n5    South Korea                    -66007.4          65541.8         131549.2\n6         Taiwan                    -73927.2          42336.9         116264.0\n  alleged_tariff_rate us_response\n1                 67%         34%\n2                 39%         20%\n3                 46%         24%\n4                 90%         46%\n5                 50%         25%\n6                 64%         32%"
+    "objectID": "lecture2.html#changing-our-color-and-adding-labels",
+    "href": "lecture2.html#changing-our-color-and-adding-labels",
+    "title": "Lecture 2",
+    "section": "Changing our color and adding labels:",
+    "text": "Changing our color and adding labels:\n\nggplot(data=central_america, aes(x=Year, y = Value, color = Attribute)) +\n  scale_y_log10() +\n  facet_wrap(~ Country.territory, scales = \"free\") +\n  geom_point() +\n  labs(y = \"Amount (log Thousands USD)\", title = \"Input Components\",\n       color = \"Input Factor\") +\n  scale_color_manual(labels = c(\"Capital\", \"Labor\", \"Land\"),\n                     values = c(\"red\", \"darkgreen\", \"blue\"))"
   },
   {
-    "objectID": "lecture3.html#lets-implement-the-formula",
-    "href": "lecture3.html#lets-implement-the-formula",
-    "title": "R Math Camp",
-    "section": "Let’s implement the formula:",
-    "text": "Let’s implement the formula:\n\ntariff &lt;- function(x,m,e,phi){\n  \n  # compute numerator and denominator\n  numerator &lt;- (x - m)\n  denominator &lt;- (e * phi * m)\n  \n  # compute change in rate and multiply by 100 to turn into percent:\n  delta_t = numerator/denominator*100\n  \n  # return delta_t\n  return(delta_t)\n}\n\n# now, let's implement it on the data\ntrade_data &lt;- trade_data |&gt;\n  mutate(calculated_rate = tariff(x=us_exports_goods,\n                       m=us_imports_goods,\n                       e=4,\n                       phi=0.25))\n\n# let's take a look at what the resulting data frame looks like:\ntrade_data %&gt;% select(Country, alleged_tariff_rate, us_response, calculated_rate)\n\n          Country alleged_tariff_rate us_response calculated_rate\n1           China                 67%         34%      -67.297745\n2  European Union                 39%         20%      -38.888511\n3           Japan                 46%         24%      -46.196914\n4         Vietnam                 90%         46%      -90.408549\n5     South Korea                 50%         25%      -50.176968\n6          Taiwan                 64%         32%      -63.585547\n7           India                 52%         26%      -52.236994\n8  United Kingdom                 10%         10%       17.414830\n9       Singapore                 10%         10%        6.547819\n10         Brazil                 10%         10%       17.370848"
+    "objectID": "lecture2.html#changing-our-color-and-adding-labels-1",
+    "href": "lecture2.html#changing-our-color-and-adding-labels-1",
+    "title": "Lecture 2",
+    "section": "Changing our color and adding labels:",
+    "text": "Changing our color and adding labels:\n\nggplot(data=central_america, aes(x=Year, y = Value, color = Country.territory)) +\n  scale_y_log10() +\n  facet_wrap(~ Attribute,\n             labeller = as_labeller(c(\n               \"Capital_Q\" = \"Capital\",\n               \"Labor_Q\" = \"Labor\",\n               \"Land_Q\" = \"Land\"\n             ))) +\n  geom_point() +\n  labs(y = \"Amount (log Thousands USD)\", title = \"Input Components\", color = \"Country\", caption = \"Source: USDA ERS\")"
   },
   {
-    "objectID": "lecture3.html#lets-edit-the-function-to-also-compute-the-response",
-    "href": "lecture3.html#lets-edit-the-function-to-also-compute-the-response",
-    "title": "R Math Camp",
-    "section": "Let’s edit the function to also compute the response:",
-    "text": "Let’s edit the function to also compute the response:\n\n# update our function:\ntariff_response &lt;- function(x,m,e,phi){\n  \n  # compute numerator and denominator\n  numerator &lt;- (x - m)\n  denominator &lt;- (e * phi * m)\n  \n  # compute change in rate and multiply by 100 to turn into percent:\n  delta_t = abs(round(numerator/denominator*100))\n  \n  # the response is half of the difference rounded up with a minimum of 10:\n  computed_response = round(pmax(\n    abs(delta_t/2),\n    10))\n  \n  # return delta_t\n  return(list(delta_t = delta_t,\n              computed_response = computed_response))\n}\n\n# now, let's implement it on the data\ntrade_data &lt;- trade_data |&gt;\n  \n  # extract the calculated rate from our function:\n  mutate(calc_rate = \n           tariff_response(\n             x=us_exports_goods,\n             m=us_imports_goods,\n             e=4,\n             phi=0.25)$delta_t,\n         \n         # extract the calculated response from our function\n         calc_response = \n           tariff_response(x=us_exports_goods,\n                       m=us_imports_goods,\n                       e=4,\n                       phi=0.25)$computed_response)\n\n# let's take a look at what the resulting data frame looks like:\ntrade_data %&gt;% select(Country, alleged_tariff_rate, us_response, calc_rate, calc_response)\n\n          Country alleged_tariff_rate us_response calc_rate calc_response\n1           China                 67%         34%        67            34\n2  European Union                 39%         20%        39            20\n3           Japan                 46%         24%        46            23\n4         Vietnam                 90%         46%        90            45\n5     South Korea                 50%         25%        50            25\n6          Taiwan                 64%         32%        64            32\n7           India                 52%         26%        52            26\n8  United Kingdom                 10%         10%        17            10\n9       Singapore                 10%         10%         7            10\n10         Brazil                 10%         10%        17            10"
+    "objectID": "lecture2.html#we-are-going-to-make-this-graph",
+    "href": "lecture2.html#we-are-going-to-make-this-graph",
+    "title": "Lecture 2",
+    "section": "We are going to make this graph:",
+    "text": "We are going to make this graph:\n\nTake a few minutes and talk to your neighbor about the steps."
   },
   {
-    "objectID": "lecture3.html#nice-thing-about-a-function",
-    "href": "lecture3.html#nice-thing-about-a-function",
-    "title": "R Math Camp",
-    "section": "Nice thing about a function:",
-    "text": "Nice thing about a function:\nWe can easily change the parameters. Let’s try an elasticity of 3:\n\ntrade_data &lt;- trade_data |&gt;\n  \n  # extract the calculated rate from our function:\n  mutate(calc_rate = \n           tariff_response(\n             x=us_exports_goods,\n             m=us_imports_goods,\n             e=3,\n             phi=0.25)$delta_t,\n         \n         # extract the calculated response from our function\n         calc_response = \n           tariff_response(x=us_exports_goods,\n                       m=us_imports_goods,\n                       e=3,\n                       phi=0.25)$computed_response)\n\n# let's take a look at what the resulting data frame looks like:\ntrade_data %&gt;% select(Country, alleged_tariff_rate, us_response, calc_rate, calc_response)\n\n          Country alleged_tariff_rate us_response calc_rate calc_response\n1           China                 67%         34%        90            45\n2  European Union                 39%         20%        52            26\n3           Japan                 46%         24%        62            31\n4         Vietnam                 90%         46%       121            60\n5     South Korea                 50%         25%        67            34\n6          Taiwan                 64%         32%        85            42\n7           India                 52%         26%        70            35\n8  United Kingdom                 10%         10%        23            12\n9       Singapore                 10%         10%         9            10\n10         Brazil                 10%         10%        23            12"
+    "objectID": "lecture2.html#steps",
+    "href": "lecture2.html#steps",
+    "title": "Lecture 2",
+    "section": "Steps:",
+    "text": "Steps:\n\nSelect/filter what we need from the dataset\n\nHint: we may need to use a combo of region and countries to filter on\n\nRecalculate Index\n\nWe are based in 2015 with this data, we want to convert to 1961 base\n\nCreate a base line plot in ggplot\nAdjust the theme parameters to make it look similar\n\nWork with the group next to you to make this graph, we will check in after a few steps"
   },
   {
-    "objectID": "lecture3.html#we-could-also-try-changing-the-formula",
-    "href": "lecture3.html#we-could-also-try-changing-the-formula",
-    "title": "R Math Camp",
-    "section": "We could also try changing the formula:",
-    "text": "We could also try changing the formula:\nLet’s try squaring the numerator and denominator:\n\n# update our function:\ntariff_response &lt;- function(x,m,e,phi){\n  \n  # compute numerator and denominator \n  # adding the square of the numerator and denominator:\n  numerator &lt;- (x - m)**2\n  denominator &lt;- (e * phi * m)**2\n  \n  # compute change in rate and multiply by 100 to turn into percent:\n  delta_t = abs(round(numerator/denominator*100))\n  \n  # the response is half of the difference rounded up with a minimum of 10:\n  computed_response = round(pmax(\n    abs(delta_t/2),\n    10))\n  \n  # return delta_t\n  return(list(delta_t = delta_t,\n              computed_response = computed_response))\n}\n\n# now, let's implement it on the data\ntrade_data &lt;- trade_data |&gt;\n  \n  # extract the calculated rate from our function:\n  mutate(calc_rate = \n           tariff_response(\n             x=us_exports_goods,\n             m=us_imports_goods,\n             e=4,\n             phi=0.25)$delta_t,\n         \n         # extract the calculated response from our function\n         calc_response = \n           tariff_response(x=us_exports_goods,\n                       m=us_imports_goods,\n                       e=4,\n                       phi=0.25)$computed_response)\n\n# let's take a look at what the resulting data frame looks like:\ntrade_data %&gt;% select(Country, alleged_tariff_rate, us_response, calc_rate, calc_response)\n\n          Country alleged_tariff_rate us_response calc_rate calc_response\n1           China                 67%         34%        45            22\n2  European Union                 39%         20%        15            10\n3           Japan                 46%         24%        21            10\n4         Vietnam                 90%         46%        82            41\n5     South Korea                 50%         25%        25            12\n6          Taiwan                 64%         32%        40            20\n7           India                 52%         26%        27            14\n8  United Kingdom                 10%         10%         3            10\n9       Singapore                 10%         10%         0            10\n10         Brazil                 10%         10%         3            10"
+    "objectID": "lecture2.html#my-rendition",
+    "href": "lecture2.html#my-rendition",
+    "title": "Lecture 2",
+    "section": "My rendition:",
+    "text": "My rendition:"
   },
   {
-    "objectID": "lecture3.html#develop-your-own-tariff-structure",
-    "href": "lecture3.html#develop-your-own-tariff-structure",
-    "title": "R Math Camp",
-    "section": "Develop your own Tariff Structure:",
-    "text": "Develop your own Tariff Structure:\nIt’s now your turn. Write a small report on a tariff structure that you would recommend adopting. It could be for the United States or whatever country you would like. Include a few visuals that motivate your approach and some that display your results.\nThe dataset that I recommend working with is the Country Trade by Partner, Bilateral Trade, HS92 data. Feel free to use whatever data source you would like. Some of the other datasets on that website have trade by sector, if that’s more interesting to you!\n\n# load in the data:\nintl_trade_data &lt;- read.csv('https://www.dropbox.com/scl/fi/6x1hhfsepayx55buy5idy/growth_lab_trade_data.csv?rlkey=4xtyf8nv7khmful85nly3jn3v&dl=1')\n\n# preview the data:\nhead(intl_trade_data)\n\n  country_id country_iso3_code partner_country_id partner_iso3_code year\n1          4               AFG                  8               ALB 2002\n2          4               AFG                  8               ALB 2007\n3          4               AFG                  8               ALB 2010\n4          4               AFG                  8               ALB 2011\n5          4               AFG                  8               ALB 2017\n6          4               AFG                  8               ALB 2018\n  export_value import_value\n1            0        99163\n2            0      2057713\n3            0        28203\n4            0        98774\n5            0        23355\n6        37007            0"
+    "objectID": "lecture2.html#my-code",
+    "href": "lecture2.html#my-code",
+    "title": "Lecture 2",
+    "section": "My code:",
+    "text": "My code:\n\n# create the data:\ners_long &lt;- tfp %&gt;% \n  filter(Region %in% c(\"China\", \"World\",\n                       \"Transition countries\", \"Low income\") |\n           Country.territory %in% c(\"Brazil\", \"United States\")) |&gt;\n  mutate(territory = case_when(\n    Region %in% c(\"China\", \"World\",\n                       \"Transition countries\", \"Low income\") ~ Region,\n    Country.territory %in% c(\"Brazil\", \"United States\") ~ Country.territory\n  )) |&gt;\n  filter(Attribute ==\"TFP_Index\") |&gt;\n  select(Year, territory, Value) %&gt;%\n  filter(Year &lt;= 2011)\n\n# Reindex so that 1961 is basis for index:\ners_long &lt;- ers_long |&gt;\n  group_by(territory) |&gt;\n  mutate(base_index = Value[Year == 1961]) |&gt;\n  mutate(new_index = Value/base_index*100)\n\n# Create a line plot\nggplot(ers_long, aes(x = Year, y = new_index,\n                     color = territory,\n                     linetype = territory)) +\n  geom_line(size = 1.2) +\n  scale_color_manual(values = c(\n    \"Brazil\" = \"#8B0000\",\n    \"China\" = \"#DAA520\",\n    \"United States\" = \"#4682B4\",\n    \"World\" = \"#20B2AA\",\n    \"Transition countries\" = \"#87CEEB\",\n    \"Low income\" = \"#BDB76B\"\n  )) +\n  scale_linetype_manual(values = c(\n    \"World\" = \"dashed\",\n    \"Brazil\" = \"solid\",\n    \"China\" = \"solid\",\n    \"United States\" = \"solid\",\n    \"Transition countries\" = \"solid\",\n    \"Low income\" = \"solid\"\n  )) +\n  labs(\n    title = \"Agricultural productivity (measured as total factor productivity)\",\n    subtitle = \"Growth for selected countries/country groups, 1961–2011\",\n    y = \"Index (1961 = 100)\",\n    x = NULL,\n    color = NULL,\n    linetype = NULL,\n    caption = \"Source: USDA Economic Research Service, International Agricultural Productivity data product.\"\n  ) +\n  theme_minimal(base_size = 14) +\n  theme(\n    legend.position = c(0.175, 0.75),\n    legend.key.width = unit(1.2, \"cm\"),\n    plot.caption = element_text(hjust = 0)\n  ) +\n  scale_y_continuous(limits = c(50,300), breaks = seq(50, 300, by = 50)) +\n  scale_x_continuous(limits = c(1961, 2011), breaks = seq(1961, 2011, by = 5)) +\n  geom_hline(yintercept = 100)"
   },
   {
-    "objectID": "lecture3.html#recap-lecture-3",
-    "href": "lecture3.html#recap-lecture-3",
-    "title": "R Math Camp",
-    "section": "Recap: Lecture 3",
-    "text": "Recap: Lecture 3\n\nLoops: automate repetition (for, while)\nFunctions: reusable code blocks that simplify workflows\nReproducibility: critical for transparent and credible policy analysis\nQuarto: integrates analysis + narrative, dynamic updates, reproducible outputs\n\n✨ Key takeaway: Loops and functions make your code efficient, Quarto makes your work reproducible and professional."
+    "objectID": "lecture2.html#recap-1",
+    "href": "lecture2.html#recap-1",
+    "title": "Lecture 2",
+    "section": "Recap:",
+    "text": "Recap:\nWhat did we learn today?\n\ndplyr basics:\n\nfilter() → subset rows\n\narrange() → order rows\n\nselect() → choose columns\n\nmutate() → create/transform variables\n\nsummarise() + group_by() → summary statistics by group\n\nTidy data: each variable = column, each observation = row, each value = one cell\nData visualization with ggplot2:\n\nGrammar of Graphics framework (data → aesthetics → geoms → scales → facets → theme)\n\nStart simple, then layer\n\nThemes, labels, and scales make plots more effective\n\nPrinciples of good visualization:\n\nClear, accurate, efficient, consistent, accessible\n\n\n✨ Key takeaway: 80% of your data exploration can be done with these dplyr verbs and ggplot2 basics!"
   }
 ]
