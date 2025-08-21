@@ -1,0 +1,440 @@
+---
+title: ""
+format: revealjs
+editor: visual
+theme: serif
+fontsize: 160%
+---
+
+# Functions, Loops, and Quarto
+
+Bradley Katcher
+
+<br><br>
+
+Note: I am grateful to Rony Rodriguez-Ramirez and previous Math Camp and API-209 TFs for their materials, of which these are heavily based.
+
+------------------------------------------------------------------------
+
+```{r, echo = F}
+library(tidyverse)
+library(dplyr)
+
+```
+
+## Recap: Lecture 2
+
+-   dplyr basics
+
+    -   filter() → subset rows
+
+    -   arrange() → order rows
+
+    -   select() → choose columns
+
+    -   mutate() → create/transform variables
+
+    -   summarise() + group_by() → summary statistics
+
+-   Tidy data principles
+
+    -   Each variable = column
+
+    -   Each observation = row
+
+    -   Each value = one cell
+
+-   Data visualization with ggplot2
+
+    -   Grammar of Graphics: data → aesthetics → geoms → scales → facets → themes
+
+    -   Start simple, then layer
+
+    -   Good visualization = Clear, Accurate, Efficient, Consistent, Accessible
+
+## Goals for Today
+
+-   Learn how to use loops (for, while) to repeat actions
+
+-   Understand common loop mistakes and how to avoid them
+
+-   Write your own functions to make code more efficient
+
+-   Explore the importance of reproducibility in policy analysis
+
+-   Practice using Quarto for dynamic, reproducible reports
+
+## Loops:
+
+-   Loops let us **repeat actions** multiple times.
+
+-   They are common when working with:
+
+    -   Vectors
+
+    -   Lists
+
+    -   Data processing tasks
+
+-   Two common loops in R:
+
+    -   `for` loop
+
+    -   `while` loop
+
+## The `for` loop:
+
+```{r, echo = T}
+
+for (i in 1:5){
+  print(i)
+}
+```
+
+-   `i` takes on values from `1` to `5`
+
+-   Loop body runs once for each value
+
+-   Useful for iterating over lists, vectors, and sequences
+
+```{r, echo = T}
+
+numbers <- c(10,20,30)
+for (n in numbers) {
+  print(n*2)
+}
+```
+
+## While loops:
+
+-   Runs as long as a condition is true
+
+-   Useful when the number of repetitions isn't fixed
+
+```{r, echo = T}
+
+x <- 1
+while (x <= 5){
+  print(x)
+  
+  #reindex x:
+  x <- x + 1
+}
+
+```
+
+## Common Loop Mistakes:
+
+-   Infinite loop (forget to update condition)
+
+-   Off-by-one errors
+
+-   Overwriting variables inside loops
+
+-   Not vectoring when you could
+
+## Functions:
+
+Functions allow you to automate common tasks in a more powerful way than copying-and-pasting. This has a few key advantages:
+
+1.  You can give a function a custom name to make it easier to understand.
+
+2.  As you update your code, you only need to do it in one spot, rather than multiple.
+
+3.  Eliminates copy and pasting-- makes it more efficient and less likely that you make a mistake.
+
+## What are some examples of pre-existing functions?
+
+Take `mean()` for example:
+
+```{r, echo = TRUE}
+
+# define a vector and calculate the mean of it:
+nums <- c(4 ,-2, 3, 7, 8, 10, 0, 2)
+mean(nums)
+
+# writing a function to calculate mean without relying on functions:
+calc_mean <- function(numbers) {
+  total <- 0 # keep track of the sum of elements in x
+  count <- 0 # keeps track of the # of elements
+  
+  # loop over all numbers and add them to 
+  for (i in numbers) {
+    total <- total + i
+    count <- count + 1
+    
+    print(paste0("Total " , total, ". Count: ", count))
+  }
+  
+  # calcualte the mean as the sum over the number of elements:
+  result <- total/count
+  return(result)
+  
+}
+
+# run the function:
+calc_mean(nums)
+```
+
+# Reproducibility in Research and Quarto
+
+## Reproducibility in Policy:
+
+-   Reproducibility = allow someone to reproduce your analysis and get the same result
+
+-   Policymakers should make decisions based on credible, transparent evidence, ensuring:
+
+    -   Results can be verified
+
+    -   Methods can be audited
+
+    -   Analyses can be updated over time
+
+-   Undetected errors can mislead stakeholders, undermine public trust, be built on outdated or incorrect data, and can hinder collaboration.
+
+## What does reproducible policy analysis look like?
+
+-   All steps are scripted, documented, and commented
+
+-   Code, data, and methods are stored together.
+
+-   Output (charts, tables, models) are generated automatically.
+
+-   Analyses can be re-run with new data.
+
+## Enter Quarto:
+
+-   Dynamic documents that update when the data or code change
+
+-   Can produce reports, briefs, slides, or dashboards
+
+    -   Integrates analysis and narrative
+
+        -   Way more digestible than traditional code.
+
+-   Support citations and footnotes for transparency
+
+-   Helps build repeatable templates for reporting.
+
+Quarto is an open-source scientific and technical publishing system that enables researchers to create dynamic documents, reports, presentations, and websites.
+
+## Practice with Quarto:
+
+You will use Quarto for your problem sets, but let's produce a report regarding how the first set of global, country-specific reciprocal tariffs were calculated by the Trump administration:
+
+![](https://image.cnbcfm.com/api/v1/image/108125381-1743629674285-9b3146f9401db67a.jpg?w=1920&h=1080)
+
+## Create a new Quarto Document:
+
+1.  Open RStudio
+2.  Go to File \> New File \> Quarto Document...
+3.  Fill in: Title, Author, Click "HTML" as the output
+4.  Fill in the metadata at the top and save with a descriptive name.
+
+## Reciprocal Tariffs as Calculated by the Trump Administration:
+
+Per the US Trade Representative:
+
+`Reciprocal tariffs are calculated as the tariff rate necessary to balance bilateral trade deficits between the U.S. and each of our trading partners. This calculation assumes that persistent trade deficits are due to a combination of tariff and non-tariff factors that prevent trade from balancing.`
+
+`Tariffs work through direct reductions of imports. Reciprocal tariff rates range from 0 percent to 99 percent, with unweighted and import-weighted averages of 20 percent and 41 percent`
+
+Write a brief introduction for the tariffs, as if you were a policy analyst who was going to evaluate the tariffs for your committee.
+
+## The Formula:
+
+Again, from the USTR:
+
+`Consider an environment in which the U.S. levies a tariff of rate` $\tau_i$ `on country i and` $\Delta \tau_i$ `reflects the change in the tariff rate. Let` $\epsilon<0$ `represent the elasticity of imports with respect to import prices, let` $\phi > 0$ `represent the passthrough from tariffs to import prices, let` $m_i>0$ `represent total imports from country i, and let` $x_i > 0$ `represent total exports. Then the decrease in imports due to a change in tariffs equals` $\tau_i \cdot \phi \cdot m_i < 0$.`Assuming that offsetting exchange rate and general equilibrium effects are small enough to be ignored, the reciprocal tariff that results in a bilateral trade balance of zero satisfies:`
+
+$$ \Delta \tau_i = \frac{x_i - m_i}{\epsilon \cdot \phi \cdot m_i}$$ Write a brief description of the logic and your formula:
+
+## Trade data:
+
+There is data from selected trading partners available on the [Tax Foundation's website](https://taxfoundation.org/blog/trump-reciprocal-tariffs-calculations/) and you can read it in via the following:
+
+```{r, echo = T}
+trade_data <- read.csv('https://www.dropbox.com/scl/fi/hutc0dys9ha9op19jc0ov/trade_data.csv?rlkey=zc4px5zku4ddxpn3a6ivj35n4&e=1&dl=1')
+
+# look at the data:
+head(trade_data)
+
+```
+
+## Let's implement the formula:
+
+```{r, echo = T}
+
+tariff <- function(x,m,e,phi){
+  
+  # compute numerator and denominator
+  numerator <- (x - m)
+  denominator <- (e * phi * m)
+  
+  # compute change in rate and multiply by 100 to turn into percent:
+  delta_t = numerator/denominator*100
+  
+  # return delta_t
+  return(delta_t)
+}
+
+# now, let's implement it on the data
+trade_data <- trade_data |>
+  mutate(calculated_rate = tariff(x=us_exports_goods,
+                       m=us_imports_goods,
+                       e=4,
+                       phi=0.25))
+
+# let's take a look at what the resulting data frame looks like:
+trade_data %>% select(Country, alleged_tariff_rate, us_response, calculated_rate)
+
+```
+
+## Let's edit the function to also compute the response:
+
+```{r, echo = T}
+
+# update our function:
+tariff_response <- function(x,m,e,phi){
+  
+  # compute numerator and denominator
+  numerator <- (x - m)
+  denominator <- (e * phi * m)
+  
+  # compute change in rate and multiply by 100 to turn into percent:
+  delta_t = abs(round(numerator/denominator*100))
+  
+  # the response is half of the difference rounded up with a minimum of 10:
+  computed_response = round(pmax(
+    abs(delta_t/2),
+    10))
+  
+  # return delta_t
+  return(list(delta_t = delta_t,
+              computed_response = computed_response))
+}
+
+# now, let's implement it on the data
+trade_data <- trade_data |>
+  
+  # extract the calculated rate from our function:
+  mutate(calc_rate = 
+           tariff_response(
+             x=us_exports_goods,
+             m=us_imports_goods,
+             e=4,
+             phi=0.25)$delta_t,
+         
+         # extract the calculated response from our function
+         calc_response = 
+           tariff_response(x=us_exports_goods,
+                       m=us_imports_goods,
+                       e=4,
+                       phi=0.25)$computed_response)
+
+# let's take a look at what the resulting data frame looks like:
+trade_data %>% select(Country, alleged_tariff_rate, us_response, calc_rate, calc_response)
+
+```
+
+## Nice thing about a function:
+
+We can easily change the parameters. Let's try an elasticity of 3:
+
+```{r, echo = T}
+trade_data <- trade_data |>
+  
+  # extract the calculated rate from our function:
+  mutate(calc_rate = 
+           tariff_response(
+             x=us_exports_goods,
+             m=us_imports_goods,
+             e=3,
+             phi=0.25)$delta_t,
+         
+         # extract the calculated response from our function
+         calc_response = 
+           tariff_response(x=us_exports_goods,
+                       m=us_imports_goods,
+                       e=3,
+                       phi=0.25)$computed_response)
+
+# let's take a look at what the resulting data frame looks like:
+trade_data %>% select(Country, alleged_tariff_rate, us_response, calc_rate, calc_response)
+```
+
+## We could also try changing the formula:
+
+Let's try squaring the numerator and denominator:
+
+```{r, echo = T}
+
+# update our function:
+tariff_response <- function(x,m,e,phi){
+  
+  # compute numerator and denominator 
+  # adding the square of the numerator and denominator:
+  numerator <- (x - m)**2
+  denominator <- (e * phi * m)**2
+  
+  # compute change in rate and multiply by 100 to turn into percent:
+  delta_t = abs(round(numerator/denominator*100))
+  
+  # the response is half of the difference rounded up with a minimum of 10:
+  computed_response = round(pmax(
+    abs(delta_t/2),
+    10))
+  
+  # return delta_t
+  return(list(delta_t = delta_t,
+              computed_response = computed_response))
+}
+
+# now, let's implement it on the data
+trade_data <- trade_data |>
+  
+  # extract the calculated rate from our function:
+  mutate(calc_rate = 
+           tariff_response(
+             x=us_exports_goods,
+             m=us_imports_goods,
+             e=4,
+             phi=0.25)$delta_t,
+         
+         # extract the calculated response from our function
+         calc_response = 
+           tariff_response(x=us_exports_goods,
+                       m=us_imports_goods,
+                       e=4,
+                       phi=0.25)$computed_response)
+
+# let's take a look at what the resulting data frame looks like:
+trade_data %>% select(Country, alleged_tariff_rate, us_response, calc_rate, calc_response)
+
+```
+
+## Develop your own Tariff Structure:
+
+It's now your turn. Write a small report on a tariff structure that you would recommend adopting. It could be for the United States or whatever country you would like. Include a few visuals that motivate your approach and some that display your results.
+
+The dataset that I recommend working with is [the Country Trade by Partner, Bilateral Trade, HS92 data](https://atlas.hks.harvard.edu/data-downloads). Feel free to use whatever data source you would like. Some of the other datasets on that website have trade by sector, if that's more interesting to you!
+
+```{r, echo = T}
+# load in the data:
+intl_trade_data <- read.csv('https://www.dropbox.com/scl/fi/6x1hhfsepayx55buy5idy/growth_lab_trade_data.csv?rlkey=4xtyf8nv7khmful85nly3jn3v&dl=1')
+
+# preview the data:
+head(intl_trade_data)
+```
+
+## Recap: Lecture 3
+
+-   **Loops**: automate repetition (`for`, `while`)
+
+-   **Functions**: reusable code blocks that simplify workflows
+
+-   **Reproducibility**: critical for transparent and credible policy analysis
+
+-   **Quarto**: integrates analysis + narrative, dynamic updates, reproducible outputs
+
+✨ Key takeaway: Loops and functions make your code efficient, Quarto makes your work reproducible and professional.
