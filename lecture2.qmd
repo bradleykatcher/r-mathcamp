@@ -498,6 +498,74 @@ ggplot(ers_long, aes(x = Year, y = new_index,
 
 ```
 
+## My code:
+
+```{r, echo = T, eval = F}
+
+# create the data:
+ers_long <- tfp %>% 
+  filter(Region %in% c("China", "World",
+                       "Transition countries", "Low income") |
+           Country.territory %in% c("Brazil", "United States")) |>
+  mutate(territory = case_when(
+    Region %in% c("China", "World",
+                       "Transition countries", "Low income") ~ Region,
+    Country.territory %in% c("Brazil", "United States") ~ Country.territory
+  )) |>
+  filter(Attribute =="TFP_Index") |>
+  select(Year, territory, Value) %>%
+  filter(Year <= 2011)
+
+# Reindex so that 1961 is basis for index:
+ers_long <- ers_long |>
+  group_by(territory) |>
+  mutate(base_index = Value[Year == 1961]) |>
+  mutate(new_index = Value/base_index*100)
+
+# Create a line plot
+ggplot(ers_long, aes(x = Year, y = new_index,
+                     color = territory,
+                     linetype = territory)) +
+  geom_line(size = 1.2) +
+  scale_color_manual(values = c(
+    "Brazil" = "#8B0000",
+    "China" = "#DAA520",
+    "United States" = "#4682B4",
+    "World" = "#20B2AA",
+    "Transition countries" = "#87CEEB",
+    "Low income" = "#BDB76B"
+  )) +
+  scale_linetype_manual(values = c(
+    "World" = "dashed",
+    "Brazil" = "solid",
+    "China" = "solid",
+    "United States" = "solid",
+    "Transition countries" = "solid",
+    "Low income" = "solid"
+  )) +
+  labs(
+    title = "Agricultural productivity (measured as total factor productivity)",
+    subtitle = "Growth for selected countries/country groups, 1961–2011",
+    y = "Index (1961 = 100)",
+    x = NULL,
+    color = NULL,
+    linetype = NULL,
+    caption = "Source: USDA Economic Research Service, International Agricultural Productivity data product."
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    legend.position = c(0.175, 0.75),
+    legend.key.width = unit(1.2, "cm"),
+    plot.caption = element_text(hjust = 0)
+  ) +
+  scale_y_continuous(limits = c(50,300), breaks = seq(50, 300, by = 50)) +
+  scale_x_continuous(limits = c(1961, 2011), breaks = seq(1961, 2011, by = 5)) +
+  geom_hline(yintercept = 100)
+
+```
+
+## 
+
 ## Recap:
 
 What did we learn today?

@@ -720,6 +720,73 @@ EU27 (27 countries as of 2021 excludes UK)
 <h2>My rendition:</h2>
 
 <img data-src="lecture2_files/figure-revealjs/unnamed-chunk-18-1.png" width="960" class="r-stretch"></section>
+<section id="my-code" class="slide level2">
+<h2>My code:</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="co"># create the data:</span></span>
+<span id="cb24-2"><a></a>ers_long <span class="ot">&lt;-</span> tfp <span class="sc">%&gt;%</span> </span>
+<span id="cb24-3"><a></a>  <span class="fu">filter</span>(Region <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"China"</span>, <span class="st">"World"</span>,</span>
+<span id="cb24-4"><a></a>                       <span class="st">"Transition countries"</span>, <span class="st">"Low income"</span>) <span class="sc">|</span></span>
+<span id="cb24-5"><a></a>           Country.territory <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Brazil"</span>, <span class="st">"United States"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb24-6"><a></a>  <span class="fu">mutate</span>(<span class="at">territory =</span> <span class="fu">case_when</span>(</span>
+<span id="cb24-7"><a></a>    Region <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"China"</span>, <span class="st">"World"</span>,</span>
+<span id="cb24-8"><a></a>                       <span class="st">"Transition countries"</span>, <span class="st">"Low income"</span>) <span class="sc">~</span> Region,</span>
+<span id="cb24-9"><a></a>    Country.territory <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Brazil"</span>, <span class="st">"United States"</span>) <span class="sc">~</span> Country.territory</span>
+<span id="cb24-10"><a></a>  )) <span class="sc">|&gt;</span></span>
+<span id="cb24-11"><a></a>  <span class="fu">filter</span>(Attribute <span class="sc">==</span><span class="st">"TFP_Index"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb24-12"><a></a>  <span class="fu">select</span>(Year, territory, Value) <span class="sc">%&gt;%</span></span>
+<span id="cb24-13"><a></a>  <span class="fu">filter</span>(Year <span class="sc">&lt;=</span> <span class="dv">2011</span>)</span>
+<span id="cb24-14"><a></a></span>
+<span id="cb24-15"><a></a><span class="co"># Reindex so that 1961 is basis for index:</span></span>
+<span id="cb24-16"><a></a>ers_long <span class="ot">&lt;-</span> ers_long <span class="sc">|&gt;</span></span>
+<span id="cb24-17"><a></a>  <span class="fu">group_by</span>(territory) <span class="sc">|&gt;</span></span>
+<span id="cb24-18"><a></a>  <span class="fu">mutate</span>(<span class="at">base_index =</span> Value[Year <span class="sc">==</span> <span class="dv">1961</span>]) <span class="sc">|&gt;</span></span>
+<span id="cb24-19"><a></a>  <span class="fu">mutate</span>(<span class="at">new_index =</span> Value<span class="sc">/</span>base_index<span class="sc">*</span><span class="dv">100</span>)</span>
+<span id="cb24-20"><a></a></span>
+<span id="cb24-21"><a></a><span class="co"># Create a line plot</span></span>
+<span id="cb24-22"><a></a><span class="fu">ggplot</span>(ers_long, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> new_index,</span>
+<span id="cb24-23"><a></a>                     <span class="at">color =</span> territory,</span>
+<span id="cb24-24"><a></a>                     <span class="at">linetype =</span> territory)) <span class="sc">+</span></span>
+<span id="cb24-25"><a></a>  <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb24-26"><a></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb24-27"><a></a>    <span class="st">"Brazil"</span> <span class="ot">=</span> <span class="st">"#8B0000"</span>,</span>
+<span id="cb24-28"><a></a>    <span class="st">"China"</span> <span class="ot">=</span> <span class="st">"#DAA520"</span>,</span>
+<span id="cb24-29"><a></a>    <span class="st">"United States"</span> <span class="ot">=</span> <span class="st">"#4682B4"</span>,</span>
+<span id="cb24-30"><a></a>    <span class="st">"World"</span> <span class="ot">=</span> <span class="st">"#20B2AA"</span>,</span>
+<span id="cb24-31"><a></a>    <span class="st">"Transition countries"</span> <span class="ot">=</span> <span class="st">"#87CEEB"</span>,</span>
+<span id="cb24-32"><a></a>    <span class="st">"Low income"</span> <span class="ot">=</span> <span class="st">"#BDB76B"</span></span>
+<span id="cb24-33"><a></a>  )) <span class="sc">+</span></span>
+<span id="cb24-34"><a></a>  <span class="fu">scale_linetype_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb24-35"><a></a>    <span class="st">"World"</span> <span class="ot">=</span> <span class="st">"dashed"</span>,</span>
+<span id="cb24-36"><a></a>    <span class="st">"Brazil"</span> <span class="ot">=</span> <span class="st">"solid"</span>,</span>
+<span id="cb24-37"><a></a>    <span class="st">"China"</span> <span class="ot">=</span> <span class="st">"solid"</span>,</span>
+<span id="cb24-38"><a></a>    <span class="st">"United States"</span> <span class="ot">=</span> <span class="st">"solid"</span>,</span>
+<span id="cb24-39"><a></a>    <span class="st">"Transition countries"</span> <span class="ot">=</span> <span class="st">"solid"</span>,</span>
+<span id="cb24-40"><a></a>    <span class="st">"Low income"</span> <span class="ot">=</span> <span class="st">"solid"</span></span>
+<span id="cb24-41"><a></a>  )) <span class="sc">+</span></span>
+<span id="cb24-42"><a></a>  <span class="fu">labs</span>(</span>
+<span id="cb24-43"><a></a>    <span class="at">title =</span> <span class="st">"Agricultural productivity (measured as total factor productivity)"</span>,</span>
+<span id="cb24-44"><a></a>    <span class="at">subtitle =</span> <span class="st">"Growth for selected countries/country groups, 1961–2011"</span>,</span>
+<span id="cb24-45"><a></a>    <span class="at">y =</span> <span class="st">"Index (1961 = 100)"</span>,</span>
+<span id="cb24-46"><a></a>    <span class="at">x =</span> <span class="cn">NULL</span>,</span>
+<span id="cb24-47"><a></a>    <span class="at">color =</span> <span class="cn">NULL</span>,</span>
+<span id="cb24-48"><a></a>    <span class="at">linetype =</span> <span class="cn">NULL</span>,</span>
+<span id="cb24-49"><a></a>    <span class="at">caption =</span> <span class="st">"Source: USDA Economic Research Service, International Agricultural Productivity data product."</span></span>
+<span id="cb24-50"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb24-51"><a></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb24-52"><a></a>  <span class="fu">theme</span>(</span>
+<span id="cb24-53"><a></a>    <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.175</span>, <span class="fl">0.75</span>),</span>
+<span id="cb24-54"><a></a>    <span class="at">legend.key.width =</span> <span class="fu">unit</span>(<span class="fl">1.2</span>, <span class="st">"cm"</span>),</span>
+<span id="cb24-55"><a></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>)</span>
+<span id="cb24-56"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb24-57"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">50</span>,<span class="dv">300</span>), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">50</span>, <span class="dv">300</span>, <span class="at">by =</span> <span class="dv">50</span>)) <span class="sc">+</span></span>
+<span id="cb24-58"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1961</span>, <span class="dv">2011</span>), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">1961</span>, <span class="dv">2011</span>, <span class="at">by =</span> <span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb24-59"><a></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="section" class="slide level2">
+<h2></h2>
+</section>
 <section id="recap-1" class="slide level2">
 <h2>Recap:</h2>
 <p>What did we learn today?</p>

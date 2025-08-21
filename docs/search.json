@@ -203,6 +203,13 @@
     "text": "My rendition:"
   },
   {
+    "objectID": "lecture2.html#my-code",
+    "href": "lecture2.html#my-code",
+    "title": "Lecture 2",
+    "section": "My code:",
+    "text": "My code:\n\n# create the data:\ners_long &lt;- tfp %&gt;% \n  filter(Region %in% c(\"China\", \"World\",\n                       \"Transition countries\", \"Low income\") |\n           Country.territory %in% c(\"Brazil\", \"United States\")) |&gt;\n  mutate(territory = case_when(\n    Region %in% c(\"China\", \"World\",\n                       \"Transition countries\", \"Low income\") ~ Region,\n    Country.territory %in% c(\"Brazil\", \"United States\") ~ Country.territory\n  )) |&gt;\n  filter(Attribute ==\"TFP_Index\") |&gt;\n  select(Year, territory, Value) %&gt;%\n  filter(Year &lt;= 2011)\n\n# Reindex so that 1961 is basis for index:\ners_long &lt;- ers_long |&gt;\n  group_by(territory) |&gt;\n  mutate(base_index = Value[Year == 1961]) |&gt;\n  mutate(new_index = Value/base_index*100)\n\n# Create a line plot\nggplot(ers_long, aes(x = Year, y = new_index,\n                     color = territory,\n                     linetype = territory)) +\n  geom_line(size = 1.2) +\n  scale_color_manual(values = c(\n    \"Brazil\" = \"#8B0000\",\n    \"China\" = \"#DAA520\",\n    \"United States\" = \"#4682B4\",\n    \"World\" = \"#20B2AA\",\n    \"Transition countries\" = \"#87CEEB\",\n    \"Low income\" = \"#BDB76B\"\n  )) +\n  scale_linetype_manual(values = c(\n    \"World\" = \"dashed\",\n    \"Brazil\" = \"solid\",\n    \"China\" = \"solid\",\n    \"United States\" = \"solid\",\n    \"Transition countries\" = \"solid\",\n    \"Low income\" = \"solid\"\n  )) +\n  labs(\n    title = \"Agricultural productivity (measured as total factor productivity)\",\n    subtitle = \"Growth for selected countries/country groups, 1961–2011\",\n    y = \"Index (1961 = 100)\",\n    x = NULL,\n    color = NULL,\n    linetype = NULL,\n    caption = \"Source: USDA Economic Research Service, International Agricultural Productivity data product.\"\n  ) +\n  theme_minimal(base_size = 14) +\n  theme(\n    legend.position = c(0.175, 0.75),\n    legend.key.width = unit(1.2, \"cm\"),\n    plot.caption = element_text(hjust = 0)\n  ) +\n  scale_y_continuous(limits = c(50,300), breaks = seq(50, 300, by = 50)) +\n  scale_x_continuous(limits = c(1961, 2011), breaks = seq(1961, 2011, by = 5)) +\n  geom_hline(yintercept = 100)"
+  },
+  {
     "objectID": "lecture2.html#recap-1",
     "href": "lecture2.html#recap-1",
     "title": "Lecture 2",
