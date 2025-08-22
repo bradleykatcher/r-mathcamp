@@ -1,0 +1,561 @@
+---
+title: "Lecture 4"
+format: 
+  revealjs:
+    theme: serif
+    embed-resources: true
+fontsize: 150%
+---
+
+## Why Are We Learning Joins?
+
+By the end of today, you will be able to:
+
+-   ✅ Identify **primary keys** and **foreign keys** that link datasets\
+-   ✅ Understand the **different types of joins** (left, right, inner, full, semi, anti)\
+-   ✅ Perform joins in R using **dplyr** (`left_join()`, etc.)\
+-   ✅ Recognize and fix **common merge problems** (duplicates, mismatched names, missing values)\
+-   ✅ Distinguish between **merging** (columns) vs **appending** (rows)\
+-   ✅ Apply joins to a **real-world dataset (Gapminder)**\
+-   ✅ Debug messy joins with practical tools (`anti_join()`, cleaning, deduplication)
+
+> **Motivation**: Real analysis rarely lives in one table. Joining is the bridge that lets us answer richer questions.
+
+## Why learn merging?
+
+It's rare that a data analysis task involves only a single data frame. Usually, you have multiple data sets and want to join them together to answer the question you are interested in.
+
+. . .
+
+For example, consider wanting to determine the relationship between GDP and the number of cows in a country.
+
+-   It's rare that a dataset would have both of these things in common.
+
+. . .
+
+-   However, there are separate datasets for these things:
+
+    1.  [Cows](https://worldpopulationreview.com/country-rankings/cattle-population-by-country)
+    2.  [GDP](https://data.worldbank.org/indicator/NY.GDP.PCAP.CD)
+
+-   What do these have in common? Country name
+
+-   In R, we typically call merges "joining" or "joins"
+
+## Primary keys:
+
+Every join involves a primary key which uniquely identifies each observation.
+
+-   What was it in the previous example?
+
+. . .
+
+What if we had multiple years of cattle and GDP numbers?
+
+-   We would have Country + Year being the primary key
+
+    -   When you have two variables as a primary key, it is referred to as a "compound key"
+
+. . .
+
+-   A foreign key is a variable (or set of variables) that corresponds to a primary key in another table.
+
+## Example:
+
+![](https://r4ds.hadley.nz/diagrams/relational.png){width="652"}
+
+. . .
+
+-   `flights$tailnum` is a FK that corresponds to the PK `planes$tailnum`.
+
+. . .
+
+-   `flights$carrier` is a FK that corresponds to the PK `airlines$carrier`.
+
+. . .
+
+-   `flights$origin` is a FK that corresponds to the PK `airports$faa`.
+-   `flights$dest` is a FK that corresponds to the PK `airports$faa`.
+-   `flights$origin`-`flights$time_hour` is a compound FK that corresponds to the compound primary key `weather$origin`-`weather$time_hour`.
+
+## What kind of joins are there?
+
+Now that we have identified how the data sets are connected by keys, let's understand the type of joins:
+
+. . .
+
+1.  Mutating join: combine variables from two data frames
+    -   Matches observations by their keys and then copies across variables from one data frame to another
+
+. . .
+
+2.  Filtering joins: filter the rows from one data frame based on if they appear in the other
+    -   Used more rarely
+
+    -   Can accomplish the same thing using combinations of mutating joins
+
+## List of joins:
+
+1.  `left_join()`: used to bring in additional data, output will always have the same rows as x
+    -   In our example, we would say: `GDP_data |> left_join(COW_data, by = 'country_name')`
+
+    -   If `left_join()` fails to find a match in a row for x, it fills in the new variables with missing values
+
+. . .
+
+2.  All the rest
+
+. . .
+
+-   `right_join()` similar to left_join but keeps all the rows in y
+
+-   `full_join()` keeps all the rows in either x or y
+
+-   `inner_join()` keeps only the rows that are in both x and y
+
+-   `semi_join()` keeps all the rows in x that have a match in y
+
+-   `anti_join()` return all the rows in x that don't have a match in y
+
+## Syntax:
+
+-   When joining two data frames, you **must specify the key column(s)** to align the rows correctly.
+
+    -   These columns contain values that uniquely identify matching records in each data set (**e.g.,** **`country`**, **`year`**, **`subject_id`**).
+
+-   Use the **`by` argument** in join functions:
+
+    -   **Same key in both data frames:**\
+        **`inner_join(x, y, by = "subject_id")`**\
+        (matches on **`subject_id`** in both **`x`** and **`y`**)
+
+    -   **Different key names:**\
+        **`inner_join(x, y, by = c("subject_id" = "subj_id"))`**\
+        (matches **`x$subject_id`** to **`y$subj_id`**)
+
+-   **Convenience feature:**\
+    If you do not specify **`by`**, the join will match on all columns with the same name in both data frames.
+
+    -   This works well if columns with shared names contain the same info in each data frame.
+
+## 🔧 Practical Skills
+
+-   Common pitfalls in joining
+
+    -   Mismatched key names (typos, capitalization, trailing spaces).
+
+    -   Duplicate keys (many-to-many joins, which may blow up the dataset unexpectedly).
+
+    -   Implicit joins when you forget to specify `by`
+
+<!-- -->
+
+-   Common pitfalls in joining
+
+    -   Using `janitor::clean_names()`, `stringr` for trimming/standardizing, or `countrycode` for harmonizing country names.
+
+-   Checking results after joins
+
+    -   `nrow()`, `summary()`, `distinct()`, `count()` to ensure the join behaved as expected.
+
+## Left join:
+
+![](https://raw.githubusercontent.com/gadenbuie/tidyexplain/main/images/left-join.gif)
+
+## Right join:
+
+![](https://raw.githubusercontent.com/gadenbuie/tidyexplain/main/images/right-join.gif)
+
+## Inner join:
+
+![](https://raw.githubusercontent.com/gadenbuie/tidyexplain/main/images/inner-join.gif)
+
+## Full join:
+
+![](https://raw.githubusercontent.com/gadenbuie/tidyexplain/main/images/full-join.gif)
+
+## Visuals of joins:
+
+![](http://lgimages.s3.amazonaws.com/data/imagemanager/73259/table.png)
+
+If you want to see examples of these in R, you can see some [here](https://guides.nyu.edu/quant/merge#r-soft)
+
+## Different from appending
+
+Appending is different for merging
+
+-   Merging adds columns to a dataset
+
+    -   Combines information row-wise
+
+. . .
+
+-   Appending adds rows to a dataset
+
+    -   Think of if we had 2 datasets, one with years 2000-2019, and one with 2020-2025
+
+        -   We would append by using the `rbind()` command:
+
+        -   `years_combined <- df_2000_2019 |> rbind(df_2020_2025)`
+
+## Merge example with Gapminder data:
+
+What is Gapminder data?
+
+-   **Gapminder** is a well-known dataset that tracks global development statistics over time.
+
+-   It contains a variety of indicators for most countries in the world and years from 1952 through 2007.
+
+    -   Examples of indicators:
+
+        -   **Life expectancy**
+
+        -   **GDP per capita**
+
+        -   **Population**
+
+        -   **Continent**
+
+-   Each row represents a country in a specific year and includes these variables.
+
+-   Gapminder is popular for teaching data analysis because:
+
+    -   It includes real-world data covering health, wealth, and demographic trends.
+
+    -   It is tidy, clean, and easy to join with other datasets.
+
+-   Used by Hans Rosling in famous visualizations to show trends in global health and income.
+
+## Merge Examples
+
+Note: these examples were inspired by the work of Craig Hutton and his tutorial on joins:
+
+```{r, echo = T}
+# start by loading in the gapminder data:
+library(gapminder) # constains the gapminder data, will load it in as an object
+library(dplyr)
+
+head(gapminder)
+
+```
+
+## Create some different datasets to merge on:
+
+```{r, echo = T}
+
+# create a dataset of life expectancy for all non-Asian countries:
+life_df <- gapminder |>
+  filter(continent != "Asia") |>
+  select(country, year, lifeExp) |> 
+  ungroup()
+
+# create a dataset on population for all non-European countries:
+pop_df <- gapminder |>
+  filter(continent != "Europe") |>
+  select(country, year, pop) |>
+  ungroup()
+
+# create a dataset on GDP for all countries:
+gdp_df <- gapminder |>
+  select(country, year, gdpPercap) |>
+  ungroup()
+```
+
+## Left join:
+
+If we wanted to add population data for each continent that appears in the life expectancy data frame, we could use the `left_join()`:
+
+```{r, echo = T}
+head(life_df)
+head(pop_df)
+```
+
+What columns should we merge on?
+
+. . .
+
+`country` and `year`
+
+## Left join:
+
+```{r, echo = T}
+joined_table <- life_df  |> left_join(
+          pop_df, 
+          by = c("country", "year"))
+
+head(joined_table)
+tail(joined_table)
+
+```
+
+## Different Name:
+
+If the key columns have different names, you can tell the join function which columns to use with the equality operator
+
+```{r, echo = T}
+
+# create a renamed version:
+life_df_renamed <- rename(life_df, 
+                          nation = country)
+
+joined_table_renamed <- life_df_renamed |> left_join(pop_df, 
+          #since the country column is now called "nation" in life_df, 
+          #we have to tell left_join which columns to match on.
+          #You'll get an error if you try by = c("continent", "year") this time
+          by = c("nation" = "country",
+                 "year"))
+
+head(joined_table_renamed)
+
+```
+
+## Right join:
+
+A right join is basically the same thing as a left_join but in the other direction, where the 1st data frame (x) is joined to the 2nd one (y), so if we wanted to add life expectancy and GDP per capita data we could either use:
+
+1.  a right_join() with life_df on the left side and gdp_df on the right side, or
+2.  a left_join() with gdp_df on the left side and life_df on the right side
+
+... and get the same result with only the columns arranged differently...
+
+```{r, echo = T}
+
+# try via right join:
+rj <- life_df |> right_join(gdp_df, by = c('year', 'country'))
+
+# try via left join:
+lj <- gdp_df |> left_join(life_df, by = c('year', 'country'))
+
+# arrange and select them:
+rj <- rj |> arrange(country, year, gdpPercap, lifeExp) |>
+  select(country, year, gdpPercap, lifeExp)
+lj <- lj |> arrange(country, year, gdpPercap, lifeExp) |>
+    select(country, year, gdpPercap, lifeExp)
+
+# look at the data
+head(rj)
+head(lj)
+
+# check to see if they are identcial:
+identical(lj, rj)
+
+```
+
+## Full Join:
+
+After aligning rows by matches in the key column(s), a full join retains all rows that appear in x or y
+
+```{r, echo = T}
+
+# join the two of them
+full_join_df <- life_df |>
+  full_join(gdp_df, by = c('country', 'year')) 
+
+head(full_join_df)
+
+# check the dimensions of the full join and compare them to the left join:
+
+dim(full_join_df)
+dim(life_df)
+```
+
+## Inner Join:
+
+If you want to work with data that match entries in both data sources, you would use the `inner_join()`:
+
+```{r, echo = T}
+
+# Mean life expectancy and population:
+life_expect_population <- life_df |>
+  inner_join(pop_df, by = c('country', 'year'))
+
+
+# check the dimensions:
+dim(life_expect_population)
+
+# check summary to see that there are no NAs:
+summary(life_expect_population)
+
+```
+
+## Anti-Join:
+
+Anti joins return the rows `x` that do not appear in `y`:
+
+```{r, echo = T}
+
+# keep the rows in GDP that do not appear in the Population df:
+anti_join_df <- gdp_df |>
+  anti_join(pop_df, by = c('country', 'year'))
+
+head(anti_join_df)
+
+# try the other version:
+anti_join_df_reverse <- pop_df |>
+  anti_join(gdp_df, by = c('country', 'year'))
+
+# should have no observations here
+dim(anti_join_df_reverse)
+
+```
+
+-   Anti joins can be very useful if you want to know which rows are excluded due to mismatches in the key columns.
+
+-   Checking for consistencies and inconsistencies between data sources is an important part of the data cleaning process and can often help to uncover data entry or coding errors that should be fixed prior to conducting any analyses.
+
+## Binding Rows:
+
+```{r, echo = T}
+# imagine we have two datasets that we want to append:
+gapminder1900s <- gapminder |> filter(year < 2000)
+gapminder2000s <- gapminder |> filter(year >= 2000)
+
+
+# bind them together via rbind:
+
+combined_gapminder <- gapminder1900s |>
+  rbind(gapminder2000s)
+
+# look at results 
+head(combined_gapminder)
+
+summary(combined_gapminder)
+```
+
+## Working through a messy exercise together:
+
+```{r, echo = T}
+library(dplyr)
+library(stringr)
+library(tibble)
+
+# Messy GDP data
+gdp_df <- tribble(
+  ~country,                                  ~year, ~gdp_percap,
+  "United States",                           2007,  48000,
+  "United  States ",                         2007,  48000,  # extra spaces -> duplicate key
+  "Brasil",                                  2007,  9000,
+  "Viet Nam",                                2007,  2300,
+  "DRC",                                     2007,  300
+)
+
+# Messy life expectancy data (different key names + an extra “Atlantis” row)
+life_df <- tribble(
+  ~nation,                                   ~yr,   ~life_exp,
+  "United States",                           2007,  78.1,
+  "Brazil",                                  2007,  72.4,   # note spelling “Brazil”
+  "Viet Nam",                                2007,  74.3,
+  "Democratic Republic of the Congo",        2007,  47.0,
+  "Atlantis",                                2007,  88.8
+)
+
+# A tiny crosswalk you’ll use to harmonize country names -> ISO3
+crosswalk <- tribble(
+  ~raw_name,                          ~iso3c,
+  "United States",                    "USA",
+  "United  States ",                  "USA",
+  "Brasil",                           "BRA",
+  "Brazil",                           "BRA",
+  "Viet Nam",                         "VNM",
+  "DRC",                              "COD",
+  "Democratic Republic of the Congo", "COD",
+  "Atlantis",                         "ATL"
+)
+```
+
+## Take some time to inspect keys and duplicates:
+
+. . .
+
+```{r, echo = T}
+# Count potential keys in each data set
+gdp_dups  <- gdp_df  |> count(country, year,  name = "n") |> filter(n > 1)
+life_dups <- life_df |> count(nation,  yr,    name = "n") |> filter(n > 1)
+
+gdp_dups
+life_dups
+```
+
+## Standardize keys:
+
+1.  Trim whitespace; map country names to `iso3c` via the crosswalk
+2.  Align columns so both tables have `iso3c` and `year`
+
+. . .
+
+```{r, echo = T}
+gdp_clean <- gdp_df |>
+  mutate(country = str_squish(country)) |>
+  left_join(crosswalk, by = c("country" = "raw_name")) |>
+  transmute(iso3c, year, gdp_percap)
+
+head(gdp_clean)
+
+life_clean <- life_df |>
+  mutate(nation  = str_squish(nation)) |>
+  left_join(crosswalk, by = c("nation"  = "raw_name")) |>
+  transmute(iso3c, year = yr, life_exp)
+
+head(life_clean)
+```
+
+## Ensure keys are unique before joining:
+
+. . .
+
+```{r, echo = T}
+
+# If either of these returns rows, you’ve got many-to-many risk
+gdp_clean |> count(iso3c, year)  |> filter(n > 1)
+life_clean |> count(iso3c, year) |> filter(n > 1)
+
+# Fix: for demo, deduplicate GDP by keeping one row per key (e.g., max gdp_percap)
+gdp_clean <- gdp_clean |>
+  group_by(iso3c, year) |>
+  summarize(gdp_percap = max(gdp_percap), .groups = "drop")
+
+```
+
+## Join + check:
+
+. . .
+
+```{r, echo = T}
+
+# Left join GDP <- LifeExp (keeps GDP universe)
+analytic <- gdp_clean |>
+  left_join(life_clean, by = c("iso3c", "year"))
+
+# What didn’t match on the life side?
+unmatched_in_life <- gdp_clean |> anti_join(life_clean, by = c("iso3c","year"))
+
+# What countries appear only in life (e.g., “Atlantis”)?
+only_in_life <- life_clean |> anti_join(gdp_clean, by = c("iso3c","year"))
+
+list(
+  analytic_preview = head(analytic),
+  rows_analytic = nrow(analytic),
+  unmatched_in_life = unmatched_in_life,
+  only_in_life = only_in_life
+)
+
+
+```
+
+## What We Learned Today
+
+-   🔑 **Keys**: primary, foreign, compound\
+-   🧩 **Types of joins** and when to use them\
+-   🛠️ **Syntax**: `by = c("key1", "key2")`\
+-   📊 **Practical joins** with Gapminder data\
+-   🚦 **Diagnostics**: `anti_join()` to find mismatches, checking duplicates\
+-   ➕ **Appending vs. merging**\
+-   🧪 **Hands-on messy merge exercise**
+
+✅ You should now feel comfortable:
+
+-   Performing merges in R
+
+-   Auditing and debugging joins
+
+-   Understanding how joins affect your dataset size/content
