@@ -1,0 +1,367 @@
+---
+title: "R Lab 4 Solutions"
+author: "Bradley Katcher"
+format: html
+editor: visual
+---
+
+I am grateful to Professor Dan Levy and previous API-209 TAs for the creation of this portion of the problem set. 
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(options(width = 60))
+knitr::opts_chunk$set(class.output = "bg-warning")
+
+packages <- c('haven','dplyr', 'ggplot2', 'reshape2', 'tidyverse',
+              'lubridate', 'scales')  
+to_install <- packages[!(packages %in% installed.packages()[,"Package"])]
+if(length(to_install)>0) install.packages(to_install, 
+                                          repos='http://cran.us.r-project.org')
+lapply(packages, require, character.only=TRUE)
+
+
+```
+
+# QUESTION 2 -- LEARNING ABOUT RWANDA'S ECONOMY
+
+### GUIDANCE ON SOLVING R QUESTIONS
+
+In most API-209 problem sets, you will encounter questions
+designed to help you acquire R coding skills. As you saw in
+the first day of classes, there are some people in your
+class that have extensive coding experience and others who
+are new to coding. Regardless of where you stand, here are a
+few tips to solve R questions: 
+
+-   In every problem set, you will need to **set up your
+    environment**: 
+
+    -  You should create a subdirectory for Problem Set 1 and keep all
+        your data, code, and work in that directory. You may
+        also want to make an RStudio Project specifically
+        for that project directory 
+
+-   There are high chances that **you will get stuck with
+    your code at some point**; **this is a very natural part
+    of coding!** Knowing how to troubleshoot becomes a key
+    skill: 
+
+    -   Google and AI tools like ChatGPT are extremely
+        useful resources when you don't know the command or
+        code needed to solve a problem. We encourage you to
+        leverage them on your learning process. However, our
+        advice is that you refer to AI only after having
+        tried to figure out how to do it by yourself as this
+        will better allow you to develop your R skills 
+
+    -   If you have not found the answers online, ask your
+        CAs or classmates for help! It is very easy to get
+        stuck on a problem for hours, even if it can be very
+        quickly solved with guidance from a person
+        knowledgeable in R
+
+-   In some instances, **we will ask you to create graphs or
+    tables**: 
+
+    -   If we ask you to replicate them from an existing
+        source, we expect you to produce something
+        professional-looking and similar to the original
+        work; but it does not need to match 100% of its
+        elements 
+
+    -   If you create your own visualization from scratch,
+        we encourage you to adjust it to improve readability
+        and professional appearance, even if we do not
+        explicitly request it. However, you should not feel
+        the pressure to do this if you are just getting
+        started with R
+
+### INTRODUCING THE FINAL EXERCISE
+This question serves **two purposes**: (i) getting you
+familiarized with some of the data you will use in the API -
+209 and DEV - 401 final exercise and (ii) developing your R
+skills to analyze data. 
+
+The **objective of the final exercise is to give you an
+opportunity to apply the analytic tools you will acquire in
+API-209 and DEV-401 to a real policy setting**. You will have R exercises in
+problem sets that will introduce you to the challenges you
+will be working on, help you get a head start in your
+project, and increase your chances of producing a final
+output you are proud of.
+
+### Q2 PART 1: UNDERSTANDING RWANDA'S ECONOMY
+
+The dataset for this question is an extract from World
+Bank's World Development Indicators (WDI). Please download
+the dataset "PS1_dataset1.csv" from our Canvas website.
+First, familiarize yourself with the dataset. Then import it
+into R and answer the questions below. We will start by
+focusing on the gross domestic product (GDP), a concept you
+dealt with in your Macro class with Prof. Frankel. The WDI
+dataset reports GDP values in 2015 U.S. dollars, so you can
+directly compare values in different years. 
+
+**(A) Explore the data set:** An essential practice before
+doing any data analysis is to explore the data set. Here are
+some questions to ask:
+
+-   What is the unit of observation (i.e. country, year,
+    country/year, etc.)?
+-   How many observations are in the data set?
+-   What are the key variables in the data set?
+-   For the key variables, how are they coded, what is the
+    extent of missing data for key variables, and how will I
+    deal with this missing data?
+
+Once you have done this (no need to type answers to these
+questions, but do answer them), create an analysis data set
+in which:
+
+-   You keep only observations that have non-missing data
+    for both GDP_1995 and GDP_2022. This will be the data
+    set you will you for the remainder of this problem set,
+    so assign it to an object you can use.
+-   You transform the population variables so that they are
+    expressed in millions of people (for example,
+    158,000,000 should become 158).
+-   You transform the GDP variables so that they are
+    expressed in millions of dollars  
+
+This will be the data set you will you for the remainder of
+this problem set, so assign it to an object you can use. Now
+report the mean and the number of observations for GDP 2022
+for this analysis data set. 
+
+::: answer-box
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+wdi <- read_csv("https://raw.githubusercontent.com/bradleykatcher/r-mathcamp/refs/heads/main/PS1_dataset1.csv") |> 
+  filter(GDP_1995 != ".." & GDP_2022 != "..") |> 
+  mutate(POP_1995 = as.numeric(POP_1995) / 1000000,
+         POP_2022 = as.numeric(POP_2022) / 1000000,
+         GDP_1995 = as.numeric(GDP_1995) / 1000000,
+         GDP_2022 = as.numeric(GDP_2022) / 1000000); wdi
+
+```
+:::
+
+------------------------------------------------------------
+
+**(B) Understanding Rwanda's economic evolution:** we will
+start by understand how Rwanda's economy has evolved over
+time:
+
+(B1) Report Rwanda's GDP in 2022.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Insert your code here.
+ans_b1 <- wdi |> filter(Country == "Rwanda") |> 
+  pull(GDP_2022)
+
+```
+
+::: answer-box
+**Answer:** Rwanda's GDP in 2022 was `r round(ans_b1)` million USD or $`r round(ans_b1)/1000` billion USD.
+:::
+
+
+------------------------------------------------------------
+
+(B2) Calculate the GDP per capita in 1995 and in 2022 for
+Rwanda. Save your results to a new object.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Insert your code here.
+per_cap_r <- wdi |> filter(Country == "Rwanda") |> 
+  transmute(gdp_pc_1995 = GDP_1995 / POP_1995,
+         gdp_pc_2022 = GDP_2022 / POP_2022)
+```
+
+::: answer-box
+**Answer:** See output above.
+:::
+
+------------------------------------------------------------
+
+(B3) Calculate the increase in GDP per capita in Rwanda from
+1995 to 2022 (in % change)
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Insert your code here.
+per_cap_r |> mutate(perc_change = 100 * (gdp_pc_2022 - gdp_pc_1995) / gdp_pc_1995)
+```
+
+::: answer-box
+**Answer:** See output above.
+:::
+
+------------------------------------------------------------
+
+**(C)** **Comparing Rwanda to other African countries:**
+
+(C1) Calculate the GDP per capita in 1995 and in 2022 for
+each country in Sub-Saharan Africa. Report the average GPD
+per capita across Sub-Saharan Africa in 2022
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Insert your code here.
+
+per_cap <- wdi |> filter(Region == "Sub-Saharan Africa") |> 
+  mutate(gdp_pc_1995 = GDP_1995 / POP_1995,
+         gdp_pc_2022 = GDP_2022 / POP_2022)
+
+mean(per_cap$gdp_pc_2022, na.rm = T)
+
+```
+
+::: answer-box
+**Answer:** The average GDP per capita across Sub-Saharan
+Africa in 2022 was `r mean(per_cap$gdp_pc_2022, na.rm = T)`
+million USD per person.
+:::
+
+------------------------------------------------------------
+
+(C2) Calculate the increase in GDP per capita for each
+country in Sub-Saharan Africa from 1995 to 2022 (in %
+change). Report the average increase in GPD per capita from
+1995 to 2022 across Sub-Saharan Africa
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Insert your code here.
+per_cap <- per_cap |> mutate(perc_change = 100 * (gdp_pc_2022 - gdp_pc_1995) / gdp_pc_1995)
+
+mean_per_cap <- 100 * (mean(per_cap$gdp_pc_2022) - mean(per_cap$gdp_pc_1995)) / mean(per_cap$gdp_pc_1995)
+
+```
+
+::: answer-box
+**Answer:** The average increase in GDP per capita from 1995
+to 2022 across Sub-Saharan Africa was `r mean_per_cap`
+million USD per person.
+:::
+
+------------------------------------------------------------
+
+(C3) Rank all the countries of Sub-Saharan Africa in
+descending order first in terms of GPD per capita in 2022
+and then in terms of GDP per capita growth from 1995 to 2022
+(in % change). Report:
+
+i.  in which place Rwanda ends up in each case
+
+ii. two to five countries that are in a similar position (in
+    terms of GDP per capita in 2022 and growth from 1995 to
+
+    2022. 
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Insert your code here.
+
+per_cap |> arrange(desc(gdp_pc_2022))
+
+per_cap |> arrange(desc(perc_change))
+
+```
+
+::: answer-box
+**Answer:** Rwanda had the 27th highest GDP per capita in
+2022 but grew more since 1995 than all but two countries in
+the region. Countries in a similar position on both
+dimensions include Ethiopia, Uganda, and Tanzania.
+:::
+
+
+------------------------------------------------------------
+
+(C4) Draw a histogram showing the distribution of GDP per
+capita in 2022 for countries in Sub-Saharan Africa, using
+bins that are \$1,000 wide. Imagine this histogram were to
+appear in The Economist, i.e., make it well-labeled and
+professionally looking. Feel free to tweet it using #api209
+or post it on our #r-tips Slack channel. 
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Insert your code here.
+
+ggplot(per_cap, aes(x = gdp_pc_2022)) +
+  geom_histogram(binwidth = 1000, color = "white", fill = "skyblue") +
+  labs(
+    title = "Distribution of GDP per Capita in Sub-Saharan Africa (2022)",
+    x = "GDP per Capita (USD)",
+    y = "Frequency"
+  ) +
+  theme_minimal()
+
+```
+
+**(D) Putting it all together:** in one crisp paragraph (2-3
+sentences), summarize your findings from your analyses in
+(a)-(c) 
+
+------------------------------------------------------------
+
+::: answer-box
+**Answer:** Answers may vary. Responses could mention
+Rwanda's GDP in 2022 and its change since 1995, as well as
+how it stacks up against the rest of the region alongside
+some similar neighbors.
+:::
+------------------------------------------------------------
+
+### Q2 PART 2: UNDERSTANDING RWANDA'S EXPORTS
+
+The dataset for this question is an extract from the Atlas
+of Economic Complexity. Please download the dataset
+"PS1_dataset2.csv" from our Canvas website. The dataset
+includes one single tab with the data extract that you will
+use for this question, containing data on Rwanda's export
+per sector from 1995 to 2021. First, familiarize yourself
+with the worksheet then import these data into R and explore
+the dataset. You do not need to share your answer here, but
+we recommend you to use question (a) above as guidance. Once
+you have explored the dataset, please proceed with the rest
+of the questions. 
+
+**(E) Understanding the evolution of Rwanda's exports:**
+produce a table summarizing the evolution of exports per
+sector. Each sector (e.g., agriculture, services, etc.)
+should be a row in your table, with each year representing a
+column. To make it easier to digest, (i) aggregate the
+different sectors into four buckets: agriculture,
+manufacturing - include chemicals, electronics, machinery,
+textiles, vehicles and other -, mining and metals -- include
+metals, minerals, and stone -, and services (ii) show only
+exports for years 1995, 2005, 2015 and 2021. 
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Insert your code here.
+
+exp <- read_csv("https://raw.githubusercontent.com/bradleykatcher/r-mathcamp/refs/heads/main/PS1_dataset2.csv")
+
+exp_new <- exp |> group_by(Sector) |> 
+  summarize(exports_1995 = sum(Exports_1995, na.rm = T),
+            exports_2005 = sum(Exports_2005, na.rm = T),
+            exports_2015 = sum(Exports_2015, na.rm = T),
+            exports_2021 = sum(Exports_2021, na.rm = T))
+
+dbinom(x = 4, size = 10, prob = .5)
+
+```
+
+**(F) Interpret your findings:** what insights and patterns
+do you observe from your analysis in (e)?
+
+------------------------------------------------------------
+
+::: answer-box
+**Answer:** It seems as through agriculture has always been
+an important part of the Rwandan economy, but has more
+recently been ecplipsed by the manufacturing sector.
+Services decreased between 2015 and 2021, while other
+sectors increased significantly since 2005, becoming even
+more valuable than the agriculture sector.
+:::
+
+------------------------------------------------------------
