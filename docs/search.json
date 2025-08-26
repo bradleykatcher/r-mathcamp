@@ -816,28 +816,42 @@
     "href": "lecture4.html#left-join",
     "title": "Lecture 4",
     "section": "Left join:",
-    "text": "Left join:"
+    "text": "Left join:\nWith a left join we retain all observations from x, and we add columns y. Rows in x where there is no matching key value in y will have NA values in the new columns."
   },
   {
     "objectID": "lecture4.html#right-join",
     "href": "lecture4.html#right-join",
     "title": "Lecture 4",
     "section": "Right join:",
-    "text": "Right join:"
+    "text": "Right join:\nA right join is just a flipped left join where we retain all observations from y, and we add columns x. Similar to a left join, rows in y where there is no matching key value in x will have NA values in the new columns.\nShould I use a right join, or a left join? To answer this, ask “which data frame should retain all of its rows?” - and use this one as the baseline. A left join keep all the rows in the first data frame written in the command, whereas a right join keeps all the rows in the second data frame."
   },
   {
     "objectID": "lecture4.html#inner-join",
     "href": "lecture4.html#inner-join",
     "title": "Lecture 4",
     "section": "Inner join:",
-    "text": "Inner join:"
+    "text": "Inner join:\nAn inner join matches pairs of observations whenever their keys are equal. Consequently, the output of an inner join is all rows from x where there are matching values in y, and all columns from x and y.\nAn inner join is the most restrictive of the joins - it returns only rows with matches across both data frames."
   },
   {
     "objectID": "lecture4.html#full-join",
     "href": "lecture4.html#full-join",
     "title": "Lecture 4",
     "section": "Full join:",
-    "text": "Full join:"
+    "text": "Full join:\nWe can also perform a full join where we keep all observations in x and y. This join will match observations where the key variable(s) have matching information in both tables and then fill in non-matching values as NA.\nA full join is the most inclusive of the joins - it returns all rows from both data frames."
+  },
+  {
+    "objectID": "lecture4.html#semi-join",
+    "href": "lecture4.html#semi-join",
+    "title": "Lecture 4",
+    "section": "Semi join:",
+    "text": "Semi join:\nA semi-join keeps all observations in the baseline data frame that have a match in the secondary data frame (but does not add new columns nor duplicate any rows for multiple matches)."
+  },
+  {
+    "objectID": "lecture4.html#anti-join",
+    "href": "lecture4.html#anti-join",
+    "title": "Lecture 4",
+    "section": "Anti join:",
+    "text": "Anti join:\nThe anti join is another “filtering join” that returns rows in the baseline data frame that do not have a match in the secondary data frame.\nCommon scenarios for an anti-join include identifying records not present in another data frame, troubleshooting spelling in a join (reviewing records that should have matched), and examining records that were excluded after another join."
   },
   {
     "objectID": "lecture4.html#visuals-of-joins",
@@ -917,8 +931,8 @@
     "text": "Inner Join:\nIf you want to work with data that match entries in both data sources, you would use the inner_join():\n\n# Mean life expectancy and population:\nlife_expect_population &lt;- life_df |&gt;\n  inner_join(pop_df, by = c('country', 'year'))\n\n\n# check the dimensions:\ndim(life_expect_population)\n\n[1] 948   4\n\n# check summary to see that there are no NAs:\nsummary(life_expect_population)\n\n      country         year         lifeExp           pop           \n Algeria  : 12   Min.   :1952   Min.   :23.60   Min.   :    60011  \n Angola   : 12   1st Qu.:1966   1st Qu.:44.68   1st Qu.:  2053003  \n Argentina: 12   Median :1980   Median :52.60   Median :  5068804  \n Australia: 12   Mean   :1980   Mean   :54.51   Mean   : 14506347  \n Benin    : 12   3rd Qu.:1993   3rd Qu.:64.91   3rd Qu.: 12431196  \n Bolivia  : 12   Max.   :2007   Max.   :81.23   Max.   :301139947  \n (Other)  :876"
   },
   {
-    "objectID": "lecture4.html#anti-join",
-    "href": "lecture4.html#anti-join",
+    "objectID": "lecture4.html#anti-join-1",
+    "href": "lecture4.html#anti-join-1",
     "title": "Lecture 4",
     "section": "Anti-Join:",
     "text": "Anti-Join:\nAnti joins return the rows x that do not appear in y:\n\n# keep the rows in GDP that do not appear in the Population df:\nanti_join_df &lt;- gdp_df |&gt;\n  anti_join(pop_df, by = c('country', 'year'))\n\nhead(anti_join_df)\n\n# A tibble: 6 × 3\n  country  year gdpPercap\n  &lt;fct&gt;   &lt;int&gt;     &lt;dbl&gt;\n1 Albania  1952     1601.\n2 Albania  1957     1942.\n3 Albania  1962     2313.\n4 Albania  1967     2760.\n5 Albania  1972     3313.\n6 Albania  1977     3533.\n\n# try the other version:\nanti_join_df_reverse &lt;- pop_df |&gt;\n  anti_join(gdp_df, by = c('country', 'year'))\n\n# should have no observations here\ndim(anti_join_df_reverse)\n\n[1] 0 3\n\n\n\nAnti joins can be very useful if you want to know which rows are excluded due to mismatches in the key columns.\nChecking for consistencies and inconsistencies between data sources is an important part of the data cleaning process and can often help to uncover data entry or coding errors that should be fixed prior to conducting any analyses."

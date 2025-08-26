@@ -160,19 +160,47 @@ Now that we have identified how the data sets are connected by keys, let's under
 
 ## Left join:
 
+With a left join we retain all observations from `x`, and we add columns `y`. Rows in `x` where there is no matching key value in `y` will have `NA` values in the new columns.
+
 ![](https://raw.githubusercontent.com/gadenbuie/tidyexplain/main/images/left-join.gif)
 
 ## Right join:
+
+A **right join** is just a flipped left join where we retain all observations from `y`, and we add columns `x`. Similar to a left join, rows in `y` where there is no matching key value in `x` will have `NA` values in the new columns.
+
+Should I use a right join, or a left join? To answer this, ask  “which data frame should retain all of its rows?” - and use this one as the baseline. A left join keep all the rows in the first data frame written in the command, whereas a right join keeps all the rows in the second data frame.
+
 
 ![](https://raw.githubusercontent.com/gadenbuie/tidyexplain/main/images/right-join.gif)
 
 ## Inner join:
 
+An inner join matches pairs of observations whenever their keys are equal. Consequently, the output of an inner join is all rows from `x` where there are matching values in `y`, and all columns from `x` and `y`.
+
+An inner join is the most restrictive of the joins - it returns only rows with matches across both data frames.
+
 ![](https://raw.githubusercontent.com/gadenbuie/tidyexplain/main/images/inner-join.gif)
 
 ## Full join:
 
+We can also perform a full join where we keep all observations in `x` and `y`. This join will match observations where the key variable(s) have matching information in both tables and then fill in non-matching values as `NA`.
+
+A full join is the most inclusive of the joins - it returns all rows from both data frames.
+
 ![](https://raw.githubusercontent.com/gadenbuie/tidyexplain/main/images/full-join.gif)
+
+## Semi join:
+A semi-join keeps all observations in the baseline data frame that have a match in the secondary data frame (but does not add new columns nor duplicate any rows for multiple matches).
+![](https://bradleyboehmke.github.io/uc-bana-7025/images/semi-join.gif)
+
+## Anti join:
+
+The anti join is another “filtering join” that returns rows in the baseline data frame that do not have a match in the secondary data frame.
+
+Common scenarios for an anti-join include identifying records not present in another data frame, troubleshooting spelling in a join (reviewing records that should have matched), and examining records that were excluded after another join.
+
+![](https://bradleyboehmke.github.io/uc-bana-7025/images/anti-join.gif)
+
 
 ## Visuals of joins:
 
